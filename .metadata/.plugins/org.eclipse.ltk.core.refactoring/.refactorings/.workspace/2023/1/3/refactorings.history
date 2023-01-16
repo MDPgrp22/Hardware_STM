@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;mdp_hardware/Peripheral_Driver&apos;" deleteContents="false" description="Delete resource &apos;mdp_hardware/Peripheral_Driver&apos;" element1="/mdp_hardware/Peripheral_Driver" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1673848378393"/>
+</session>
