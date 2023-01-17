@@ -513,7 +513,7 @@ void encoder_task(void *argument)
 			OLED_ShowString(10,20,msg);
 
 			// Display direction
-			sprintf(msg, "dir:%5d\0",dir);
+			sprintf(msg, "speed:%5d\0",dir);
 			OLED_ShowString(10,30,msg);
 
 			// Reset base tick
