@@ -25,6 +25,8 @@ PeripheralDriver/Src/oled.o: ../PeripheralDriver/Src/oled.c \
  C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h \
  C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h \
  C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
+ C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
+ C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../PeripheralDriver/Src/../../PeripheralDriver/Inc/oledfont.h
 
 ../PeripheralDriver/Src/../../PeripheralDriver/Inc/oled.h:
@@ -78,5 +80,9 @@ C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HA
 C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h:
 
 C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h:
+
+C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
+
+C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 
 ../PeripheralDriver/Src/../../PeripheralDriver/Inc/oledfont.h:

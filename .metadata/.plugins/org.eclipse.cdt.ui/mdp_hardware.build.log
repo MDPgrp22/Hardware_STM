@@ -1,10 +1,10 @@
-14:34:44 **** Incremental Build of configuration Debug for project mdp_hardware ****
+10:01:59 **** Incremental Build of configuration Debug for project mdp_hardware ****
 make -j16 all 
 arm-none-eabi-size   mdp_hardware.elf 
    text	   data	    bss	    dec	    hex	filename
-   9636	     20	   2596	  12252	   2fdc	mdp_hardware.elf
+  25180	     24	  21448	  46652	   b63c	mdp_hardware.elf
 Finished building: default.size.stdout
  
 
-14:34:45 Build Finished. 0 errors, 0 warnings. (took 308ms)
+10:01:59 Build Finished. 0 errors, 0 warnings. (took 307ms)
 
