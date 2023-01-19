@@ -553,22 +553,13 @@ void StartDefaultTask(void *argument)
 void motor(void *argument)
 {
   /* USER CODE BEGIN motor */
-	uint16_t servo_min = 148;
-	uint16_t servo_max = 155;
-
-	uint16_t pwmVal_servo = servo_min;
+	uint16_t pwmVal_servo = 150;
 	uint16_t pwmVal = 1000;
-	uint16_t offset = 1;
 	uint8_t msg [20];
 
-	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_1);
-	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_2);
+//	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_1);
+//	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_2);
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
-
-
-	htim1.Instance->CCR4 = pwmVal_servo; //Centre
-	osDelay(5000);
-
   /* Infinite loop */
   for(;;)
   {
@@ -577,6 +568,32 @@ void motor(void *argument)
 //	  OLED_ShowString(10, 20, msg);
 //	  htim1.Instance->CCR4 = pwmVal_servo - 40; //Extreme left
 //	  osDelay(5000);
+
+	  sprintf(msg, "centre\0");
+	  htim1.Instance->CCR4 = pwmVal_servo; //Centre
+	  OLED_ShowString(10, 20, msg);
+
+	  // move forward
+	  // H-Bridge Circuit for AINx; 1 turn on, the other turns off
+	  // MOTOR A
+	  HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_SET);
+	  HAL_GPIO_WritePin(GPIOA, AIN1_Pin, GPIO_PIN_RESET);
+
+	  // MOTOR B
+	  HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_SET);
+	  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_RESET);
+
+	  pwmVal++;
+	  // Modify comparison value for duty cycle
+	  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal);
+	  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal);
+	  osDelay(1000);
+	  sprintf(msg, "stoped\0");
+	  OLED_ShowString(10, 20, msg);
+	  osDelay(4000);
+
+	  pwmVal = -pwmVal;
+
 //	  sprintf(msg, "right\0");
 //	  OLED_ShowString(10, 20, msg);
 //	  htim1.Instance->CCR4 = pwmVal_servo + 40; //Extreme right
@@ -586,61 +603,40 @@ void motor(void *argument)
 //	  htim1.Instance->CCR4 = 150; //Centre
 //	  OLED_ShowString(10, 20, msg);
 //	  osDelay(5000);
-
-
-
-	  // Forward
-	  pwmVal = 1000;
-	  sprintf(msg, "forwards\0");
-	  OLED_ShowString(10, 20, msg);
-
-	  sprintf(msg, "servo %d\0", pwmVal_servo);
-	  OLED_ShowString(10, 30, msg);
-	  while(pwmVal< 2000)
-	  {
-		  // H-Bridge Circuit for AINx; 1 turn on, the other turns off
-		  // MOTOR A
-		  HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_SET);
-		  HAL_GPIO_WritePin(GPIOA, AIN1_Pin, GPIO_PIN_RESET);
-
-		  // MOTOR B
-		  HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_SET);
-		  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_RESET);
-
-		  pwmVal++;
-		  // Modify comparison value for duty cycle
-		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal);
-		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal);
-		  osDelay(10);
-	  }
-
-	  // Anti clock wise
-	  sprintf(msg, "backward\0");
-	  OLED_ShowString(10, 20, msg);
-	  while(pwmVal>999)
-	  {
-		  // MOTOR A
-		  HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_RESET);
-		  HAL_GPIO_WritePin(GPIOA, AIN1_Pin, GPIO_PIN_SET);
-
-		  // MOTOR B
-		  HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_RESET);
-		  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_SET);
-		  if(pwmVal == 1000)
-				  pwmVal = 0;
-		  else
-			  pwmVal--;
-		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal);
-		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal);
-		  osDelay(10);
-	  }
-
-	  osDelay(1);
-	  if((pwmVal_servo > servo_max)||(pwmVal_servo < servo_min))
-		  offset = -offset;
-	  pwmVal_servo += offset;
-	  htim1.Instance->CCR4 = pwmVal_servo;
-	  osDelay(5000);
+	  // Clock Wise
+//	  while(pwmVal< 2000)
+//	  {
+//		  // H-Bridge Circuit for AINx; 1 turn on, the other turns off
+//		  // MOTOR A
+//		  HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_SET);
+//		  HAL_GPIO_WritePin(GPIOA, AIN1_Pin, GPIO_PIN_RESET);
+//
+//		  // MOTOR B
+//		  HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_SET);
+//		  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_RESET);
+//
+//		  pwmVal++;
+//		  // Modify comparison value for duty cycle
+//		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal);
+//		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal);
+//		  osDelay(10);
+//	  }
+//	  // Anti clock wise
+//	  while(pwmVal>0)
+//	  {
+//		  // MOTOR A
+//		  HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_RESET);
+//		  HAL_GPIO_WritePin(GPIOA, AIN1_Pin, GPIO_PIN_SET);
+//
+//		  // MOTOR B
+//		  HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_RESET);
+//		  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_SET);
+//		  pwmVal--;
+//		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal);
+//		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal);
+//		  osDelay(10);
+//	  }
+//	  osDelay(1);
   }
   /* USER CODE END motor */
 }

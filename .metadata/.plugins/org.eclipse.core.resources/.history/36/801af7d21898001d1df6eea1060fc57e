@@ -553,7 +553,7 @@ void StartDefaultTask(void *argument)
 void motor(void *argument)
 {
   /* USER CODE BEGIN motor */
-	uint16_t servo_min = 148;
+	uint16_t servo_min = 150;
 	uint16_t servo_max = 155;
 
 	uint16_t pwmVal_servo = servo_min;
@@ -567,7 +567,7 @@ void motor(void *argument)
 
 
 	htim1.Instance->CCR4 = pwmVal_servo; //Centre
-	osDelay(5000);
+
 
   /* Infinite loop */
   for(;;)
@@ -614,6 +614,7 @@ void motor(void *argument)
 		  osDelay(10);
 	  }
 
+	  osDelay(2000);
 	  // Anti clock wise
 	  sprintf(msg, "backward\0");
 	  OLED_ShowString(10, 20, msg);
@@ -640,7 +641,7 @@ void motor(void *argument)
 		  offset = -offset;
 	  pwmVal_servo += offset;
 	  htim1.Instance->CCR4 = pwmVal_servo;
-	  osDelay(5000);
+	  osDelay(2000);
   }
   /* USER CODE END motor */
 }

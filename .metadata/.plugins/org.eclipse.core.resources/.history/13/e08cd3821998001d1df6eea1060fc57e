@@ -567,7 +567,7 @@ void motor(void *argument)
 
 
 	htim1.Instance->CCR4 = pwmVal_servo; //Centre
-	osDelay(5000);
+
 
   /* Infinite loop */
   for(;;)
