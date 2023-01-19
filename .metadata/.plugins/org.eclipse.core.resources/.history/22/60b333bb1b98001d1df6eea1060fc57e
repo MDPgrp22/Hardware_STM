@@ -553,15 +553,13 @@ void StartDefaultTask(void *argument)
 void motor(void *argument)
 {
   /* USER CODE BEGIN motor */
-
+	boolean accelerate = T;
 	uint16_t servo_min = 148;
 	uint16_t servo_max = 155;
-	uint16_t pwmVal_servo = servo_min;
 
+	uint16_t pwmVal_servo = servo_min;
 	uint16_t pwmVal = 0;
 	uint16_t offset = 1;
-	uint16_t motor_increment = 10;
-	uint8_t accelerate = 1;
 	uint8_t msg [20];
 
 	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_1);
@@ -592,19 +590,17 @@ void motor(void *argument)
 
 
 
-
-
 	  // Forward
+	  pwmVal = 1000;
+	  sprintf(msg, "forwards\0");
+	  OLED_ShowString(10, 20, msg);
+
 	  sprintf(msg, "servo %d\0", pwmVal_servo);
 	  OLED_ShowString(10, 30, msg);
-	  accelerate = 1;
 
-	  sprintf(msg, "forwards %d\0", pwmVal);
-	  OLED_ShowString(10, 20, msg);
+	  // accelerate
 	  do
 	  {
-
-
 		  // H-Bridge Circuit for AINx; 1 turn on, the other turns off
 		  // MOTOR A
 		  HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_SET);
@@ -614,14 +610,12 @@ void motor(void *argument)
 		  HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_SET);
 		  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_RESET);
 
-		  if(accelerate == 1){
-			  pwmVal+=motor_increment;
-			  if(pwmVal > 2000)
-				  accelerate = 0;
+		  if(pwmVal >2000)&&(accelerate == 1){
+			  pwmVal -= 200;
 		  }
 
 		  else
-			  pwmVal-=motor_increment;
+			  pwmVal+=200;
 		  // Modify comparison value for duty cycle
 		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal);
 		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal);
@@ -629,13 +623,9 @@ void motor(void *argument)
 
 	  }while(pwmVal >0);
 
-	  // just in case pwmVal not 0
-	  pwmVal = 0;
-
-	  accelerate = 1;
 	  osDelay(5000);
 	  // Anti clock wise
-	  sprintf(msg, "backward %d\0", pwmVal);
+	  sprintf(msg, "backward\0");
 	  OLED_ShowString(10, 20, msg);
 	  do
 	  {
@@ -647,22 +637,15 @@ void motor(void *argument)
 		  HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_RESET);
 		  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_SET);
 
-		  if(accelerate == 1){
-			  pwmVal+=motor_increment;
-			  if(pwmVal > 2000)
-				  accelerate = 0;
-		  }
-
+		  if(pwmVal >2000)
+			  pwmVal -= 200;
 		  else
-			  pwmVal-=motor_increment;
+			  pwmVal+=200;
 
 		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal);
 		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal);
 		  osDelay(10);
 	  }while(pwmVal>0);
-
-	  // just in case pwmVal not 0
-	  pwmVal = 0;
 
 	  osDelay(1);
 	  if((pwmVal_servo > servo_max)||(pwmVal_servo < servo_min))

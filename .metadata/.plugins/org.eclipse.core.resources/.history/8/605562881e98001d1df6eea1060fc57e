@@ -615,13 +615,13 @@ void motor(void *argument)
 		  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_RESET);
 
 		  if(accelerate == 1){
-			  pwmVal+=motor_increment;
+			  pwmVal+=100;
 			  if(pwmVal > 2000)
 				  accelerate = 0;
 		  }
 
 		  else
-			  pwmVal-=motor_increment;
+			  pwmVal-=100;
 		  // Modify comparison value for duty cycle
 		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal);
 		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal);
@@ -648,13 +648,13 @@ void motor(void *argument)
 		  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_SET);
 
 		  if(accelerate == 1){
-			  pwmVal+=motor_increment;
+			  pwmVal+=100;
 			  if(pwmVal > 2000)
 				  accelerate = 0;
 		  }
 
 		  else
-			  pwmVal-=motor_increment;
+			  pwmVal-=100;
 
 		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal);
 		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal);

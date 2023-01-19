@@ -1,51 +1,51 @@
-00:43:47 **** Incremental Build of configuration Debug for project mdp_hardware ****
+01:08:18 **** Incremental Build of configuration Debug for project mdp_hardware ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:594:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
-  594 |    sprintf(msg, "forwards\0");
+../Core/Src/main.c:595:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  595 |    sprintf(msg, "forwards\0");
       |    ^~~~~~~
-../Core/Src/main.c:594:4: warning: incompatible implicit declaration of built-in function 'sprintf'
+../Core/Src/main.c:595:4: warning: incompatible implicit declaration of built-in function 'sprintf'
 ../Core/Src/main.c:27:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
    26 | #include "oled.h"
   +++ |+#include <stdio.h>
    27 | /* USER CODE END Includes */
-../Core/Src/main.c:594:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  594 |    sprintf(msg, "forwards\0");
+../Core/Src/main.c:595:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  595 |    sprintf(msg, "forwards\0");
       |            ^~~
       |            |
       |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:594:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:594:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  594 |    sprintf(msg, "forwards\0");
+../Core/Src/main.c:595:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:595:26: warning: embedded '\0' in format [-Wformat-contains-nul]
+  595 |    sprintf(msg, "forwards\0");
       |                          ^~
-../Core/Src/main.c:597:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  597 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+../Core/Src/main.c:598:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  598 |    sprintf(msg, "servo %d\0", pwmVal_servo);
       |            ^~~
       |            |
       |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:597:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:597:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  597 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+../Core/Src/main.c:598:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:598:26: warning: embedded '\0' in format [-Wformat-contains-nul]
+  598 |    sprintf(msg, "servo %d\0", pwmVal_servo);
       |                          ^~
-../Core/Src/main.c:617:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  617 |    sprintf(msg, "backward\0");
+../Core/Src/main.c:630:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  630 |    sprintf(msg, "backward\0");
       |            ^~~
       |            |
       |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:617:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:617:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  617 |    sprintf(msg, "backward\0");
+../Core/Src/main.c:630:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:630:26: warning: embedded '\0' in format [-Wformat-contains-nul]
+  630 |    sprintf(msg, "backward\0");
       |                          ^~
 ../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:687:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
-  687 |  uint16_t dir;
+../Core/Src/main.c:704:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
+  704 |  uint16_t dir;
       |           ^~~
-../Core/Src/main.c:686:10: warning: unused variable 'msg' [-Wunused-variable]
-  686 |  uint8_t msg[20];
+../Core/Src/main.c:703:10: warning: unused variable 'msg' [-Wunused-variable]
+  703 |  uint8_t msg[20];
       |          ^~~
-../Core/Src/main.c:681:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
-  681 |  int cnt1, cnt2, diff;
+../Core/Src/main.c:698:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
+  698 |  int cnt1, cnt2, diff;
       |                  ^~~~
 arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: mdp_hardware.elf
@@ -55,80 +55,7 @@ arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
 arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
 arm-none-eabi-objcopy  -O binary  mdp_hardware.elf  "mdp_hardware.bin"
    text	   data	    bss	    dec	    hex	filename
-  29676	    124	  21692	  51492	   c924	mdp_hardware.elf
-Finished building: default.size.stdout
- 
-Finished building: mdp_hardware.bin
-Finished building: mdp_hardware.hex
- 
- 
-Finished building: mdp_hardware.list
- 
-00:43:53 **** Incremental Build of configuration Debug for project mdp_hardware ****
-make -j16 all 
-arm-none-eabi-size   mdp_hardware.elf 
-   text	   data	    bss	    dec	    hex	filename
-  29676	    124	  21692	  51492	   c924	mdp_hardware.elf
-Finished building: default.size.stdout
- 
-00:48:24 **** Incremental Build of configuration Debug for project mdp_hardware ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:594:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
-  594 |    sprintf(msg, "forwards\0");
-      |    ^~~~~~~
-../Core/Src/main.c:594:4: warning: incompatible implicit declaration of built-in function 'sprintf'
-../Core/Src/main.c:27:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
-   26 | #include "oled.h"
-  +++ |+#include <stdio.h>
-   27 | /* USER CODE END Includes */
-../Core/Src/main.c:594:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  594 |    sprintf(msg, "forwards\0");
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:594:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:594:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  594 |    sprintf(msg, "forwards\0");
-      |                          ^~
-../Core/Src/main.c:597:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  597 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:597:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:597:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  597 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |                          ^~
-../Core/Src/main.c:619:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  619 |    sprintf(msg, "backward\0");
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:619:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:619:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  619 |    sprintf(msg, "backward\0");
-      |                          ^~
-../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:689:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
-  689 |  uint16_t dir;
-      |           ^~~
-../Core/Src/main.c:688:10: warning: unused variable 'msg' [-Wunused-variable]
-  688 |  uint8_t msg[20];
-      |          ^~~
-../Core/Src/main.c:683:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
-  683 |  int cnt1, cnt2, diff;
-      |                  ^~~~
-arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: mdp_hardware.elf
- 
-arm-none-eabi-size   mdp_hardware.elf 
-arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
-arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
-arm-none-eabi-objcopy  -O binary  mdp_hardware.elf  "mdp_hardware.bin"
-   text	   data	    bss	    dec	    hex	filename
-  29676	    124	  21692	  51492	   c924	mdp_hardware.elf
+  29740	    124	  21692	  51556	   c964	mdp_hardware.elf
 Finished building: default.size.stdout
  
 Finished building: mdp_hardware.hex
@@ -137,54 +64,61 @@ Finished building: mdp_hardware.bin
  
 Finished building: mdp_hardware.list
  
-00:50:51 **** Incremental Build of configuration Debug for project mdp_hardware ****
+01:08:28 **** Incremental Build of configuration Debug for project mdp_hardware ****
+make -j16 all 
+arm-none-eabi-size   mdp_hardware.elf 
+   text	   data	    bss	    dec	    hex	filename
+  29740	    124	  21692	  51556	   c964	mdp_hardware.elf
+Finished building: default.size.stdout
+ 
+01:09:31 **** Incremental Build of configuration Debug for project mdp_hardware ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:594:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
-  594 |    sprintf(msg, "forwards\0");
+../Core/Src/main.c:595:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  595 |    sprintf(msg, "forwards %d\0", pwmVal);
       |    ^~~~~~~
-../Core/Src/main.c:594:4: warning: incompatible implicit declaration of built-in function 'sprintf'
+../Core/Src/main.c:595:4: warning: incompatible implicit declaration of built-in function 'sprintf'
 ../Core/Src/main.c:27:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
    26 | #include "oled.h"
   +++ |+#include <stdio.h>
    27 | /* USER CODE END Includes */
-../Core/Src/main.c:594:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  594 |    sprintf(msg, "forwards\0");
+../Core/Src/main.c:595:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  595 |    sprintf(msg, "forwards %d\0", pwmVal);
       |            ^~~
       |            |
       |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:594:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:594:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  594 |    sprintf(msg, "forwards\0");
+../Core/Src/main.c:595:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:595:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+  595 |    sprintf(msg, "forwards %d\0", pwmVal);
+      |                             ^~
+../Core/Src/main.c:598:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  598 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:598:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:598:26: warning: embedded '\0' in format [-Wformat-contains-nul]
+  598 |    sprintf(msg, "servo %d\0", pwmVal_servo);
       |                          ^~
-../Core/Src/main.c:597:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  597 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+../Core/Src/main.c:630:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  630 |    sprintf(msg, "backward\0");
       |            ^~~
       |            |
       |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:597:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:597:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  597 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |                          ^~
-../Core/Src/main.c:618:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  618 |    sprintf(msg, "backward\0");
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:618:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:618:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  618 |    sprintf(msg, "backward\0");
+../Core/Src/main.c:630:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:630:26: warning: embedded '\0' in format [-Wformat-contains-nul]
+  630 |    sprintf(msg, "backward\0");
       |                          ^~
 ../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:688:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
-  688 |  uint16_t dir;
+../Core/Src/main.c:704:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
+  704 |  uint16_t dir;
       |           ^~~
-../Core/Src/main.c:687:10: warning: unused variable 'msg' [-Wunused-variable]
-  687 |  uint8_t msg[20];
+../Core/Src/main.c:703:10: warning: unused variable 'msg' [-Wunused-variable]
+  703 |  uint8_t msg[20];
       |          ^~~
-../Core/Src/main.c:682:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
-  682 |  int cnt1, cnt2, diff;
+../Core/Src/main.c:698:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
+  698 |  int cnt1, cnt2, diff;
       |                  ^~~~
 arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: mdp_hardware.elf
@@ -194,7 +128,7 @@ arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
 arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
 arm-none-eabi-objcopy  -O binary  mdp_hardware.elf  "mdp_hardware.bin"
    text	   data	    bss	    dec	    hex	filename
-  29676	    124	  21692	  51492	   c924	mdp_hardware.elf
+  29744	    124	  21692	  51560	   c968	mdp_hardware.elf
 Finished building: default.size.stdout
  
 Finished building: mdp_hardware.hex
@@ -203,54 +137,54 @@ Finished building: mdp_hardware.bin
  
 Finished building: mdp_hardware.list
  
-00:51:00 **** Incremental Build of configuration Debug for project mdp_hardware ****
+01:15:05 **** Incremental Build of configuration Debug for project mdp_hardware ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:594:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
-  594 |    sprintf(msg, "forwards\0");
+../Core/Src/main.c:596:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
       |    ^~~~~~~
-../Core/Src/main.c:594:4: warning: incompatible implicit declaration of built-in function 'sprintf'
+../Core/Src/main.c:596:4: warning: incompatible implicit declaration of built-in function 'sprintf'
 ../Core/Src/main.c:27:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
    26 | #include "oled.h"
   +++ |+#include <stdio.h>
    27 | /* USER CODE END Includes */
-../Core/Src/main.c:594:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  594 |    sprintf(msg, "forwards\0");
+../Core/Src/main.c:596:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
       |            ^~~
       |            |
       |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:594:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:594:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  594 |    sprintf(msg, "forwards\0");
+../Core/Src/main.c:596:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:596:26: warning: embedded '\0' in format [-Wformat-contains-nul]
+  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
       |                          ^~
-../Core/Src/main.c:597:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  597 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+../Core/Src/main.c:602:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  602 |     sprintf(msg, "forwards %d\0", pwmVal);
+      |             ^~~
+      |             |
+      |             uint8_t * {aka unsigned char *}
+../Core/Src/main.c:602:13: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:602:30: warning: embedded '\0' in format [-Wformat-contains-nul]
+  602 |     sprintf(msg, "forwards %d\0", pwmVal);
+      |                              ^~
+../Core/Src/main.c:632:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  632 |    sprintf(msg, "backward\0");
       |            ^~~
       |            |
       |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:597:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:597:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  597 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |                          ^~
-../Core/Src/main.c:618:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  618 |    sprintf(msg, "backward\0");
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:618:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:618:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  618 |    sprintf(msg, "backward\0");
+../Core/Src/main.c:632:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:632:26: warning: embedded '\0' in format [-Wformat-contains-nul]
+  632 |    sprintf(msg, "backward\0");
       |                          ^~
 ../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:688:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
-  688 |  uint16_t dir;
+../Core/Src/main.c:708:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
+  708 |  uint16_t dir;
       |           ^~~
-../Core/Src/main.c:687:10: warning: unused variable 'msg' [-Wunused-variable]
-  687 |  uint8_t msg[20];
+../Core/Src/main.c:707:10: warning: unused variable 'msg' [-Wunused-variable]
+  707 |  uint8_t msg[20];
       |          ^~~
-../Core/Src/main.c:682:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
-  682 |  int cnt1, cnt2, diff;
+../Core/Src/main.c:702:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
+  702 |  int cnt1, cnt2, diff;
       |                  ^~~~
 arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: mdp_hardware.elf
@@ -260,7 +194,7 @@ arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
 arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
 arm-none-eabi-objcopy  -O binary  mdp_hardware.elf  "mdp_hardware.bin"
    text	   data	    bss	    dec	    hex	filename
-  29676	    124	  21692	  51492	   c924	mdp_hardware.elf
+  29744	    124	  21692	  51560	   c968	mdp_hardware.elf
 Finished building: default.size.stdout
  
 Finished building: mdp_hardware.hex
@@ -269,54 +203,54 @@ Finished building: mdp_hardware.bin
  
 Finished building: mdp_hardware.list
  
-00:51:27 **** Incremental Build of configuration Debug for project mdp_hardware ****
+01:16:21 **** Incremental Build of configuration Debug for project mdp_hardware ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:594:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
-  594 |    sprintf(msg, "forwards\0");
+../Core/Src/main.c:596:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
       |    ^~~~~~~
-../Core/Src/main.c:594:4: warning: incompatible implicit declaration of built-in function 'sprintf'
+../Core/Src/main.c:596:4: warning: incompatible implicit declaration of built-in function 'sprintf'
 ../Core/Src/main.c:27:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
    26 | #include "oled.h"
   +++ |+#include <stdio.h>
    27 | /* USER CODE END Includes */
-../Core/Src/main.c:594:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  594 |    sprintf(msg, "forwards\0");
+../Core/Src/main.c:596:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
       |            ^~~
       |            |
       |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:594:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:594:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  594 |    sprintf(msg, "forwards\0");
+../Core/Src/main.c:596:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:596:26: warning: embedded '\0' in format [-Wformat-contains-nul]
+  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
       |                          ^~
-../Core/Src/main.c:597:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  597 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+../Core/Src/main.c:602:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  602 |     sprintf(msg, "forwards %d\0", pwmVal);
+      |             ^~~
+      |             |
+      |             uint8_t * {aka unsigned char *}
+../Core/Src/main.c:602:13: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:602:30: warning: embedded '\0' in format [-Wformat-contains-nul]
+  602 |     sprintf(msg, "forwards %d\0", pwmVal);
+      |                              ^~
+../Core/Src/main.c:632:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  632 |    sprintf(msg, "backward\0");
       |            ^~~
       |            |
       |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:597:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:597:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  597 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |                          ^~
-../Core/Src/main.c:618:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  618 |    sprintf(msg, "backward\0");
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:618:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:618:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  618 |    sprintf(msg, "backward\0");
+../Core/Src/main.c:632:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:632:26: warning: embedded '\0' in format [-Wformat-contains-nul]
+  632 |    sprintf(msg, "backward\0");
       |                          ^~
 ../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:688:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
-  688 |  uint16_t dir;
+../Core/Src/main.c:708:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
+  708 |  uint16_t dir;
       |           ^~~
-../Core/Src/main.c:687:10: warning: unused variable 'msg' [-Wunused-variable]
-  687 |  uint8_t msg[20];
+../Core/Src/main.c:707:10: warning: unused variable 'msg' [-Wunused-variable]
+  707 |  uint8_t msg[20];
       |          ^~~
-../Core/Src/main.c:682:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
-  682 |  int cnt1, cnt2, diff;
+../Core/Src/main.c:702:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
+  702 |  int cnt1, cnt2, diff;
       |                  ^~~~
 arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: mdp_hardware.elf
@@ -326,7 +260,555 @@ arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
 arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
 arm-none-eabi-objcopy  -O binary  mdp_hardware.elf  "mdp_hardware.bin"
    text	   data	    bss	    dec	    hex	filename
-  29676	    124	  21692	  51492	   c924	mdp_hardware.elf
+  29744	    124	  21692	  51560	   c968	mdp_hardware.elf
+Finished building: default.size.stdout
+ 
+Finished building: mdp_hardware.hex
+Finished building: mdp_hardware.bin
+ 
+ 
+Finished building: mdp_hardware.list
+ 
+01:17:50 **** Incremental Build of configuration Debug for project mdp_hardware ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'motor':
+../Core/Src/main.c:596:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |    ^~~~~~~
+../Core/Src/main.c:596:4: warning: incompatible implicit declaration of built-in function 'sprintf'
+../Core/Src/main.c:27:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+   26 | #include "oled.h"
+  +++ |+#include <stdio.h>
+   27 | /* USER CODE END Includes */
+../Core/Src/main.c:596:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:596:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:596:26: warning: embedded '\0' in format [-Wformat-contains-nul]
+  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |                          ^~
+../Core/Src/main.c:602:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  602 |     sprintf(msg, "forwards %d\0", pwmVal);
+      |             ^~~
+      |             |
+      |             uint8_t * {aka unsigned char *}
+../Core/Src/main.c:602:13: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:602:30: warning: embedded '\0' in format [-Wformat-contains-nul]
+  602 |     sprintf(msg, "forwards %d\0", pwmVal);
+      |                              ^~
+../Core/Src/main.c:635:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  635 |     sprintf(msg, "backward %d\0", pwmVal);
+      |             ^~~
+      |             |
+      |             uint8_t * {aka unsigned char *}
+../Core/Src/main.c:635:13: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:635:30: warning: embedded '\0' in format [-Wformat-contains-nul]
+  635 |     sprintf(msg, "backward %d\0", pwmVal);
+      |                              ^~
+../Core/Src/main.c: In function 'encoder_task':
+../Core/Src/main.c:710:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
+  710 |  uint16_t dir;
+      |           ^~~
+../Core/Src/main.c:709:10: warning: unused variable 'msg' [-Wunused-variable]
+  709 |  uint8_t msg[20];
+      |          ^~~
+../Core/Src/main.c:704:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
+  704 |  int cnt1, cnt2, diff;
+      |                  ^~~~
+arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: mdp_hardware.elf
+ 
+arm-none-eabi-size   mdp_hardware.elf 
+arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
+arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
+arm-none-eabi-objcopy  -O binary  mdp_hardware.elf  "mdp_hardware.bin"
+   text	   data	    bss	    dec	    hex	filename
+  29764	    124	  21692	  51580	   c97c	mdp_hardware.elf
+Finished building: default.size.stdout
+ 
+Finished building: mdp_hardware.hex
+Finished building: mdp_hardware.bin
+ 
+ 
+Finished building: mdp_hardware.list
+ 
+01:19:11 **** Incremental Build of configuration Debug for project mdp_hardware ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'motor':
+../Core/Src/main.c:596:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |    ^~~~~~~
+../Core/Src/main.c:596:4: warning: incompatible implicit declaration of built-in function 'sprintf'
+../Core/Src/main.c:27:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+   26 | #include "oled.h"
+  +++ |+#include <stdio.h>
+   27 | /* USER CODE END Includes */
+../Core/Src/main.c:596:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:596:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:596:26: warning: embedded '\0' in format [-Wformat-contains-nul]
+  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |                          ^~
+../Core/Src/main.c:602:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  602 |     sprintf(msg, "forwards %d\0", pwmVal);
+      |             ^~~
+      |             |
+      |             uint8_t * {aka unsigned char *}
+../Core/Src/main.c:602:13: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:602:30: warning: embedded '\0' in format [-Wformat-contains-nul]
+  602 |     sprintf(msg, "forwards %d\0", pwmVal);
+      |                              ^~
+../Core/Src/main.c:636:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  636 |     sprintf(msg, "backward %d\0", pwmVal);
+      |             ^~~
+      |             |
+      |             uint8_t * {aka unsigned char *}
+../Core/Src/main.c:636:13: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:636:30: warning: embedded '\0' in format [-Wformat-contains-nul]
+  636 |     sprintf(msg, "backward %d\0", pwmVal);
+      |                              ^~
+../Core/Src/main.c: In function 'encoder_task':
+../Core/Src/main.c:712:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
+  712 |  uint16_t dir;
+      |           ^~~
+../Core/Src/main.c:711:10: warning: unused variable 'msg' [-Wunused-variable]
+  711 |  uint8_t msg[20];
+      |          ^~~
+../Core/Src/main.c:706:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
+  706 |  int cnt1, cnt2, diff;
+      |                  ^~~~
+arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: mdp_hardware.elf
+ 
+arm-none-eabi-size   mdp_hardware.elf 
+arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
+arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
+arm-none-eabi-objcopy  -O binary  mdp_hardware.elf  "mdp_hardware.bin"
+   text	   data	    bss	    dec	    hex	filename
+  29764	    124	  21692	  51580	   c97c	mdp_hardware.elf
+Finished building: default.size.stdout
+ 
+Finished building: mdp_hardware.hex
+Finished building: mdp_hardware.bin
+ 
+ 
+Finished building: mdp_hardware.list
+ 
+01:20:57 **** Incremental Build of configuration Debug for project mdp_hardware ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'motor':
+../Core/Src/main.c:596:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |    ^~~~~~~
+../Core/Src/main.c:596:4: warning: incompatible implicit declaration of built-in function 'sprintf'
+../Core/Src/main.c:27:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+   26 | #include "oled.h"
+  +++ |+#include <stdio.h>
+   27 | /* USER CODE END Includes */
+../Core/Src/main.c:596:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:596:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:596:26: warning: embedded '\0' in format [-Wformat-contains-nul]
+  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |                          ^~
+../Core/Src/main.c:600:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  600 |    sprintf(msg, "forwards %d\0", pwmVal);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:600:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:600:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+  600 |    sprintf(msg, "forwards %d\0", pwmVal);
+      |                             ^~
+../Core/Src/main.c:634:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  634 |    sprintf(msg, "backward %d\0");
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:634:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:634:28: warning: format '%d' expects a matching 'int' argument [-Wformat=]
+  634 |    sprintf(msg, "backward %d\0");
+      |                           ~^
+      |                            |
+      |                            int
+../Core/Src/main.c:634:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+  634 |    sprintf(msg, "backward %d\0");
+      |                             ^~
+../Core/Src/main.c: In function 'encoder_task':
+../Core/Src/main.c:710:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
+  710 |  uint16_t dir;
+      |           ^~~
+../Core/Src/main.c:709:10: warning: unused variable 'msg' [-Wunused-variable]
+  709 |  uint8_t msg[20];
+      |          ^~~
+../Core/Src/main.c:704:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
+  704 |  int cnt1, cnt2, diff;
+      |                  ^~~~
+arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: mdp_hardware.elf
+ 
+arm-none-eabi-size   mdp_hardware.elf 
+arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
+arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
+arm-none-eabi-objcopy  -O binary  mdp_hardware.elf  "mdp_hardware.bin"
+   text	   data	    bss	    dec	    hex	filename
+  29732	    124	  21692	  51548	   c95c	mdp_hardware.elf
+Finished building: default.size.stdout
+ 
+Finished building: mdp_hardware.hex
+Finished building: mdp_hardware.bin
+ 
+ 
+Finished building: mdp_hardware.list
+ 
+01:21:55 **** Incremental Build of configuration Debug for project mdp_hardware ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'motor':
+../Core/Src/main.c:596:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |    ^~~~~~~
+../Core/Src/main.c:596:4: warning: incompatible implicit declaration of built-in function 'sprintf'
+../Core/Src/main.c:27:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+   26 | #include "oled.h"
+  +++ |+#include <stdio.h>
+   27 | /* USER CODE END Includes */
+../Core/Src/main.c:596:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:596:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:596:26: warning: embedded '\0' in format [-Wformat-contains-nul]
+  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |                          ^~
+../Core/Src/main.c:600:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  600 |    sprintf(msg, "forwards %d\0", pwmVal);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:600:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:600:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+  600 |    sprintf(msg, "forwards %d\0", pwmVal);
+      |                             ^~
+../Core/Src/main.c:633:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  633 |    sprintf(msg, "backward %d\0");
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:633:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:633:28: warning: format '%d' expects a matching 'int' argument [-Wformat=]
+  633 |    sprintf(msg, "backward %d\0");
+      |                           ~^
+      |                            |
+      |                            int
+../Core/Src/main.c:633:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+  633 |    sprintf(msg, "backward %d\0");
+      |                             ^~
+../Core/Src/main.c: In function 'encoder_task':
+../Core/Src/main.c:708:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
+  708 |  uint16_t dir;
+      |           ^~~
+../Core/Src/main.c:707:10: warning: unused variable 'msg' [-Wunused-variable]
+  707 |  uint8_t msg[20];
+      |          ^~~
+../Core/Src/main.c:702:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
+  702 |  int cnt1, cnt2, diff;
+      |                  ^~~~
+arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: mdp_hardware.elf
+ 
+arm-none-eabi-size   mdp_hardware.elf 
+arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
+arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
+arm-none-eabi-objcopy  -O binary  mdp_hardware.elf  "mdp_hardware.bin"
+   text	   data	    bss	    dec	    hex	filename
+  29732	    124	  21692	  51548	   c95c	mdp_hardware.elf
+Finished building: default.size.stdout
+ 
+Finished building: mdp_hardware.hex
+Finished building: mdp_hardware.bin
+ 
+ 
+Finished building: mdp_hardware.list
+ 
+01:22:45 **** Incremental Build of configuration Debug for project mdp_hardware ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'motor':
+../Core/Src/main.c:596:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |    ^~~~~~~
+../Core/Src/main.c:596:4: warning: incompatible implicit declaration of built-in function 'sprintf'
+../Core/Src/main.c:27:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+   26 | #include "oled.h"
+  +++ |+#include <stdio.h>
+   27 | /* USER CODE END Includes */
+../Core/Src/main.c:596:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:596:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:596:26: warning: embedded '\0' in format [-Wformat-contains-nul]
+  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |                          ^~
+../Core/Src/main.c:600:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  600 |    sprintf(msg, "forwards %d\0", pwmVal);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:600:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:600:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+  600 |    sprintf(msg, "forwards %d\0", pwmVal);
+      |                             ^~
+../Core/Src/main.c:633:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  633 |    sprintf(msg, "backward %d\0");
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:633:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:633:28: warning: format '%d' expects a matching 'int' argument [-Wformat=]
+  633 |    sprintf(msg, "backward %d\0");
+      |                           ~^
+      |                            |
+      |                            int
+../Core/Src/main.c:633:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+  633 |    sprintf(msg, "backward %d\0");
+      |                             ^~
+../Core/Src/main.c: In function 'encoder_task':
+../Core/Src/main.c:709:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
+  709 |  uint16_t dir;
+      |           ^~~
+../Core/Src/main.c:708:10: warning: unused variable 'msg' [-Wunused-variable]
+  708 |  uint8_t msg[20];
+      |          ^~~
+../Core/Src/main.c:703:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
+  703 |  int cnt1, cnt2, diff;
+      |                  ^~~~
+arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: mdp_hardware.elf
+ 
+arm-none-eabi-size   mdp_hardware.elf 
+arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
+arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
+arm-none-eabi-objcopy  -O binary  mdp_hardware.elf  "mdp_hardware.bin"
+   text	   data	    bss	    dec	    hex	filename
+  29732	    124	  21692	  51548	   c95c	mdp_hardware.elf
+Finished building: default.size.stdout
+ 
+Finished building: mdp_hardware.hex
+Finished building: mdp_hardware.bin
+ 
+ 
+Finished building: mdp_hardware.list
+ 
+01:22:59 **** Incremental Build of configuration Debug for project mdp_hardware ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'motor':
+../Core/Src/main.c:596:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |    ^~~~~~~
+../Core/Src/main.c:596:4: warning: incompatible implicit declaration of built-in function 'sprintf'
+../Core/Src/main.c:27:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+   26 | #include "oled.h"
+  +++ |+#include <stdio.h>
+   27 | /* USER CODE END Includes */
+../Core/Src/main.c:596:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:596:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:596:26: warning: embedded '\0' in format [-Wformat-contains-nul]
+  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |                          ^~
+../Core/Src/main.c:600:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  600 |    sprintf(msg, "forwards %d\0", pwmVal);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:600:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:600:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+  600 |    sprintf(msg, "forwards %d\0", pwmVal);
+      |                             ^~
+../Core/Src/main.c:633:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  633 |    sprintf(msg, "backward %d\0");
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:633:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:633:28: warning: format '%d' expects a matching 'int' argument [-Wformat=]
+  633 |    sprintf(msg, "backward %d\0");
+      |                           ~^
+      |                            |
+      |                            int
+../Core/Src/main.c:633:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+  633 |    sprintf(msg, "backward %d\0");
+      |                             ^~
+../Core/Src/main.c: In function 'encoder_task':
+../Core/Src/main.c:709:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
+  709 |  uint16_t dir;
+      |           ^~~
+../Core/Src/main.c:708:10: warning: unused variable 'msg' [-Wunused-variable]
+  708 |  uint8_t msg[20];
+      |          ^~~
+../Core/Src/main.c:703:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
+  703 |  int cnt1, cnt2, diff;
+      |                  ^~~~
+arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: mdp_hardware.elf
+ 
+arm-none-eabi-size   mdp_hardware.elf 
+arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
+arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
+arm-none-eabi-objcopy  -O binary  mdp_hardware.elf  "mdp_hardware.bin"
+   text	   data	    bss	    dec	    hex	filename
+  29748	    124	  21692	  51564	   c96c	mdp_hardware.elf
+Finished building: default.size.stdout
+ 
+Finished building: mdp_hardware.hex
+Finished building: mdp_hardware.bin
+ 
+ 
+Finished building: mdp_hardware.list
+ 
+01:24:16 **** Incremental Build of configuration Debug for project mdp_hardware ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'motor':
+../Core/Src/main.c:596:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |    ^~~~~~~
+../Core/Src/main.c:596:4: warning: incompatible implicit declaration of built-in function 'sprintf'
+../Core/Src/main.c:27:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+   26 | #include "oled.h"
+  +++ |+#include <stdio.h>
+   27 | /* USER CODE END Includes */
+../Core/Src/main.c:596:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:596:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:596:26: warning: embedded '\0' in format [-Wformat-contains-nul]
+  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |                          ^~
+../Core/Src/main.c:600:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  600 |    sprintf(msg, "forwards %d\0", pwmVal);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:600:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:600:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+  600 |    sprintf(msg, "forwards %d\0", pwmVal);
+      |                             ^~
+../Core/Src/main.c:636:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  636 |    sprintf(msg, "backward %d\0", pwmVal);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:636:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:636:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+  636 |    sprintf(msg, "backward %d\0", pwmVal);
+      |                             ^~
+../Core/Src/main.c: In function 'encoder_task':
+../Core/Src/main.c:715:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
+  715 |  uint16_t dir;
+      |           ^~~
+../Core/Src/main.c:714:10: warning: unused variable 'msg' [-Wunused-variable]
+  714 |  uint8_t msg[20];
+      |          ^~~
+../Core/Src/main.c:709:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
+  709 |  int cnt1, cnt2, diff;
+      |                  ^~~~
+arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: mdp_hardware.elf
+ 
+arm-none-eabi-size   mdp_hardware.elf 
+arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
+arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
+arm-none-eabi-objcopy  -O binary  mdp_hardware.elf  "mdp_hardware.bin"
+   text	   data	    bss	    dec	    hex	filename
+  29748	    124	  21692	  51564	   c96c	mdp_hardware.elf
+Finished building: default.size.stdout
+ 
+Finished building: mdp_hardware.hex
+Finished building: mdp_hardware.bin
+ 
+ 
+Finished building: mdp_hardware.list
+ 
+01:27:49 **** Incremental Build of configuration Debug for project mdp_hardware ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'motor':
+../Core/Src/main.c:598:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  598 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |    ^~~~~~~
+../Core/Src/main.c:598:4: warning: incompatible implicit declaration of built-in function 'sprintf'
+../Core/Src/main.c:27:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+   26 | #include "oled.h"
+  +++ |+#include <stdio.h>
+   27 | /* USER CODE END Includes */
+../Core/Src/main.c:598:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  598 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:598:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:598:26: warning: embedded '\0' in format [-Wformat-contains-nul]
+  598 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |                          ^~
+../Core/Src/main.c:602:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  602 |    sprintf(msg, "forwards %d\0", pwmVal);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:602:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:602:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+  602 |    sprintf(msg, "forwards %d\0", pwmVal);
+      |                             ^~
+../Core/Src/main.c:638:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  638 |    sprintf(msg, "backward %d\0", pwmVal);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:638:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:638:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+  638 |    sprintf(msg, "backward %d\0", pwmVal);
+      |                             ^~
+../Core/Src/main.c: In function 'encoder_task':
+../Core/Src/main.c:717:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
+  717 |  uint16_t dir;
+      |           ^~~
+../Core/Src/main.c:716:10: warning: unused variable 'msg' [-Wunused-variable]
+  716 |  uint8_t msg[20];
+      |          ^~~
+../Core/Src/main.c:711:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
+  711 |  int cnt1, cnt2, diff;
+      |                  ^~~~
+arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: mdp_hardware.elf
+ 
+arm-none-eabi-size   mdp_hardware.elf 
+arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
+arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
+arm-none-eabi-objcopy  -O binary  mdp_hardware.elf  "mdp_hardware.bin"
+   text	   data	    bss	    dec	    hex	filename
+  29764	    124	  21692	  51580	   c97c	mdp_hardware.elf
 Finished building: default.size.stdout
  
 Finished building: mdp_hardware.hex
