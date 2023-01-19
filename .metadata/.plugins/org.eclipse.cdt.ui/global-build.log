@@ -1,51 +1,145 @@
-01:08:18 **** Incremental Build of configuration Debug for project mdp_hardware ****
+02:24:11 **** Incremental Build of configuration Debug for project mdp_hardware ****
 make -j16 all 
+arm-none-eabi-gcc "../PeripheralDriver/Src/oled.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"PeripheralDriver/Src/oled.d" -MT"PeripheralDriver/Src/oled.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "PeripheralDriver/Src/oled.o"
+arm-none-eabi-gcc "C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Middlewares/FreeRTOS/cmsis_os2.d" -MT"Middlewares/FreeRTOS/cmsis_os2.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Middlewares/FreeRTOS/cmsis_os2.o"
+arm-none-eabi-gcc "C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/croutine.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Middlewares/FreeRTOS/croutine.d" -MT"Middlewares/FreeRTOS/croutine.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Middlewares/FreeRTOS/croutine.o"
+arm-none-eabi-gcc "C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/event_groups.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Middlewares/FreeRTOS/event_groups.d" -MT"Middlewares/FreeRTOS/event_groups.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Middlewares/FreeRTOS/event_groups.o"
+arm-none-eabi-gcc "C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Middlewares/FreeRTOS/heap_4.d" -MT"Middlewares/FreeRTOS/heap_4.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Middlewares/FreeRTOS/heap_4.o"
+arm-none-eabi-gcc "C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/list.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Middlewares/FreeRTOS/list.d" -MT"Middlewares/FreeRTOS/list.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Middlewares/FreeRTOS/list.o"
+arm-none-eabi-gcc "C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Middlewares/FreeRTOS/port.d" -MT"Middlewares/FreeRTOS/port.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Middlewares/FreeRTOS/port.o"
+arm-none-eabi-gcc "C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/queue.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Middlewares/FreeRTOS/queue.d" -MT"Middlewares/FreeRTOS/queue.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Middlewares/FreeRTOS/queue.o"
+arm-none-eabi-gcc "C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Middlewares/FreeRTOS/stream_buffer.d" -MT"Middlewares/FreeRTOS/stream_buffer.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Middlewares/FreeRTOS/stream_buffer.o"
+arm-none-eabi-gcc "C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/tasks.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Middlewares/FreeRTOS/tasks.d" -MT"Middlewares/FreeRTOS/tasks.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Middlewares/FreeRTOS/tasks.o"
+arm-none-eabi-gcc "C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/timers.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Middlewares/FreeRTOS/timers.d" -MT"Middlewares/FreeRTOS/timers.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Middlewares/FreeRTOS/timers.o"
+arm-none-eabi-gcc "C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o"
+arm-none-eabi-gcc "C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.o"
+arm-none-eabi-gcc "C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o"
+arm-none-eabi-gcc "C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma_ex.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma_ex.o"
+arm-none-eabi-gcc "C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_exti.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_exti.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_exti.o"
+arm-none-eabi-gcc "C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_flash.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_flash.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_flash.o"
+arm-none-eabi-gcc "C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_flash_ex.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_flash_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_flash_ex.o"
+arm-none-eabi-gcc "C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_flash_ramfunc.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_flash_ramfunc.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_flash_ramfunc.o"
+arm-none-eabi-gcc "C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.o"
+arm-none-eabi-gcc "C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_pwr.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_pwr.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_pwr.o"
+arm-none-eabi-gcc "C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_pwr_ex.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_pwr_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_pwr_ex.o"
+arm-none-eabi-gcc "C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o"
+arm-none-eabi-gcc "C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc_ex.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc_ex.o"
+arm-none-eabi-gcc "C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o"
+arm-none-eabi-gcc "C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o"
+arm-none-eabi-gcc "C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_uart.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_uart.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_uart.o"
+arm-none-eabi-gcc "../Core/Src/freertos.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/freertos.d" -MT"Core/Src/freertos.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/freertos.o"
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f4xx_hal_msp.d" -MT"Core/Src/stm32f4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32f4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f4xx_it.d" -MT"Core/Src/stm32f4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_it.o"
+arm-none-eabi-gcc "../Core/Src/system_stm32f4xx.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/system_stm32f4xx.d" -MT"Core/Src/system_stm32f4xx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/system_stm32f4xx.o"
+../Core/Src/main.c: In function 'StartDefaultTask':
+../Core/Src/main.c:586:4: error: too few arguments to function 'HAL_UART_Transmit'
+  586 |    HAL_UART_Transmit(&huart3, (uint8_t *)&ch, 0xFFFF);
+      |    ^~~~~~~~~~~~~~~~~
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:406,
+                 from C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:21:
+C:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:723:19: note: declared here
+  723 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                   ^~~~~~~~~~~~~~~~~
 ../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:595:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
-  595 |    sprintf(msg, "forwards\0");
+../Core/Src/main.c:649:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  649 |    sprintf(msg, "servo %d\0", pwmVal_servo);
       |    ^~~~~~~
-../Core/Src/main.c:595:4: warning: incompatible implicit declaration of built-in function 'sprintf'
+../Core/Src/main.c:649:4: warning: incompatible implicit declaration of built-in function 'sprintf'
 ../Core/Src/main.c:27:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
    26 | #include "oled.h"
   +++ |+#include <stdio.h>
    27 | /* USER CODE END Includes */
-../Core/Src/main.c:595:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  595 |    sprintf(msg, "forwards\0");
+../Core/Src/main.c:649:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  649 |    sprintf(msg, "servo %d\0", pwmVal_servo);
       |            ^~~
       |            |
       |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:595:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:595:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  595 |    sprintf(msg, "forwards\0");
+../Core/Src/main.c:649:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:649:26: warning: embedded '\0' in format [-Wformat-contains-nul]
+  649 |    sprintf(msg, "servo %d\0", pwmVal_servo);
       |                          ^~
-../Core/Src/main.c:598:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  598 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+../Core/Src/main.c:653:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  653 |    sprintf(msg, "forwards %d\0", pwmVal);
       |            ^~~
       |            |
       |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:598:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:598:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  598 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |                          ^~
-../Core/Src/main.c:630:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  630 |    sprintf(msg, "backward\0");
+../Core/Src/main.c:653:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:653:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+  653 |    sprintf(msg, "forwards %d\0", pwmVal);
+      |                             ^~
+../Core/Src/main.c:689:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  689 |    sprintf(msg, "backward %d\0", pwmVal);
       |            ^~~
       |            |
       |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:630:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:630:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  630 |    sprintf(msg, "backward\0");
-      |                          ^~
+../Core/Src/main.c:689:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:689:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+  689 |    sprintf(msg, "backward %d\0", pwmVal);
+      |                             ^~
 ../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:704:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
-  704 |  uint16_t dir;
+../Core/Src/main.c:769:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
+  769 |  uint16_t dir;
       |           ^~~
-../Core/Src/main.c:703:10: warning: unused variable 'msg' [-Wunused-variable]
-  703 |  uint8_t msg[20];
+../Core/Src/main.c:768:10: warning: unused variable 'msg' [-Wunused-variable]
+  768 |  uint8_t msg[20];
       |          ^~~
-../Core/Src/main.c:698:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
-  698 |  int cnt1, cnt2, diff;
+../Core/Src/main.c:763:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
+  763 |  int cnt1, cnt2, diff;
+      |                  ^~~~
+make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+02:24:51 **** Incremental Build of configuration Debug for project mdp_hardware ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'motor':
+../Core/Src/main.c:649:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  649 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |    ^~~~~~~
+../Core/Src/main.c:649:4: warning: incompatible implicit declaration of built-in function 'sprintf'
+../Core/Src/main.c:27:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+   26 | #include "oled.h"
+  +++ |+#include <stdio.h>
+   27 | /* USER CODE END Includes */
+../Core/Src/main.c:649:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  649 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:649:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:649:26: warning: embedded '\0' in format [-Wformat-contains-nul]
+  649 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |                          ^~
+../Core/Src/main.c:653:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  653 |    sprintf(msg, "forwards %d\0", pwmVal);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:653:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:653:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+  653 |    sprintf(msg, "forwards %d\0", pwmVal);
+      |                             ^~
+../Core/Src/main.c:689:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  689 |    sprintf(msg, "backward %d\0", pwmVal);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:689:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:689:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+  689 |    sprintf(msg, "backward %d\0", pwmVal);
+      |                             ^~
+../Core/Src/main.c: In function 'encoder_task':
+../Core/Src/main.c:769:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
+  769 |  uint16_t dir;
+      |           ^~~
+../Core/Src/main.c:768:10: warning: unused variable 'msg' [-Wunused-variable]
+  768 |  uint8_t msg[20];
+      |          ^~~
+../Core/Src/main.c:763:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
+  763 |  int cnt1, cnt2, diff;
       |                  ^~~~
 arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: mdp_hardware.elf
@@ -55,7 +149,7 @@ arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
 arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
 arm-none-eabi-objcopy  -O binary  mdp_hardware.elf  "mdp_hardware.bin"
    text	   data	    bss	    dec	    hex	filename
-  29740	    124	  21692	  51556	   c964	mdp_hardware.elf
+  34684	    124	  21780	  56588	   dd0c	mdp_hardware.elf
 Finished building: default.size.stdout
  
 Finished building: mdp_hardware.hex
@@ -64,61 +158,54 @@ Finished building: mdp_hardware.bin
  
 Finished building: mdp_hardware.list
  
-01:08:28 **** Incremental Build of configuration Debug for project mdp_hardware ****
-make -j16 all 
-arm-none-eabi-size   mdp_hardware.elf 
-   text	   data	    bss	    dec	    hex	filename
-  29740	    124	  21692	  51556	   c964	mdp_hardware.elf
-Finished building: default.size.stdout
- 
-01:09:31 **** Incremental Build of configuration Debug for project mdp_hardware ****
+02:27:19 **** Incremental Build of configuration Debug for project mdp_hardware ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:595:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
-  595 |    sprintf(msg, "forwards %d\0", pwmVal);
+../Core/Src/main.c:649:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  649 |    sprintf(msg, "servo %d\0", pwmVal_servo);
       |    ^~~~~~~
-../Core/Src/main.c:595:4: warning: incompatible implicit declaration of built-in function 'sprintf'
+../Core/Src/main.c:649:4: warning: incompatible implicit declaration of built-in function 'sprintf'
 ../Core/Src/main.c:27:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
    26 | #include "oled.h"
   +++ |+#include <stdio.h>
    27 | /* USER CODE END Includes */
-../Core/Src/main.c:595:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  595 |    sprintf(msg, "forwards %d\0", pwmVal);
+../Core/Src/main.c:649:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  649 |    sprintf(msg, "servo %d\0", pwmVal_servo);
       |            ^~~
       |            |
       |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:595:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:595:29: warning: embedded '\0' in format [-Wformat-contains-nul]
-  595 |    sprintf(msg, "forwards %d\0", pwmVal);
+../Core/Src/main.c:649:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:649:26: warning: embedded '\0' in format [-Wformat-contains-nul]
+  649 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+      |                          ^~
+../Core/Src/main.c:653:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  653 |    sprintf(msg, "forwards %d\0", pwmVal);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:653:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:653:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+  653 |    sprintf(msg, "forwards %d\0", pwmVal);
       |                             ^~
-../Core/Src/main.c:598:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  598 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+../Core/Src/main.c:689:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  689 |    sprintf(msg, "backward %d\0", pwmVal);
       |            ^~~
       |            |
       |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:598:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:598:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  598 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |                          ^~
-../Core/Src/main.c:630:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  630 |    sprintf(msg, "backward\0");
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:630:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:630:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  630 |    sprintf(msg, "backward\0");
-      |                          ^~
+../Core/Src/main.c:689:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:689:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+  689 |    sprintf(msg, "backward %d\0", pwmVal);
+      |                             ^~
 ../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:704:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
-  704 |  uint16_t dir;
+../Core/Src/main.c:769:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
+  769 |  uint16_t dir;
       |           ^~~
-../Core/Src/main.c:703:10: warning: unused variable 'msg' [-Wunused-variable]
-  703 |  uint8_t msg[20];
+../Core/Src/main.c:768:10: warning: unused variable 'msg' [-Wunused-variable]
+  768 |  uint8_t msg[20];
       |          ^~~
-../Core/Src/main.c:698:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
-  698 |  int cnt1, cnt2, diff;
+../Core/Src/main.c:763:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
+  763 |  int cnt1, cnt2, diff;
       |                  ^~~~
 arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: mdp_hardware.elf
@@ -128,7 +215,7 @@ arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
 arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
 arm-none-eabi-objcopy  -O binary  mdp_hardware.elf  "mdp_hardware.bin"
    text	   data	    bss	    dec	    hex	filename
-  29744	    124	  21692	  51560	   c968	mdp_hardware.elf
+  34684	    124	  21780	  56588	   dd0c	mdp_hardware.elf
 Finished building: default.size.stdout
  
 Finished building: mdp_hardware.hex
@@ -137,54 +224,58 @@ Finished building: mdp_hardware.bin
  
 Finished building: mdp_hardware.list
  
-01:15:05 **** Incremental Build of configuration Debug for project mdp_hardware ****
+02:39:49 **** Incremental Build of configuration Debug for project mdp_hardware ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'StartDefaultTask':
+../Core/Src/main.c:583:10: warning: unused variable 'ch' [-Wunused-variable]
+  583 |  uint8_t ch = 'A';
+      |          ^~
 ../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:596:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
-  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+../Core/Src/main.c:649:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  649 |    sprintf(msg, "servo %d\0", pwmVal_servo);
       |    ^~~~~~~
-../Core/Src/main.c:596:4: warning: incompatible implicit declaration of built-in function 'sprintf'
+../Core/Src/main.c:649:4: warning: incompatible implicit declaration of built-in function 'sprintf'
 ../Core/Src/main.c:27:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
    26 | #include "oled.h"
   +++ |+#include <stdio.h>
    27 | /* USER CODE END Includes */
-../Core/Src/main.c:596:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+../Core/Src/main.c:649:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  649 |    sprintf(msg, "servo %d\0", pwmVal_servo);
       |            ^~~
       |            |
       |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:596:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:596:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+../Core/Src/main.c:649:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:649:26: warning: embedded '\0' in format [-Wformat-contains-nul]
+  649 |    sprintf(msg, "servo %d\0", pwmVal_servo);
       |                          ^~
-../Core/Src/main.c:602:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  602 |     sprintf(msg, "forwards %d\0", pwmVal);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-../Core/Src/main.c:602:13: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:602:30: warning: embedded '\0' in format [-Wformat-contains-nul]
-  602 |     sprintf(msg, "forwards %d\0", pwmVal);
-      |                              ^~
-../Core/Src/main.c:632:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  632 |    sprintf(msg, "backward\0");
+../Core/Src/main.c:653:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  653 |    sprintf(msg, "forwards %d\0", pwmVal);
       |            ^~~
       |            |
       |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:632:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:632:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  632 |    sprintf(msg, "backward\0");
-      |                          ^~
+../Core/Src/main.c:653:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:653:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+  653 |    sprintf(msg, "forwards %d\0", pwmVal);
+      |                             ^~
+../Core/Src/main.c:689:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  689 |    sprintf(msg, "backward %d\0", pwmVal);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:689:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:689:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+  689 |    sprintf(msg, "backward %d\0", pwmVal);
+      |                             ^~
 ../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:708:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
-  708 |  uint16_t dir;
+../Core/Src/main.c:769:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
+  769 |  uint16_t dir;
       |           ^~~
-../Core/Src/main.c:707:10: warning: unused variable 'msg' [-Wunused-variable]
-  707 |  uint8_t msg[20];
+../Core/Src/main.c:768:10: warning: unused variable 'msg' [-Wunused-variable]
+  768 |  uint8_t msg[20];
       |          ^~~
-../Core/Src/main.c:702:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
-  702 |  int cnt1, cnt2, diff;
+../Core/Src/main.c:763:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
+  763 |  int cnt1, cnt2, diff;
       |                  ^~~~
 arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: mdp_hardware.elf
@@ -194,7 +285,7 @@ arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
 arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
 arm-none-eabi-objcopy  -O binary  mdp_hardware.elf  "mdp_hardware.bin"
    text	   data	    bss	    dec	    hex	filename
-  29744	    124	  21692	  51560	   c968	mdp_hardware.elf
+  34636	    124	  21780	  56540	   dcdc	mdp_hardware.elf
 Finished building: default.size.stdout
  
 Finished building: mdp_hardware.hex
@@ -203,54 +294,68 @@ Finished building: mdp_hardware.bin
  
 Finished building: mdp_hardware.list
  
-01:16:21 **** Incremental Build of configuration Debug for project mdp_hardware ****
+02:43:21 **** Incremental Build of configuration Debug for project mdp_hardware ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:596:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
-  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+../Core/Src/main.c:649:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  649 |    sprintf(msg, "servo %d\0", pwmVal_servo);
       |    ^~~~~~~
-../Core/Src/main.c:596:4: warning: incompatible implicit declaration of built-in function 'sprintf'
+../Core/Src/main.c:649:4: warning: incompatible implicit declaration of built-in function 'sprintf'
 ../Core/Src/main.c:27:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
    26 | #include "oled.h"
   +++ |+#include <stdio.h>
    27 | /* USER CODE END Includes */
-../Core/Src/main.c:596:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+../Core/Src/main.c:649:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  649 |    sprintf(msg, "servo %d\0", pwmVal_servo);
       |            ^~~
       |            |
       |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:596:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:596:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
+../Core/Src/main.c:649:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:649:26: warning: embedded '\0' in format [-Wformat-contains-nul]
+  649 |    sprintf(msg, "servo %d\0", pwmVal_servo);
       |                          ^~
-../Core/Src/main.c:602:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  602 |     sprintf(msg, "forwards %d\0", pwmVal);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-../Core/Src/main.c:602:13: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:602:30: warning: embedded '\0' in format [-Wformat-contains-nul]
-  602 |     sprintf(msg, "forwards %d\0", pwmVal);
-      |                              ^~
-../Core/Src/main.c:632:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  632 |    sprintf(msg, "backward\0");
+../Core/Src/main.c:653:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  653 |    sprintf(msg, "forwards %d\0", pwmVal);
       |            ^~~
       |            |
       |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:632:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:632:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  632 |    sprintf(msg, "backward\0");
-      |                          ^~
+../Core/Src/main.c:653:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:653:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+  653 |    sprintf(msg, "forwards %d\0", pwmVal);
+      |                             ^~
+../Core/Src/main.c:689:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  689 |    sprintf(msg, "backward %d\0", pwmVal);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:689:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:689:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+  689 |    sprintf(msg, "backward %d\0", pwmVal);
+      |                             ^~
+../Core/Src/main.c: In function 'showoled':
+../Core/Src/main.c:743:3: warning: incompatible implicit declaration of built-in function 'sprintf'
+  743 |   sprintf(hello, "%s\0", aRxBuffer);
+      |   ^~~~~~~
+../Core/Src/main.c:743:3: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../Core/Src/main.c:743:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  743 |   sprintf(hello, "%s\0", aRxBuffer);
+      |           ^~~~~
+      |           |
+      |           uint8_t * {aka unsigned char *}
+../Core/Src/main.c:743:11: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:743:21: warning: embedded '\0' in format [-Wformat-contains-nul]
+  743 |   sprintf(hello, "%s\0", aRxBuffer);
+      |                     ^~
 ../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:708:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
-  708 |  uint16_t dir;
+../Core/Src/main.c:770:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
+  770 |  uint16_t dir;
       |           ^~~
-../Core/Src/main.c:707:10: warning: unused variable 'msg' [-Wunused-variable]
-  707 |  uint8_t msg[20];
+../Core/Src/main.c:769:10: warning: unused variable 'msg' [-Wunused-variable]
+  769 |  uint8_t msg[20];
       |          ^~~
-../Core/Src/main.c:702:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
-  702 |  int cnt1, cnt2, diff;
+../Core/Src/main.c:764:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
+  764 |  int cnt1, cnt2, diff;
       |                  ^~~~
 arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: mdp_hardware.elf
@@ -260,555 +365,7 @@ arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
 arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
 arm-none-eabi-objcopy  -O binary  mdp_hardware.elf  "mdp_hardware.bin"
    text	   data	    bss	    dec	    hex	filename
-  29744	    124	  21692	  51560	   c968	mdp_hardware.elf
-Finished building: default.size.stdout
- 
-Finished building: mdp_hardware.hex
-Finished building: mdp_hardware.bin
- 
- 
-Finished building: mdp_hardware.list
- 
-01:17:50 **** Incremental Build of configuration Debug for project mdp_hardware ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:596:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
-  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |    ^~~~~~~
-../Core/Src/main.c:596:4: warning: incompatible implicit declaration of built-in function 'sprintf'
-../Core/Src/main.c:27:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
-   26 | #include "oled.h"
-  +++ |+#include <stdio.h>
-   27 | /* USER CODE END Includes */
-../Core/Src/main.c:596:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:596:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:596:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |                          ^~
-../Core/Src/main.c:602:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  602 |     sprintf(msg, "forwards %d\0", pwmVal);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-../Core/Src/main.c:602:13: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:602:30: warning: embedded '\0' in format [-Wformat-contains-nul]
-  602 |     sprintf(msg, "forwards %d\0", pwmVal);
-      |                              ^~
-../Core/Src/main.c:635:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  635 |     sprintf(msg, "backward %d\0", pwmVal);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-../Core/Src/main.c:635:13: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:635:30: warning: embedded '\0' in format [-Wformat-contains-nul]
-  635 |     sprintf(msg, "backward %d\0", pwmVal);
-      |                              ^~
-../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:710:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
-  710 |  uint16_t dir;
-      |           ^~~
-../Core/Src/main.c:709:10: warning: unused variable 'msg' [-Wunused-variable]
-  709 |  uint8_t msg[20];
-      |          ^~~
-../Core/Src/main.c:704:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
-  704 |  int cnt1, cnt2, diff;
-      |                  ^~~~
-arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: mdp_hardware.elf
- 
-arm-none-eabi-size   mdp_hardware.elf 
-arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
-arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
-arm-none-eabi-objcopy  -O binary  mdp_hardware.elf  "mdp_hardware.bin"
-   text	   data	    bss	    dec	    hex	filename
-  29764	    124	  21692	  51580	   c97c	mdp_hardware.elf
-Finished building: default.size.stdout
- 
-Finished building: mdp_hardware.hex
-Finished building: mdp_hardware.bin
- 
- 
-Finished building: mdp_hardware.list
- 
-01:19:11 **** Incremental Build of configuration Debug for project mdp_hardware ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:596:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
-  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |    ^~~~~~~
-../Core/Src/main.c:596:4: warning: incompatible implicit declaration of built-in function 'sprintf'
-../Core/Src/main.c:27:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
-   26 | #include "oled.h"
-  +++ |+#include <stdio.h>
-   27 | /* USER CODE END Includes */
-../Core/Src/main.c:596:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:596:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:596:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |                          ^~
-../Core/Src/main.c:602:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  602 |     sprintf(msg, "forwards %d\0", pwmVal);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-../Core/Src/main.c:602:13: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:602:30: warning: embedded '\0' in format [-Wformat-contains-nul]
-  602 |     sprintf(msg, "forwards %d\0", pwmVal);
-      |                              ^~
-../Core/Src/main.c:636:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  636 |     sprintf(msg, "backward %d\0", pwmVal);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-../Core/Src/main.c:636:13: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:636:30: warning: embedded '\0' in format [-Wformat-contains-nul]
-  636 |     sprintf(msg, "backward %d\0", pwmVal);
-      |                              ^~
-../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:712:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
-  712 |  uint16_t dir;
-      |           ^~~
-../Core/Src/main.c:711:10: warning: unused variable 'msg' [-Wunused-variable]
-  711 |  uint8_t msg[20];
-      |          ^~~
-../Core/Src/main.c:706:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
-  706 |  int cnt1, cnt2, diff;
-      |                  ^~~~
-arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: mdp_hardware.elf
- 
-arm-none-eabi-size   mdp_hardware.elf 
-arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
-arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
-arm-none-eabi-objcopy  -O binary  mdp_hardware.elf  "mdp_hardware.bin"
-   text	   data	    bss	    dec	    hex	filename
-  29764	    124	  21692	  51580	   c97c	mdp_hardware.elf
-Finished building: default.size.stdout
- 
-Finished building: mdp_hardware.hex
-Finished building: mdp_hardware.bin
- 
- 
-Finished building: mdp_hardware.list
- 
-01:20:57 **** Incremental Build of configuration Debug for project mdp_hardware ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:596:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
-  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |    ^~~~~~~
-../Core/Src/main.c:596:4: warning: incompatible implicit declaration of built-in function 'sprintf'
-../Core/Src/main.c:27:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
-   26 | #include "oled.h"
-  +++ |+#include <stdio.h>
-   27 | /* USER CODE END Includes */
-../Core/Src/main.c:596:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:596:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:596:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |                          ^~
-../Core/Src/main.c:600:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  600 |    sprintf(msg, "forwards %d\0", pwmVal);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:600:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:600:29: warning: embedded '\0' in format [-Wformat-contains-nul]
-  600 |    sprintf(msg, "forwards %d\0", pwmVal);
-      |                             ^~
-../Core/Src/main.c:634:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  634 |    sprintf(msg, "backward %d\0");
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:634:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:634:28: warning: format '%d' expects a matching 'int' argument [-Wformat=]
-  634 |    sprintf(msg, "backward %d\0");
-      |                           ~^
-      |                            |
-      |                            int
-../Core/Src/main.c:634:29: warning: embedded '\0' in format [-Wformat-contains-nul]
-  634 |    sprintf(msg, "backward %d\0");
-      |                             ^~
-../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:710:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
-  710 |  uint16_t dir;
-      |           ^~~
-../Core/Src/main.c:709:10: warning: unused variable 'msg' [-Wunused-variable]
-  709 |  uint8_t msg[20];
-      |          ^~~
-../Core/Src/main.c:704:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
-  704 |  int cnt1, cnt2, diff;
-      |                  ^~~~
-arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: mdp_hardware.elf
- 
-arm-none-eabi-size   mdp_hardware.elf 
-arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
-arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
-arm-none-eabi-objcopy  -O binary  mdp_hardware.elf  "mdp_hardware.bin"
-   text	   data	    bss	    dec	    hex	filename
-  29732	    124	  21692	  51548	   c95c	mdp_hardware.elf
-Finished building: default.size.stdout
- 
-Finished building: mdp_hardware.hex
-Finished building: mdp_hardware.bin
- 
- 
-Finished building: mdp_hardware.list
- 
-01:21:55 **** Incremental Build of configuration Debug for project mdp_hardware ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:596:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
-  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |    ^~~~~~~
-../Core/Src/main.c:596:4: warning: incompatible implicit declaration of built-in function 'sprintf'
-../Core/Src/main.c:27:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
-   26 | #include "oled.h"
-  +++ |+#include <stdio.h>
-   27 | /* USER CODE END Includes */
-../Core/Src/main.c:596:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:596:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:596:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |                          ^~
-../Core/Src/main.c:600:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  600 |    sprintf(msg, "forwards %d\0", pwmVal);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:600:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:600:29: warning: embedded '\0' in format [-Wformat-contains-nul]
-  600 |    sprintf(msg, "forwards %d\0", pwmVal);
-      |                             ^~
-../Core/Src/main.c:633:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  633 |    sprintf(msg, "backward %d\0");
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:633:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:633:28: warning: format '%d' expects a matching 'int' argument [-Wformat=]
-  633 |    sprintf(msg, "backward %d\0");
-      |                           ~^
-      |                            |
-      |                            int
-../Core/Src/main.c:633:29: warning: embedded '\0' in format [-Wformat-contains-nul]
-  633 |    sprintf(msg, "backward %d\0");
-      |                             ^~
-../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:708:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
-  708 |  uint16_t dir;
-      |           ^~~
-../Core/Src/main.c:707:10: warning: unused variable 'msg' [-Wunused-variable]
-  707 |  uint8_t msg[20];
-      |          ^~~
-../Core/Src/main.c:702:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
-  702 |  int cnt1, cnt2, diff;
-      |                  ^~~~
-arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: mdp_hardware.elf
- 
-arm-none-eabi-size   mdp_hardware.elf 
-arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
-arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
-arm-none-eabi-objcopy  -O binary  mdp_hardware.elf  "mdp_hardware.bin"
-   text	   data	    bss	    dec	    hex	filename
-  29732	    124	  21692	  51548	   c95c	mdp_hardware.elf
-Finished building: default.size.stdout
- 
-Finished building: mdp_hardware.hex
-Finished building: mdp_hardware.bin
- 
- 
-Finished building: mdp_hardware.list
- 
-01:22:45 **** Incremental Build of configuration Debug for project mdp_hardware ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:596:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
-  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |    ^~~~~~~
-../Core/Src/main.c:596:4: warning: incompatible implicit declaration of built-in function 'sprintf'
-../Core/Src/main.c:27:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
-   26 | #include "oled.h"
-  +++ |+#include <stdio.h>
-   27 | /* USER CODE END Includes */
-../Core/Src/main.c:596:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:596:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:596:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |                          ^~
-../Core/Src/main.c:600:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  600 |    sprintf(msg, "forwards %d\0", pwmVal);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:600:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:600:29: warning: embedded '\0' in format [-Wformat-contains-nul]
-  600 |    sprintf(msg, "forwards %d\0", pwmVal);
-      |                             ^~
-../Core/Src/main.c:633:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  633 |    sprintf(msg, "backward %d\0");
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:633:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:633:28: warning: format '%d' expects a matching 'int' argument [-Wformat=]
-  633 |    sprintf(msg, "backward %d\0");
-      |                           ~^
-      |                            |
-      |                            int
-../Core/Src/main.c:633:29: warning: embedded '\0' in format [-Wformat-contains-nul]
-  633 |    sprintf(msg, "backward %d\0");
-      |                             ^~
-../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:709:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
-  709 |  uint16_t dir;
-      |           ^~~
-../Core/Src/main.c:708:10: warning: unused variable 'msg' [-Wunused-variable]
-  708 |  uint8_t msg[20];
-      |          ^~~
-../Core/Src/main.c:703:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
-  703 |  int cnt1, cnt2, diff;
-      |                  ^~~~
-arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: mdp_hardware.elf
- 
-arm-none-eabi-size   mdp_hardware.elf 
-arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
-arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
-arm-none-eabi-objcopy  -O binary  mdp_hardware.elf  "mdp_hardware.bin"
-   text	   data	    bss	    dec	    hex	filename
-  29732	    124	  21692	  51548	   c95c	mdp_hardware.elf
-Finished building: default.size.stdout
- 
-Finished building: mdp_hardware.hex
-Finished building: mdp_hardware.bin
- 
- 
-Finished building: mdp_hardware.list
- 
-01:22:59 **** Incremental Build of configuration Debug for project mdp_hardware ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:596:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
-  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |    ^~~~~~~
-../Core/Src/main.c:596:4: warning: incompatible implicit declaration of built-in function 'sprintf'
-../Core/Src/main.c:27:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
-   26 | #include "oled.h"
-  +++ |+#include <stdio.h>
-   27 | /* USER CODE END Includes */
-../Core/Src/main.c:596:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:596:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:596:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |                          ^~
-../Core/Src/main.c:600:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  600 |    sprintf(msg, "forwards %d\0", pwmVal);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:600:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:600:29: warning: embedded '\0' in format [-Wformat-contains-nul]
-  600 |    sprintf(msg, "forwards %d\0", pwmVal);
-      |                             ^~
-../Core/Src/main.c:633:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  633 |    sprintf(msg, "backward %d\0");
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:633:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:633:28: warning: format '%d' expects a matching 'int' argument [-Wformat=]
-  633 |    sprintf(msg, "backward %d\0");
-      |                           ~^
-      |                            |
-      |                            int
-../Core/Src/main.c:633:29: warning: embedded '\0' in format [-Wformat-contains-nul]
-  633 |    sprintf(msg, "backward %d\0");
-      |                             ^~
-../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:709:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
-  709 |  uint16_t dir;
-      |           ^~~
-../Core/Src/main.c:708:10: warning: unused variable 'msg' [-Wunused-variable]
-  708 |  uint8_t msg[20];
-      |          ^~~
-../Core/Src/main.c:703:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
-  703 |  int cnt1, cnt2, diff;
-      |                  ^~~~
-arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: mdp_hardware.elf
- 
-arm-none-eabi-size   mdp_hardware.elf 
-arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
-arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
-arm-none-eabi-objcopy  -O binary  mdp_hardware.elf  "mdp_hardware.bin"
-   text	   data	    bss	    dec	    hex	filename
-  29748	    124	  21692	  51564	   c96c	mdp_hardware.elf
-Finished building: default.size.stdout
- 
-Finished building: mdp_hardware.hex
-Finished building: mdp_hardware.bin
- 
- 
-Finished building: mdp_hardware.list
- 
-01:24:16 **** Incremental Build of configuration Debug for project mdp_hardware ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:596:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
-  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |    ^~~~~~~
-../Core/Src/main.c:596:4: warning: incompatible implicit declaration of built-in function 'sprintf'
-../Core/Src/main.c:27:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
-   26 | #include "oled.h"
-  +++ |+#include <stdio.h>
-   27 | /* USER CODE END Includes */
-../Core/Src/main.c:596:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:596:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:596:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  596 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |                          ^~
-../Core/Src/main.c:600:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  600 |    sprintf(msg, "forwards %d\0", pwmVal);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:600:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:600:29: warning: embedded '\0' in format [-Wformat-contains-nul]
-  600 |    sprintf(msg, "forwards %d\0", pwmVal);
-      |                             ^~
-../Core/Src/main.c:636:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  636 |    sprintf(msg, "backward %d\0", pwmVal);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:636:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:636:29: warning: embedded '\0' in format [-Wformat-contains-nul]
-  636 |    sprintf(msg, "backward %d\0", pwmVal);
-      |                             ^~
-../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:715:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
-  715 |  uint16_t dir;
-      |           ^~~
-../Core/Src/main.c:714:10: warning: unused variable 'msg' [-Wunused-variable]
-  714 |  uint8_t msg[20];
-      |          ^~~
-../Core/Src/main.c:709:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
-  709 |  int cnt1, cnt2, diff;
-      |                  ^~~~
-arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: mdp_hardware.elf
- 
-arm-none-eabi-size   mdp_hardware.elf 
-arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
-arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
-arm-none-eabi-objcopy  -O binary  mdp_hardware.elf  "mdp_hardware.bin"
-   text	   data	    bss	    dec	    hex	filename
-  29748	    124	  21692	  51564	   c96c	mdp_hardware.elf
-Finished building: default.size.stdout
- 
-Finished building: mdp_hardware.hex
-Finished building: mdp_hardware.bin
- 
- 
-Finished building: mdp_hardware.list
- 
-01:27:49 **** Incremental Build of configuration Debug for project mdp_hardware ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Drivers/CMSIS/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.26.2/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:598:4: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
-  598 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |    ^~~~~~~
-../Core/Src/main.c:598:4: warning: incompatible implicit declaration of built-in function 'sprintf'
-../Core/Src/main.c:27:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
-   26 | #include "oled.h"
-  +++ |+#include <stdio.h>
-   27 | /* USER CODE END Includes */
-../Core/Src/main.c:598:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  598 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:598:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:598:26: warning: embedded '\0' in format [-Wformat-contains-nul]
-  598 |    sprintf(msg, "servo %d\0", pwmVal_servo);
-      |                          ^~
-../Core/Src/main.c:602:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  602 |    sprintf(msg, "forwards %d\0", pwmVal);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:602:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:602:29: warning: embedded '\0' in format [-Wformat-contains-nul]
-  602 |    sprintf(msg, "forwards %d\0", pwmVal);
-      |                             ^~
-../Core/Src/main.c:638:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  638 |    sprintf(msg, "backward %d\0", pwmVal);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:638:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:638:29: warning: embedded '\0' in format [-Wformat-contains-nul]
-  638 |    sprintf(msg, "backward %d\0", pwmVal);
-      |                             ^~
-../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:717:11: warning: variable 'dir' set but not used [-Wunused-but-set-variable]
-  717 |  uint16_t dir;
-      |           ^~~
-../Core/Src/main.c:716:10: warning: unused variable 'msg' [-Wunused-variable]
-  716 |  uint8_t msg[20];
-      |          ^~~
-../Core/Src/main.c:711:18: warning: variable 'diff' set but not used [-Wunused-but-set-variable]
-  711 |  int cnt1, cnt2, diff;
-      |                  ^~~~
-arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: mdp_hardware.elf
- 
-arm-none-eabi-size   mdp_hardware.elf 
-arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
-arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
-arm-none-eabi-objcopy  -O binary  mdp_hardware.elf  "mdp_hardware.bin"
-   text	   data	    bss	    dec	    hex	filename
-  29764	    124	  21692	  51580	   c97c	mdp_hardware.elf
+  34704	    124	  21780	  56608	   dd20	mdp_hardware.elf
 Finished building: default.size.stdout
  
 Finished building: mdp_hardware.hex
