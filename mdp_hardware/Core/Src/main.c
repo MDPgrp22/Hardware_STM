@@ -41,6 +41,7 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim8;
@@ -83,6 +84,7 @@ static void MX_GPIO_Init(void);
 static void MX_TIM8_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_TIM3_Init(void);
+static void MX_TIM1_Init(void);
 void StartDefaultTask(void *argument);
 void motor(void *argument);
 void showoled(void *argument);
@@ -128,6 +130,7 @@ int main(void)
   MX_TIM8_Init();
   MX_TIM2_Init();
   MX_TIM3_Init();
+  MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
 
   OLED_Init();
@@ -226,6 +229,80 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+}
+
+/**
+  * @brief TIM1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM1_Init(void)
+{
+
+  /* USER CODE BEGIN TIM1_Init 0 */
+
+  /* USER CODE END TIM1_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+  TIM_OC_InitTypeDef sConfigOC = {0};
+  TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig = {0};
+
+  /* USER CODE BEGIN TIM1_Init 1 */
+
+  /* USER CODE END TIM1_Init 1 */
+  htim1.Instance = TIM1;
+  htim1.Init.Prescaler = 160;
+  htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim1.Init.Period = 1000;
+  htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim1.Init.RepetitionCounter = 0;
+  htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+  if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim1, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_TIM_PWM_Init(&htim1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sConfigOC.OCMode = TIM_OCMODE_PWM1;
+  sConfigOC.Pulse = 0;
+  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
+  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+  sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
+  sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
+  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_4) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sBreakDeadTimeConfig.OffStateRunMode = TIM_OSSR_DISABLE;
+  sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
+  sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
+  sBreakDeadTimeConfig.DeadTime = 0;
+  sBreakDeadTimeConfig.BreakState = TIM_BREAK_DISABLE;
+  sBreakDeadTimeConfig.BreakPolarity = TIM_BREAKPOLARITY_HIGH;
+  sBreakDeadTimeConfig.AutomaticOutput = TIM_AUTOMATICOUTPUT_DISABLE;
+  if (HAL_TIMEx_ConfigBreakDeadTime(&htim1, &sBreakDeadTimeConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM1_Init 2 */
+
+  /* USER CODE END TIM1_Init 2 */
+  HAL_TIM_MspPostInit(&htim1);
+
 }
 
 /**
@@ -477,45 +554,68 @@ void motor(void *argument)
 {
   /* USER CODE BEGIN motor */
 	uint16_t pwmVal = 0;
-	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_1);
-	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_2);
+	uint8_t msg [20];
+
+//	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_1);
+//	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_2);
+	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
   /* Infinite loop */
   for(;;)
   {
+	  //Servo Code
+	  sprintf(msg, "left\0");
+	  OLED_ShowString(10, 20, msg);
+	  htim1.Instance->CCR4 = 110; //Extreme left
+	  osDelay(5000);
+
+	  sprintf(msg, "centre\0");
+	  htim1.Instance->CCR4 = 150; //Centre
+	  OLED_ShowString(10, 20, msg);
+	  osDelay(5000);
+
+	  sprintf(msg, "right\0");
+	  OLED_ShowString(10, 20, msg);
+	  htim1.Instance->CCR4 = 190; //Extreme right
+	  osDelay(5000);
+
+	  sprintf(msg, "centre\0");
+	  htim1.Instance->CCR4 = 150; //Centre
+	  OLED_ShowString(10, 20, msg);
+	  osDelay(5000);
 	  // Clock Wise
-	  while(pwmVal< 2000)
-	  {
-		  // H-Bridge Circuit for AINx; 1 turn on, the other turns off
-		  // MOTOR A
-		  HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_SET);
-		  HAL_GPIO_WritePin(GPIOA, AIN1_Pin, GPIO_PIN_RESET);
-
-		  // MOTOR B
-		  HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_SET);
-		  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_RESET);
-
-		  pwmVal++;
-		  // Modify comparison value for duty cycle
-		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal);
-		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal);
-		  osDelay(10);
-	  }
-	  // Anti clock wise
-	  while(pwmVal>0)
-	  {
-		  // MOTOR A
-		  HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_RESET);
-		  HAL_GPIO_WritePin(GPIOA, AIN1_Pin, GPIO_PIN_SET);
-
-		  // MOTOR B
-		  HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_RESET);
-		  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_SET);
-		  pwmVal--;
-		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal);
-		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal);
-		  osDelay(10);
-	  }
-	  osDelay(1);
+//	  while(pwmVal< 2000)
+//	  {
+//		  // H-Bridge Circuit for AINx; 1 turn on, the other turns off
+//		  // MOTOR A
+//		  HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_SET);
+//		  HAL_GPIO_WritePin(GPIOA, AIN1_Pin, GPIO_PIN_RESET);
+//
+//		  // MOTOR B
+//		  HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_SET);
+//		  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_RESET);
+//
+//		  pwmVal++;
+//		  // Modify comparison value for duty cycle
+//		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal);
+//		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal);
+//		  osDelay(10);
+//	  }
+//	  // Anti clock wise
+//	  while(pwmVal>0)
+//	  {
+//		  // MOTOR A
+//		  HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_RESET);
+//		  HAL_GPIO_WritePin(GPIOA, AIN1_Pin, GPIO_PIN_SET);
+//
+//		  // MOTOR B
+//		  HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_RESET);
+//		  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_SET);
+//		  pwmVal--;
+//		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal);
+//		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal);
+//		  osDelay(10);
+//	  }
+//	  osDelay(1);
   }
   /* USER CODE END motor */
 }
