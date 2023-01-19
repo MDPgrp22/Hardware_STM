@@ -383,7 +383,7 @@ static void MX_TIM8_Init(void)
   {
     Error_Handler();
   }
-  if (HAL_TIM_PWM_ConfigChannel(&htim8, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
+  if (HAL_TIM_PWM_ConfigChannel(&htim8, &sConfigOC, TIM_CHANNEL_3) != HAL_OK)
   {
     Error_Handler();
   }
@@ -478,41 +478,39 @@ void motor(void *argument)
   /* USER CODE BEGIN motor */
 	uint16_t pwmVal = 0;
 	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_1);
-	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_2);
+	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
   /* Infinite loop */
   for(;;)
   {
 	  // Clock Wise
-	  while(pwmVal< 2000)
+	  while(pwmVal< 4000)
 	  {
 		  // H-Bridge Circuit for AINx; 1 turn on, the other turns off
-		  // MOTOR A
+		  // Right Wheel
 		  HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_SET);
 		  HAL_GPIO_WritePin(GPIOA, AIN1_Pin, GPIO_PIN_RESET);
 
-		  // MOTOR B
-		  HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_SET);
-		  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_RESET);
+		  //Left Wheel
+		  HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_SET);
 
 		  pwmVal++;
 		  // Modify comparison value for duty cycle
 		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal);
-		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal);
 		  osDelay(10);
 	  }
 	  // Anti clock wise
 	  while(pwmVal>0)
 	  {
-		  // MOTOR A
+		  // Right Wheel
 		  HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_RESET);
 		  HAL_GPIO_WritePin(GPIOA, AIN1_Pin, GPIO_PIN_SET);
 
-		  // MOTOR B
+		  //Left Wheel
 		  HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_RESET);
 		  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_SET);
 		  pwmVal--;
 		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal);
-		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal);
 		  osDelay(10);
 	  }
 	  osDelay(1);
@@ -581,13 +579,13 @@ void encoder_task(void *argument)
 
 			dir = __HAL_TIM_IS_TIM_COUNTING_DOWN(&htim2);
 
-//			// Display difference
-//			sprintf(msg, "speed:%5d\0",diff);
-//			OLED_ShowString(10,20,msg);
-//
-//			// Display direction
-//			sprintf(msg, "dir:%5d\0",dir);
-//			OLED_ShowString(10,30,msg);
+			// Display difference
+			sprintf(msg, "speed:%5d\0",diff);
+			OLED_ShowString(10,20,msg);
+
+			// Display direction
+			sprintf(msg, "dir:%5d\0",dir);
+			OLED_ShowString(10,30,msg);
 
 			// Reset base tick
 			cnt1 = __HAL_TIM_GET_COUNTER(&htim2);

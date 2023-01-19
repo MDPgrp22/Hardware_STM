@@ -483,16 +483,16 @@ void motor(void *argument)
   for(;;)
   {
 	  // Clock Wise
-	  while(pwmVal< 2000)
+	  while(pwmVal< 4000)
 	  {
 		  // H-Bridge Circuit for AINx; 1 turn on, the other turns off
-		  // MOTOR A
+		  // Right Wheel
 		  HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_SET);
 		  HAL_GPIO_WritePin(GPIOA, AIN1_Pin, GPIO_PIN_RESET);
 
-		  // MOTOR B
-		  HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_SET);
-		  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_RESET);
+		  //Left Wheel
+		  HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_SET);
 
 		  pwmVal++;
 		  // Modify comparison value for duty cycle
@@ -503,11 +503,11 @@ void motor(void *argument)
 	  // Anti clock wise
 	  while(pwmVal>0)
 	  {
-		  // MOTOR A
+		  // Right Wheel
 		  HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_RESET);
 		  HAL_GPIO_WritePin(GPIOA, AIN1_Pin, GPIO_PIN_SET);
 
-		  // MOTOR B
+		  //Left Wheel
 		  HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_RESET);
 		  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_SET);
 		  pwmVal--;
