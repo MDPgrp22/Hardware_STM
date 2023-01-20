@@ -96,7 +96,6 @@ void encoder_task(void *argument);
 
 /* USER CODE BEGIN PFP */
 void show(void);
-void resetVal();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -595,13 +594,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 	HAL_GPIO_TogglePin(LED3_GPIO_Port, LED3_Pin);
 }
 
-void reset_motorVal(){
-	// Reset Values
-	frontback = 'w';	// Front/back character
-	fb_speed = '0';	// Front/back speed
-	leftright = 'a';	// Left/right character
-	lr_speed = '0';	// Left/right speed
-}
 
 /* USER CODE END 4 */
 
@@ -666,10 +658,10 @@ void motor(void *argument)
 
 	  // Turn Servo to desired position
 	  // Centre - offset for left turn
-	  if(leftright == 'a'){
+	  if(leftright == 'l'){
 		  htim1.Instance->CCR4 = pwmVal_servo - (lr_speed-48) *servo_max;
 	  }
-	  else if(leftright =='d')
+	  else
 		  htim1.Instance->CCR4 = pwmVal_servo + (lr_speed-48) *servo_max;
 
 	  // Move Motor forward
@@ -688,11 +680,8 @@ void motor(void *argument)
 
 		  		  if(accelerate == 1){
 		  			  pwmVal_motor+=motor_increment;	// Accelerating
-		  			  if(pwmVal_motor > (fb_speed-48) * 300){
+		  			  if(pwmVal_motor > (fb_speed-48) * 300)
 		  				  accelerate = 0;		// Decelerating
-		  				  reset_motorVal(); // Remove infinite motor loop
-		  			  }
-
 		  		  }
 
 		  		  else
@@ -718,10 +707,8 @@ void motor(void *argument)
 
 		  		  if(accelerate == 1){
 		  			pwmVal_motor+=motor_increment;
-		  			  if(pwmVal_motor > (fb_speed-48) * 300){
-		  				accelerate = 0;		// Decelerating
-		  				reset_motorVal(); // Remove infinite motor loop
-		  			  }
+		  			  if(pwmVal_motor > (fb_speed-48) * 300)
+		  				  accelerate = 0;
 		  		  }
 
 		  		  else
@@ -733,6 +720,83 @@ void motor(void *argument)
 		  	  }while(pwmVal_motor>0);
 	  }
 	  osDelay(100);
+
+//	  // Forward
+//	  sprintf(msg, "servo %d\0", pwmVal_servo);
+//	  OLED_ShowString(10, 30, msg);
+//	  accelerate = 1;
+//
+//	  sprintf(msg, "forwards %d\0", pwmVal);
+//	  OLED_ShowString(10, 20, msg);
+//	  do
+//	  {
+//
+//		  // H-Bridge Circuit for AINx; 1 turn on, the other turns off
+//		  // MOTOR A
+//		  HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_SET);
+//		  HAL_GPIO_WritePin(GPIOA, AIN1_Pin, GPIO_PIN_RESET);
+//
+//		  // MOTOR B
+//		  HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_SET);
+//		  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_RESET);
+//
+//		  if(accelerate == 1){
+//			  pwmVal+=motor_increment;	// Accelerating
+//			  if(pwmVal > 2000)
+//				  accelerate = 0;		// Decelerating
+//		  }
+//
+//		  else
+//			  pwmVal-=motor_increment;
+//		  // Modify comparison value for duty cycle
+//		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal);
+//		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal);
+//		  osDelay(10);
+//
+//	  }while(pwmVal >0);
+//
+//	  // Reset Values
+//	  pwmVal = 0; // just in case pwmVal not 0
+//	  accelerate = 1;
+//	  osDelay(5000);
+//
+//	  // Backwards
+//	  sprintf(msg, "backward %d\0", pwmVal);
+//	  OLED_ShowString(10, 20, msg);
+//	  do
+//	  {
+//		  // MOTOR A
+//		  HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_RESET);
+//		  HAL_GPIO_WritePin(GPIOA, AIN1_Pin, GPIO_PIN_SET);
+//
+//		  // MOTOR B
+//		  HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_RESET);
+//		  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_SET);
+//
+//		  if(accelerate == 1){
+//			  pwmVal+=motor_increment;
+//			  if(pwmVal > 2000)
+//				  accelerate = 0;
+//		  }
+//
+//		  else
+//			  pwmVal-=motor_increment;
+//
+//		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal);
+//		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal);
+//		  osDelay(10);
+//	  }while(pwmVal>0);
+//
+//	  // just in case pwmVal not 0
+//	  pwmVal = 0;
+//
+//	  osDelay(1);
+//	  if((pwmVal_servo > servo_max)||(pwmVal_servo < servo_min))
+//		  offset = -offset;
+//
+//	  pwmVal_servo += offset;
+//	  htim1.Instance->CCR4 = pwmVal_servo;
+//	  osDelay(5000);
   }
   /* USER CODE END motor */
 }

@@ -666,10 +666,10 @@ void motor(void *argument)
 
 	  // Turn Servo to desired position
 	  // Centre - offset for left turn
-	  if(leftright == 'a'){
+	  if(leftright == 'l'){
 		  htim1.Instance->CCR4 = pwmVal_servo - (lr_speed-48) *servo_max;
 	  }
-	  else if(leftright =='d')
+	  else
 		  htim1.Instance->CCR4 = pwmVal_servo + (lr_speed-48) *servo_max;
 
 	  // Move Motor forward
@@ -688,11 +688,8 @@ void motor(void *argument)
 
 		  		  if(accelerate == 1){
 		  			  pwmVal_motor+=motor_increment;	// Accelerating
-		  			  if(pwmVal_motor > (fb_speed-48) * 300){
+		  			  if(pwmVal_motor > (fb_speed-48) * 300)
 		  				  accelerate = 0;		// Decelerating
-		  				  reset_motorVal(); // Remove infinite motor loop
-		  			  }
-
 		  		  }
 
 		  		  else
@@ -718,10 +715,8 @@ void motor(void *argument)
 
 		  		  if(accelerate == 1){
 		  			pwmVal_motor+=motor_increment;
-		  			  if(pwmVal_motor > (fb_speed-48) * 300){
-		  				accelerate = 0;		// Decelerating
-		  				reset_motorVal(); // Remove infinite motor loop
-		  			  }
+		  			  if(pwmVal_motor > (fb_speed-48) * 300)
+		  				  accelerate = 0;
 		  		  }
 
 		  		  else
