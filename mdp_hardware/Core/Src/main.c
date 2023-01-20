@@ -24,6 +24,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "oled.h"
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -99,7 +100,9 @@ void show(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-uint8_t aRxBuffer[20];
+uint8_t aRxBuffer[50]; // UART Buffer
+
+
 /* USER CODE END 0 */
 
 /**
@@ -139,7 +142,7 @@ int main(void)
 
   OLED_Init();
 
-  HAL_UART_Receive_IT(&huart3, (uint8_t*) aRxBuffer, 10);
+  HAL_UART_Receive_IT(&huart3, (uint8_t *) aRxBuffer, 4);
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -560,13 +563,34 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+/**
+  * @brief  Function called during Serial interrupt
+  * @param  argument: UART_HandleTypeDef
+  * @retval None
+  */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 	// Prevent unused argument compiled warning
 	UNUSED(huart);
+	uint8_t hello[50];
+	int frontback;
+	int fb_speed;
+	int leftright;
+	int lr_speed;
 
-	HAL_UART_Transmit(&huart3, (uint8_t *)aRxBuffer, 10, 0xFFFF);
+	frontback = (int)(aRxBuffer[0]);
+	fb_speed = (int)(aRxBuffer[1]);
+	leftright = (int)(aRxBuffer[2]);
+	lr_speed = (int)(aRxBuffer[3]);
+
+
+	HAL_UART_Receive_IT(&huart3,(uint8_t *) aRxBuffer,4);
+	sprintf(hello, "Dir %3d : %d\0", frontback, fb_speed);
+	OLED_ShowString(10, 40, hello);
+	HAL_GPIO_TogglePin(LED3_GPIO_Port, LED3_Pin);
 }
+
+
 /* USER CODE END 4 */
 
 /* USER CODE BEGIN Header_StartDefaultTask */
@@ -580,15 +604,19 @@ void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN 5 */
   /* Infinite loop */
-	uint8_t ch = 'A';
   for(;;)
   {
-	  HAL_UART_Transmit(&huart3, (uint8_t *)&ch,1, 0xFFFF);
-	  if(ch<'Z')
-		  ch++;
-	  else ch = 'A';
-
-	  HAL_GPIO_TogglePin(LED3_GPIO_Port, LED3_Pin);
+//	  HAL_UART_Transmit(&huart3, (uint8_t *)&ch,1, 0xFFFF);
+//	  if(ch<'Z')
+//		  ch++;
+//	  else ch = 'A';
+//	  if(aRxBuffer != NULL){
+//		  if(aRxBuffer == 'w'){
+//			  HAL_GPIO_TogglePin(LED3_GPIO_Port, LED3_Pin);
+//			  aRxBuffer = NULL;
+//		  }
+//	  }
+//	  HAL_UART_Transmit(&huart3, (uint8_t *)txData, strlen(txData), 10);
 	  osDelay(5000);
   }
   /* USER CODE END 5 */
@@ -621,30 +649,11 @@ void motor(void *argument)
 
 
 	htim1.Instance->CCR4 = pwmVal_servo; //Centre
-	osDelay(5000);
+	//osDelay(5000);
 
   /* Infinite loop */
   for(;;)
   {
-	  //Servo Code
-//	  sprintf(msg, "left\0");
-//	  OLED_ShowString(10, 20, msg);
-//	  htim1.Instance->CCR4 = pwmVal_servo - 40; //Extreme left
-//	  osDelay(5000);
-//	  sprintf(msg, "right\0");
-//	  OLED_ShowString(10, 20, msg);
-//	  htim1.Instance->CCR4 = pwmVal_servo + 40; //Extreme right
-//	  osDelay(5000);
-//
-//	  sprintf(msg, "centre\0");
-//	  htim1.Instance->CCR4 = 150; //Centre
-//	  OLED_ShowString(10, 20, msg);
-//	  osDelay(5000);
-
-
-
-
-
 	  // Forward
 	  sprintf(msg, "servo %d\0", pwmVal_servo);
 	  OLED_ShowString(10, 30, msg);
@@ -654,7 +663,6 @@ void motor(void *argument)
 	  OLED_ShowString(10, 20, msg);
 	  do
 	  {
-
 
 		  // H-Bridge Circuit for AINx; 1 turn on, the other turns off
 		  // MOTOR A
@@ -666,9 +674,9 @@ void motor(void *argument)
 		  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_RESET);
 
 		  if(accelerate == 1){
-			  pwmVal+=motor_increment;
+			  pwmVal+=motor_increment;	// Accelerating
 			  if(pwmVal > 2000)
-				  accelerate = 0;
+				  accelerate = 0;		// Decelerating
 		  }
 
 		  else
@@ -680,12 +688,12 @@ void motor(void *argument)
 
 	  }while(pwmVal >0);
 
-	  // just in case pwmVal not 0
-	  pwmVal = 0;
-
+	  // Reset Values
+	  pwmVal = 0; // just in case pwmVal not 0
 	  accelerate = 1;
 	  osDelay(5000);
-	  // Anti clock wise
+
+	  // Backwards
 	  sprintf(msg, "backward %d\0", pwmVal);
 	  OLED_ShowString(10, 20, msg);
 	  do
@@ -705,8 +713,7 @@ void motor(void *argument)
 		  }
 
 		  else
-			  pwmVal-=motor_increment
-			  ;
+			  pwmVal-=motor_increment;
 
 		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal);
 		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal);
@@ -719,6 +726,7 @@ void motor(void *argument)
 	  osDelay(1);
 	  if((pwmVal_servo > servo_max)||(pwmVal_servo < servo_min))
 		  offset = -offset;
+
 	  pwmVal_servo += offset;
 	  htim1.Instance->CCR4 = pwmVal_servo;
 	  osDelay(5000);
@@ -737,10 +745,10 @@ void showoled(void *argument)
 {
   /* USER CODE BEGIN showoled */
   /* Infinite loop */
-	uint8_t hello [20] = "pwm test\0";
+	uint8_t hello[20] = "test\0";
 	for(;;)
 	{
-		sprintf(hello, "%s\0", aRxBuffer);
+
 		OLED_ShowString(10, 10, hello);
 		OLED_Refresh_Gram();
 		osDelay(1000);
