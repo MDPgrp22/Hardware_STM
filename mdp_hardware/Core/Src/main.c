@@ -705,7 +705,7 @@ void motor(void *argument)
 		  	  }while(pwmVal_motor >0);
 	  }
 
-	  else if(frontback = 's'){
+	  else if(frontback == 's'){
 		  do
 		  	  {
 		  		  // MOTOR A
@@ -770,45 +770,56 @@ void encoder_task(void *argument)
 {
   /* USER CODE BEGIN encoder_task */
   /* Infinite loop */
-	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_ALL);
+	HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL);
+	HAL_TIM_Encoder_Start(&htim3,TIM_CHANNEL_ALL);
 
-	int cnt1, cnt2, diff;
+	int cnt1, diffa=0;
+	int cnt2, diffb=0;
 	uint32_t tick;
 
-	cnt1 = __HAL_TIM_GET_COUNTER(&htim2);
 	tick = HAL_GetTick();
+
+	int cur_dist = 0;
 	uint8_t msg[20];
-	uint16_t dir;
 
 	for(;;)
 	{
-		if(HAL_GetTick()-tick > 1000L){
-			cnt2 = __HAL_TIM_GET_COUNTER(&htim2);
-			if(__HAL_TIM_IS_TIM_COUNTING_DOWN(&htim2)){
-				if(cnt2<cnt1)
-					diff = cnt1 - cnt2;
-				else //overflow
-					diff = (65535 - cnt2) + cnt1;
+		// Every 1000 ticks, get reading(How fast wheel turn)
+		if(HAL_GetTick()-tick > 10){
+			// At rising edge, counter increase by 1
+			cnt1 = __HAL_TIM_GET_COUNTER(&htim2);
+			cnt2 = __HAL_TIM_GET_COUNTER(&htim3);
+
+			/* Motor A */
+			// Counting up; Motor moving forward
+			if(cnt1 - 32500 > 0){
+				diffa = -1 * cnt1;
 			}
-			else{
-				if(cnt2 > cnt1)
-					diff = cnt2 - cnt1;
-				else
-					diff = (65535 - cnt1) + cnt2;
+			// Counting down; Motor moving backward
+			else if(cnt1 - 32500 < 0){
+				diffa = -1 * (cnt1 - 65535);
 			}
 
-			dir = __HAL_TIM_IS_TIM_COUNTING_DOWN(&htim2);
+			/* Motor B */
+			// Counting up; Motor moving forward
+			if(cnt2 - 32500 > 0){
+				diffb = cnt2;
+			}
+			// Counting down; Motor moving backward
+			else if(cnt2 - 32500 < 0){
+				diffb =(cnt2 - 65535);
+			}
 
-//			// Display difference
-//			sprintf(msg, "speed:%5d\0",diff);
-//			OLED_ShowString(10,20,msg);
-//
-//			// Display direction
-//			sprintf(msg, "dir:%5d\0",dir);
-//			OLED_ShowString(10,30,msg);
+
+			// Display difference
+			sprintf(msg, "Diff :%1d\0", diffa);
+
+			OLED_ShowString(10,40,msg);
 
 			// Reset base tick
-			cnt1 = __HAL_TIM_GET_COUNTER(&htim2);
+			__HAL_TIM_SET_COUNTER(&htim2, 0);
+			__HAL_TIM_SET_COUNTER(&htim3, 0);
+
 			tick = HAL_GetTick();
 		}
 	}
