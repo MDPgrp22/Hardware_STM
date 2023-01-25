@@ -25,6 +25,8 @@
 /* USER CODE BEGIN Includes */
 #include "oled.h"
 #include <string.h>
+#include "gyro.h"
+#include "i2c.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -42,6 +44,8 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+I2C_HandleTypeDef hi2c1;
+
 TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
@@ -77,6 +81,13 @@ const osThreadAttr_t EncoderTask_attributes = {
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityLow,
 };
+/* Definitions for GyroTask */
+osThreadId_t GyroTaskHandle;
+const osThreadAttr_t GyroTask_attributes = {
+  .name = "GyroTask",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityLow,
+};
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -89,10 +100,12 @@ static void MX_TIM2_Init(void);
 static void MX_TIM3_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_USART3_UART_Init(void);
+static void MX_I2C1_Init(void);
 void StartDefaultTask(void *argument);
 void motor(void *argument);
 void showoled(void *argument);
 void encoder_task(void *argument);
+void gyro_task(void *argument);
 
 /* USER CODE BEGIN PFP */
 void show(void);
@@ -108,6 +121,10 @@ uint8_t frontback = 'w';	// Front/back character
 uint8_t fb_speed = '0';	// Front/back speed
 uint8_t leftright = 'a';	// Left/right character
 uint8_t lr_speed = '0';	// Left/right speed
+
+double curAngle = 0; // angle via gyro
+
+uint16_t pwmVal_servo = 149; // servo centre
 
 /* USER CODE END 0 */
 
@@ -144,10 +161,11 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM1_Init();
   MX_USART3_UART_Init();
+  MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
 
   OLED_Init();
-
+  gyroInit();
   HAL_UART_Receive_IT(&huart3, (uint8_t *) aRxBuffer, 4);
   /* USER CODE END 2 */
 
@@ -182,6 +200,9 @@ int main(void)
 
   /* creation of EncoderTask */
   EncoderTaskHandle = osThreadNew(encoder_task, NULL, &EncoderTask_attributes);
+
+  /* creation of GyroTask */
+  GyroTaskHandle = osThreadNew(gyro_task, NULL, &GyroTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -219,6 +240,7 @@ void SystemClock_Config(void)
   */
   __HAL_RCC_PWR_CLK_ENABLE();
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
@@ -230,6 +252,7 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+
   /** Initializes the CPU, AHB and APB buses clocks
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
@@ -243,6 +266,40 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+}
+
+/**
+  * @brief I2C1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_I2C1_Init(void)
+{
+
+  /* USER CODE BEGIN I2C1_Init 0 */
+
+  /* USER CODE END I2C1_Init 0 */
+
+  /* USER CODE BEGIN I2C1_Init 1 */
+
+  /* USER CODE END I2C1_Init 1 */
+  hi2c1.Instance = I2C1;
+  hi2c1.Init.ClockSpeed = 100000;
+  hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
+  hi2c1.Init.OwnAddress1 = 0;
+  hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+  hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+  hi2c1.Init.OwnAddress2 = 0;
+  hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+  hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+  if (HAL_I2C_Init(&hi2c1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN I2C1_Init 2 */
+
+  /* USER CODE END I2C1_Init 2 */
+
 }
 
 /**
@@ -587,10 +644,10 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 
 
 	HAL_UART_Receive_IT(&huart3,(uint8_t *) aRxBuffer,4);
-	sprintf(hello, "Dir %c : %d\0", frontback, fb_speed);
+	sprintf(hello, "Dir %c : %d\0", frontback, fb_speed-48);
 	OLED_ShowString(10, 20, hello);
 
-	sprintf(hello, "Turn %c : %d\0", leftright, lr_speed);
+	sprintf(hello, "Turn %c: %d\0", leftright, lr_speed-48);
 	OLED_ShowString(10, 30, hello);
 	HAL_GPIO_TogglePin(LED3_GPIO_Port, LED3_Pin);
 }
@@ -645,7 +702,6 @@ void motor(void *argument)
 {
   /* USER CODE BEGIN motor */
 	uint16_t servo_max = 3;	// max servo pwm turn
-	uint16_t pwmVal_servo = 149; // servo centre
 	double motor_offset_r = 1;
 	double motor_offset_l = 1;
 
@@ -685,7 +741,6 @@ void motor(void *argument)
 	  if(frontback == 'w'){
 		  do
 		  	  {
-
 		  		  // H-Bridge Circuit for AINx; 1 turn on, the other turns off
 		  		  // MOTOR A
 		  		  HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_SET);
@@ -761,9 +816,9 @@ void showoled(void *argument)
 	for(;;)
 	{
 
-		OLED_ShowString(10, 10, hello);
-		OLED_Refresh_Gram();
-		osDelay(1000);
+//		OLED_ShowString(10, 10, hello);
+//		OLED_Refresh_Gram();
+//		osDelay(1000);
 	}
   /* USER CODE END showoled */
 }
@@ -801,6 +856,7 @@ void encoder_task(void *argument)
 
 			/* Motor A */
 			// Counting up; Motor moving forward
+			// 32500 is the max tick
 			if(cnt1 - 32500 > 0){
 				diffa = cnt1 - 65535;
 			}
@@ -821,18 +877,60 @@ void encoder_task(void *argument)
 
 
 			// Display difference
-			sprintf(msg, "Diff: %3d\0", diffa + diffb);
+			sprintf(msg, "Diff : %3d\0", diffa + diffb);
 
 			OLED_ShowString(10,40,msg);
-//			msg[0] = '\0';
+			OLED_Refresh_Gram();
 			// Reset base tick
 			__HAL_TIM_SET_COUNTER(&htim2, 0);
 			__HAL_TIM_SET_COUNTER(&htim3, 0);
 
 			tick = HAL_GetTick();
+
+			osDelay(10);
 		}
 	}
   /* USER CODE END encoder_task */
+}
+
+/* USER CODE BEGIN Header_gyro_task */
+/**
+* @brief Function implementing the GyroTask thread
+* gyro is only used for turning, the value should be around 28
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_gyro_task */
+void gyro_task(void *argument)
+{
+  /* USER CODE BEGIN gyro_task */
+  /* Infinite loop */
+	uint8_t val[2] = { 0, 0 }; // To store ICM gyro values
+	gyroInit();
+	int16_t angular_speed = 0;
+	uint8_t msg[4];
+
+	int turn_angle = 28;	// gyro turn threshold
+
+	for(;;)
+	{
+		// If instruction requires turning, start gyro
+		readByte(0x37, val);
+		angular_speed = (val[0] << 8) | val[1];	// appending the 2 bytes together
+
+		curAngle +=  ((double)(angular_speed*(100) - 2) / 16400.0)*1.1 ; //1.69
+
+		sprintf(msg, "gyro  : %3d\0", (int) curAngle);
+		OLED_ShowString(10, 10, msg);
+
+//		// If gyro made a full 90deg turn
+//		if(abs((int) curAngle) > turn_angle){
+//			htim1.Instance->CCR4 = pwmVal_servo;	// Turn servo to the centre
+//			curAngle = 0;							// Reset Angle value
+//		}
+		osDelay(10);
+	}
+  /* USER CODE END gyro_task */
 }
 
 /**
@@ -866,5 +964,3 @@ void assert_failed(uint8_t *file, uint32_t line)
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

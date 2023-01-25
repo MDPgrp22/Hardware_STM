@@ -1,0 +1,2 @@
+../PeripheralDriver/Src/i2c.c:17:6:readByte	24	static
+../PeripheralDriver/Src/i2c.c:23:6:writeByte	24	static

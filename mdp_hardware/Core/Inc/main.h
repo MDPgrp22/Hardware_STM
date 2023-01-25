@@ -82,8 +82,12 @@ void Error_Handler(void);
 #define PWMA_GPIO_Port GPIOC
 #define PWMB_Pin GPIO_PIN_7
 #define PWMB_GPIO_Port GPIOC
-/* USER CODE BEGIN Private defines */
 
+/* USER CODE BEGIN Private defines */
+// Extends the timer variable visibility to the whole program
+extern I2C_HandleTypeDef hi2c1;
+extern TIM_HandleTypeDef htim1;
+extern TIM_HandleTypeDef htim8;
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
@@ -91,5 +95,3 @@ void Error_Handler(void);
 #endif
 
 #endif /* __MAIN_H */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

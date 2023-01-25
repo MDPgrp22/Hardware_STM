@@ -1,0 +1,2 @@
+../PeripheralDriver/Src/gyro.c:16:6:gyroStart	8	static
+../PeripheralDriver/Src/gyro.c:23:6:gyroInit	8	static
