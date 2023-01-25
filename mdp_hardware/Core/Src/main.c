@@ -124,7 +124,7 @@ uint8_t lr_speed = '0';	// Left/right speed
 
 double curAngle = 0; // angle via gyro
 
-uint16_t pwmVal_servo = 149; // servo centre
+uint16_t pwmVal_servo = 150; // servo centre
 
 /* USER CODE END 0 */
 
@@ -920,7 +920,7 @@ void gyro_task(void *argument)
 
 		curAngle +=  ((double)(angular_speed*(100) - 2) / 16400.0)*1.1 ; //1.69
 
-		sprintf(msg, "gyro  : %3d\0", (int) curAngle);
+		sprintf(msg, "gyro : %3d\0", (int) curAngle);
 		OLED_ShowString(10, 10, msg);
 
 //		// If gyro made a full 90deg turn

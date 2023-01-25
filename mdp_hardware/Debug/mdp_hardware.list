@@ -7,19 +7,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   1 .text         00009858  08000190  08000190  00010190  2**4
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       00000c08  080099e8  080099e8  000199e8  2**2
+  2 .rodata       00000c04  080099e8  080099e8  000199e8  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  0800a5f0  0800a5f0  00020080  2**0
+  3 .ARM.extab    00000000  0800a5ec  0800a5ec  00020080  2**0
                   CONTENTS
-  4 .ARM          00000008  0800a5f0  0800a5f0  0001a5f0  2**2
+  4 .ARM          00000008  0800a5ec  0800a5ec  0001a5ec  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  5 .preinit_array 00000000  0800a5f8  0800a5f8  00020080  2**0
+  5 .preinit_array 00000000  0800a5f4  0800a5f4  00020080  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   00000004  0800a5f8  0800a5f8  0001a5f8  2**2
+  6 .init_array   00000004  0800a5f4  0800a5f4  0001a5f4  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  7 .fini_array   00000004  0800a5fc  0800a5fc  0001a5fc  2**2
+  7 .fini_array   00000004  0800a5f8  0800a5f8  0001a5f8  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  8 .data         00000080  20000000  0800a600  00020000  2**2
+  8 .data         00000080  20000000  0800a5fc  00020000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
   9 .ccmram       00000000  10000000  10000000  00020080  2**0
                   CONTENTS
@@ -1216,19 +1216,19 @@ int main(void)
  8000e32:	e7fe      	b.n	8000e32 <main+0x92>
  8000e34:	20000268 	.word	0x20000268
  8000e38:	20000210 	.word	0x20000210
- 8000e3c:	08009a8c 	.word	0x08009a8c
+ 8000e3c:	08009a88 	.word	0x08009a88
  8000e40:	08001599 	.word	0x08001599
  8000e44:	20000254 	.word	0x20000254
- 8000e48:	08009ab0 	.word	0x08009ab0
+ 8000e48:	08009aac 	.word	0x08009aac
  8000e4c:	080015b1 	.word	0x080015b1
  8000e50:	20000258 	.word	0x20000258
- 8000e54:	08009ad4 	.word	0x08009ad4
+ 8000e54:	08009ad0 	.word	0x08009ad0
  8000e58:	08001855 	.word	0x08001855
  8000e5c:	2000025c 	.word	0x2000025c
- 8000e60:	08009af8 	.word	0x08009af8
+ 8000e60:	08009af4 	.word	0x08009af4
  8000e64:	08001881 	.word	0x08001881
  8000e68:	20000260 	.word	0x20000260
- 8000e6c:	08009b1c 	.word	0x08009b1c
+ 8000e6c:	08009b18 	.word	0x08009b18
  8000e70:	08001961 	.word	0x08001961
  8000e74:	20000264 	.word	0x20000264
 
@@ -3089,7 +3089,7 @@ void gyro_task(void *argument)
  80019d6:	490e      	ldr	r1, [pc, #56]	; (8001a10 <gyro_task+0xb0>)
  80019d8:	e9c1 2300 	strd	r2, r3, [r1]
 
-		sprintf(msg, "gyro  : %3d\0", (int) curAngle);
+		sprintf(msg, "gyro : %3d\0", (int) curAngle);
  80019dc:	4b0c      	ldr	r3, [pc, #48]	; (8001a10 <gyro_task+0xb0>)
  80019de:	e9d3 2300 	ldrd	r2, r3, [r3]
  80019e2:	4610      	mov	r0, r2
@@ -4133,7 +4133,7 @@ LoopFillZerobss:
   ldr r1, =_edata
  8001f4c:	20000080 	.word	0x20000080
   ldr r2, =_sidata
- 8001f50:	0800a600 	.word	0x0800a600
+ 8001f50:	0800a5fc 	.word	0x0800a5fc
   ldr r2, =_sbss
  8001f54:	20000080 	.word	0x20000080
   ldr r4, =_ebss
@@ -9427,7 +9427,7 @@ HAL_StatusTypeDef HAL_RCC_ClockConfig(RCC_ClkInitTypeDef  *RCC_ClkInitStruct, ui
  8003d96:	bf00      	nop
  8003d98:	40023c00 	.word	0x40023c00
  8003d9c:	40023800 	.word	0x40023800
- 8003da0:	08009b40 	.word	0x08009b40
+ 8003da0:	08009b3c 	.word	0x08009b3c
  8003da4:	20000008 	.word	0x20000008
  8003da8:	2000000c 	.word	0x2000000c
 
@@ -9682,7 +9682,7 @@ uint32_t HAL_RCC_GetPCLK1Freq(void)
  8003f6c:	4618      	mov	r0, r3
  8003f6e:	bd80      	pop	{r7, pc}
  8003f70:	40023800 	.word	0x40023800
- 8003f74:	08009b50 	.word	0x08009b50
+ 8003f74:	08009b4c 	.word	0x08009b4c
 
 08003f78 <HAL_RCC_GetPCLK2Freq>:
   * @note   Each time PCLK2 changes, this function must be called to update the
@@ -9708,7 +9708,7 @@ uint32_t HAL_RCC_GetPCLK2Freq(void)
  8003f94:	4618      	mov	r0, r3
  8003f96:	bd80      	pop	{r7, pc}
  8003f98:	40023800 	.word	0x40023800
- 8003f9c:	08009b50 	.word	0x08009b50
+ 8003f9c:	08009b4c 	.word	0x08009b4c
 
 08003fa0 <HAL_TIM_Base_Init>:
   *         Ex: call @ref HAL_TIM_Base_DeInit() before HAL_TIM_Base_Init()
@@ -20118,7 +20118,7 @@ BaseType_t xReturn;
  8007ac6:	3718      	adds	r7, #24
  8007ac8:	46bd      	mov	sp, r7
  8007aca:	bd80      	pop	{r7, pc}
- 8007acc:	08009a74 	.word	0x08009a74
+ 8007acc:	08009a70 	.word	0x08009a70
  8007ad0:	080080fd 	.word	0x080080fd
  8007ad4:	20004acc 	.word	0x20004acc
  8007ad8:	20004ac8 	.word	0x20004ac8
@@ -22002,7 +22002,7 @@ BaseType_t xReturn = pdFAIL;
  80084e4:	46bd      	mov	sp, r7
  80084e6:	bd80      	pop	{r7, pc}
  80084e8:	20004b04 	.word	0x20004b04
- 80084ec:	08009a7c 	.word	0x08009a7c
+ 80084ec:	08009a78 	.word	0x08009a78
  80084f0:	0800862d 	.word	0x0800862d
  80084f4:	20004b08 	.word	0x20004b08
 
@@ -23102,7 +23102,7 @@ static void prvCheckForValidListAndQueue( void )
  8008af4:	20004b00 	.word	0x20004b00
  8008af8:	20004bb0 	.word	0x20004bb0
  8008afc:	20004b10 	.word	0x20004b10
- 8008b00:	08009a84 	.word	0x08009a84
+ 8008b00:	08009a80 	.word	0x08009a80
 
 08008b04 <gyroInit>:
 	osDelayUntil(10);
@@ -23708,8 +23708,8 @@ void OLED_ShowChar(uint8_t x,uint8_t y,uint8_t chr,uint8_t size,uint8_t mode)
  8008f06:	3714      	adds	r7, #20
  8008f08:	46bd      	mov	sp, r7
  8008f0a:	bd90      	pop	{r4, r7, pc}
- 8008f0c:	08009b58 	.word	0x08009b58
- 8008f10:	08009fcc 	.word	0x08009fcc
+ 8008f0c:	08009b54 	.word	0x08009b54
+ 8008f10:	08009fc8 	.word	0x08009fc8
 
 08008f14 <OLED_ShowString>:
 } 
@@ -23964,10 +23964,10 @@ void OLED_Init(void)
  80090ce:	4798      	blx	r3
  80090d0:	3601      	adds	r6, #1
  80090d2:	e7f2      	b.n	80090ba <__libc_init_array+0x1e>
- 80090d4:	0800a5f8 	.word	0x0800a5f8
- 80090d8:	0800a5f8 	.word	0x0800a5f8
- 80090dc:	0800a5f8 	.word	0x0800a5f8
- 80090e0:	0800a5fc 	.word	0x0800a5fc
+ 80090d4:	0800a5f4 	.word	0x0800a5f4
+ 80090d8:	0800a5f4 	.word	0x0800a5f4
+ 80090dc:	0800a5f4 	.word	0x0800a5f4
+ 80090e0:	0800a5f8 	.word	0x0800a5f8
 
 080090e4 <memcpy>:
  80090e4:	440a      	add	r2, r1
@@ -24298,11 +24298,11 @@ void OLED_Init(void)
  80093ec:	f000 f87a 	bl	80094e4 <_printf_i>
  80093f0:	e7eb      	b.n	80093ca <_svfiprintf_r+0x1c2>
  80093f2:	bf00      	nop
- 80093f4:	0800a5bc 	.word	0x0800a5bc
- 80093f8:	0800a5c6 	.word	0x0800a5c6
+ 80093f4:	0800a5b8 	.word	0x0800a5b8
+ 80093f8:	0800a5c2 	.word	0x0800a5c2
  80093fc:	00000000 	.word	0x00000000
  8009400:	08009151 	.word	0x08009151
- 8009404:	0800a5c2 	.word	0x0800a5c2
+ 8009404:	0800a5be 	.word	0x0800a5be
 
 08009408 <_printf_common>:
  8009408:	e92d 47f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, lr}
@@ -24638,8 +24638,8 @@ void OLED_Init(void)
  8009720:	f104 0619 	add.w	r6, r4, #25
  8009724:	e7f5      	b.n	8009712 <_printf_i+0x22e>
  8009726:	bf00      	nop
- 8009728:	0800a5cd 	.word	0x0800a5cd
- 800972c:	0800a5de 	.word	0x0800a5de
+ 8009728:	0800a5c9 	.word	0x0800a5c9
+ 800972c:	0800a5da 	.word	0x0800a5da
 
 08009730 <memmove>:
  8009730:	4288      	cmp	r0, r1
