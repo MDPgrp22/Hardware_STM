@@ -646,8 +646,6 @@ void motor(void *argument)
   /* USER CODE BEGIN motor */
 	uint16_t servo_max = 3;	// max servo pwm turn
 	uint16_t pwmVal_servo = 149; // servo centre
-	double motor_offset_r = 1;
-	double motor_offset_l = 1;
 
 	uint16_t pwmVal_motor = 0;
 	uint16_t motor_increment = 10;
@@ -658,6 +656,9 @@ void motor(void *argument)
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
 
 
+
+	//osDelay(5000);
+
   /* Infinite loop */
   for(;;)
   {
@@ -667,19 +668,9 @@ void motor(void *argument)
 	  // Centre - offset for left turn
 	  if(leftright == 'a'){
 		  htim1.Instance->CCR4 = pwmVal_servo - (lr_speed-48) *servo_max;
-		  // right motor offset
-		  // right motor have to spin more due to differential steering
-		  motor_offset_r = 0.05*(lr_speed-48)+1;
-		  motor_offset_l = 1;
-
 	  }
-	  else if(leftright =='d'){
+	  else if(leftright =='d')
 		  htim1.Instance->CCR4 = pwmVal_servo + (lr_speed-48) *servo_max;
-		  // left motor offset
-		  motor_offset_r = 1;
-		  motor_offset_l = 0.05*(lr_speed-48)+1;
-	  }
-
 
 	  // Move Motor forward
 	  if(frontback == 'w'){
@@ -697,7 +688,7 @@ void motor(void *argument)
 
 		  		  if(accelerate == 1){
 		  			  pwmVal_motor+=motor_increment;	// Accelerating
-		  			  if(pwmVal_motor > (fb_speed-48) * 400){
+		  			  if(pwmVal_motor > (fb_speed-48) * 300){
 		  				  accelerate = 0;		// Decelerating
 		  				  reset_motorVal(); // Remove infinite motor loop
 		  			  }
@@ -707,8 +698,8 @@ void motor(void *argument)
 		  		  else
 		  			pwmVal_motor-=motor_increment;
 		  		  // Modify comparison value for duty cycle
-		  		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, motor_offset_r*pwmVal_motor);
-		  		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor);
+		  		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal_motor);
+		  		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal_motor);
 		  		  osDelay(10);
 
 		  	  }while(pwmVal_motor >0);
@@ -727,7 +718,7 @@ void motor(void *argument)
 
 		  		  if(accelerate == 1){
 		  			pwmVal_motor+=motor_increment;
-		  			  if(pwmVal_motor > (fb_speed-48) * 400){
+		  			  if(pwmVal_motor > (fb_speed-48) * 300){
 		  				accelerate = 0;		// Decelerating
 		  				reset_motorVal(); // Remove infinite motor loop
 		  			  }
@@ -736,8 +727,8 @@ void motor(void *argument)
 		  		  else
 		  			pwmVal_motor-=motor_increment;
 
-		  		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, motor_offset_r*pwmVal_motor);
-				  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor);
+		  		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal_motor);
+		  		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal_motor);
 		  		  osDelay(10);
 		  	  }while(pwmVal_motor>0);
 	  }
@@ -802,11 +793,11 @@ void encoder_task(void *argument)
 			/* Motor A */
 			// Counting up; Motor moving forward
 			if(cnt1 - 32500 > 0){
-				diffa = cnt1 - 65535;
+				diffa = -1 * cnt1;
 			}
 			// Counting down; Motor moving backward
 			else if(cnt1 - 32500 < 0){
-				diffa = cnt1;
+				diffa = -1 * (cnt1 - 65535);
 			}
 
 			/* Motor B */
@@ -821,10 +812,10 @@ void encoder_task(void *argument)
 
 
 			// Display difference
-			sprintf(msg, "Diff: %3d\0", diffa + diffb);
+			sprintf(msg, "Diff: %1d\0", diffb);
 
 			OLED_ShowString(10,40,msg);
-//			msg[0] = '\0';
+			msg[0] = '\0';
 			// Reset base tick
 			__HAL_TIM_SET_COUNTER(&htim2, 0);
 			__HAL_TIM_SET_COUNTER(&htim3, 0);

@@ -646,8 +646,8 @@ void motor(void *argument)
   /* USER CODE BEGIN motor */
 	uint16_t servo_max = 3;	// max servo pwm turn
 	uint16_t pwmVal_servo = 149; // servo centre
-	double motor_offset_r = 1;
-	double motor_offset_l = 1;
+	uint8_t motor_offset_r = 0;
+	uint8_t motor_offset_l = 0;
 
 	uint16_t pwmVal_motor = 0;
 	uint16_t motor_increment = 10;
@@ -669,15 +669,15 @@ void motor(void *argument)
 		  htim1.Instance->CCR4 = pwmVal_servo - (lr_speed-48) *servo_max;
 		  // right motor offset
 		  // right motor have to spin more due to differential steering
-		  motor_offset_r = 0.05*(lr_speed-48)+1;
-		  motor_offset_l = 1;
+		  motor_offset_r = 0.2*(lr_speed-48);
+		  motor_offset_l = 0;
 
 	  }
 	  else if(leftright =='d'){
 		  htim1.Instance->CCR4 = pwmVal_servo + (lr_speed-48) *servo_max;
 		  // left motor offset
-		  motor_offset_r = 1;
-		  motor_offset_l = 0.05*(lr_speed-48)+1;
+		  motor_offset_r = 0;
+		  motor_offset_l = 1.38;
 	  }
 
 
