@@ -724,7 +724,7 @@ void motor(void *argument)
 	  // Turn Servo to desired position
 	  // Centre - offset for left turn
 	  if(leftright == 'a'){
-		  htim1.Instance->CCR4 = pwmVal_servo - (lr_speed-48) *servo_max;
+		  htim1.Instance->CCR4 = pwmVal_servo - 1.1*(lr_speed-48) *servo_max;
 		  // right motor offset
 		  // right motor have to spin more due to differential steering
 		  motor_offset_r = 0.05*(lr_speed-48)+1;
@@ -732,7 +732,7 @@ void motor(void *argument)
 
 	  }
 	  else if(leftright =='d'){
-		  htim1.Instance->CCR4 = pwmVal_servo + (lr_speed-48) *servo_max;
+		  htim1.Instance->CCR4 = pwmVal_servo + 1.6*(lr_speed-48) *servo_max;
 		  // left motor offset
 		  motor_offset_r = 1;
 		  motor_offset_l = 0.05*(lr_speed-48)+1;
@@ -943,7 +943,7 @@ void gyro_task(void *argument)
 			htim1.Instance->CCR4 = pwmVal_servo;	// Turn servo to the centre
 			curAngle = 0;							// Reset Angle value
 		}
-		osDelay(10);
+		osDelay(100);
 	}
   /* USER CODE END gyro_task */
 }

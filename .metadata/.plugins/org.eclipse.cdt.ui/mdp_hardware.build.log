@@ -1,4 +1,4 @@
-00:42:40 **** Incremental Build of configuration Debug for project mdp_hardware ****
+02:50:26 **** Incremental Build of configuration Debug for project mdp_hardware ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
@@ -76,7 +76,7 @@ arm-none-eabi-size   mdp_hardware.elf
 arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
 arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
    text	   data	    bss	    dec	    hex	filename
-  42608	    136	  21928	  64672	   fca0	mdp_hardware.elf
+  42784	    136	  21928	  64848	   fd50	mdp_hardware.elf
 Finished building: default.size.stdout
  
 Finished building: mdp_hardware.hex
@@ -84,5 +84,5 @@ Finished building: mdp_hardware.hex
 Finished building: mdp_hardware.list
  
 
-00:42:41 Build Finished. 0 errors, 15 warnings. (took 1s.84ms)
+02:50:27 Build Finished. 0 errors, 15 warnings. (took 1s.123ms)
 

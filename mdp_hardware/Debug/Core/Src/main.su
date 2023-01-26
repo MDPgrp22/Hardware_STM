@@ -10,7 +10,7 @@
 ../Core/Src/main.c:636:6:HAL_UART_RxCpltCallback	72	static
 ../Core/Src/main.c:657:6:reset_motorVal	4	static
 ../Core/Src/main.c:674:6:StartDefaultTask	16	static
-../Core/Src/main.c:703:6:motor	48	static
+../Core/Src/main.c:703:6:motor	56	static
 ../Core/Src/main.c:823:6:showoled	40	static
 ../Core/Src/main.c:845:6:encoder_task	56	static
 ../Core/Src/main.c:915:6:gyro_task	40	static
