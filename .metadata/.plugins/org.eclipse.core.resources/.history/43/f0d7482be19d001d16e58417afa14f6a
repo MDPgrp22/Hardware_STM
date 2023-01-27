@@ -91,11 +91,10 @@ const osThreadAttr_t GyroTask_attributes = {
   .priority = (osPriority_t) osPriorityLow,
 };
 /* USER CODE BEGIN PV */
-
 //Queue struct
 //to define the nodes for the queue
 typedef struct _listnode{
-    uint8_t msg[4]; //type for every instruction
+    char msg[4]; //type for every instruction
     struct _listnode *next;
 } ListNode;
 
@@ -128,7 +127,7 @@ void show(void);
 void resetVal();
 
 //Prototypes of Interface functions for Queue structure
-void enqueue(Queue *qPtr, uint8_t msg[4]);
+void enqueue(Queue *qPtr, char msg[]);
 int dequeue(Queue *qPtr);
 void getFront(Queue q);
 int isEmptyQueue(Queue q);
@@ -152,7 +151,7 @@ int encoder_offset = 0; // Adds to motor pwm for straight movement
 
 uint16_t pwmVal_servo = 150; // servo centre
 
-Queue q;
+
 
 
 /* USER CODE END 0 */
@@ -663,22 +662,21 @@ static void MX_GPIO_Init(void)
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 	// Prevent unused argument compiled warning
-
 	UNUSED(huart);
+	uint8_t hello[50];
 
-	enqueue(&q,aRxBuffer);
-//	frontback = (uint8_t)(aRxBuffer[0]);
-//	fb_speed = (uint8_t)(aRxBuffer[1]);
-//	leftright = (uint8_t)(aRxBuffer[2]);
-//	lr_speed = (uint8_t)(aRxBuffer[3]);
+	frontback = (uint8_t)(aRxBuffer[0]);
+	fb_speed = (uint8_t)(aRxBuffer[1]);
+	leftright = (uint8_t)(aRxBuffer[2]);
+	lr_speed = (uint8_t)(aRxBuffer[3]);
 
 
 	HAL_UART_Receive_IT(&huart3,(uint8_t *) aRxBuffer,4);
-//	sprintf(hello, "Dir %c : %d\0", frontback, fb_speed-48);
-//	OLED_ShowString(10, 20, hello);
-//
-//	sprintf(hello, "Turn %c: %d\0", leftright, lr_speed-48);
-//	OLED_ShowString(10, 30, hello);
+	sprintf(hello, "Dir %c : %d\0", frontback, fb_speed-48);
+	OLED_ShowString(10, 20, hello);
+
+	sprintf(hello, "Turn %c: %d\0", leftright, lr_speed-48);
+	OLED_ShowString(10, 30, hello);
 	HAL_GPIO_TogglePin(LED3_GPIO_Port, LED3_Pin);
 }
 
@@ -744,112 +742,99 @@ void motor(void *argument)
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
 
 
-
   /* Infinite loop */
   for(;;)
   {
-	  while(isEmptyQueue(q) != 1){
-		  uint8_t hello[50];
-		  getFront(q);
-		  sprintf(hello, "Dir %c : %d\0", frontback, fb_speed - 48);
-			OLED_ShowString(10, 20, hello);
+	  accelerate = 1; // Default always start with acceleration
 
-			sprintf(hello, "Turn %c: %d\0", leftright, lr_speed - 48);
-			OLED_ShowString(10, 30, hello);
+	  // Turn Servo to desired position
+	  // Centre - offset for left turn
+	  if(leftright == 'a'){
+		  htim1.Instance->CCR4 = pwmVal_servo - 1.1*(lr_speed-48) *servo_max;
+		  // right motor offset
+		  // right motor have to spin more due to differential steering
+		  motor_offset_r = 0.05*(lr_speed-48)+1;
+		  motor_offset_l = 1;
 
-		  accelerate = 1; // Default always start with acceleration
-
-		  	  // Turn Servo to desired position
-		  	  // Centre - offset for left turn
-		  	  if(leftright == 'a'){
-		  		  htim1.Instance->CCR4 = pwmVal_servo - 1.1*(lr_speed-48) *servo_max;
-		  		  // right motor offset
-		  		  // right motor have to spin more due to differential steering
-		  		  motor_offset_r = 0.05*(lr_speed-48)+1;
-		  		  motor_offset_l = 1;
-
-		  	  }
-		  	  else if(leftright =='d'){
-		  		  htim1.Instance->CCR4 = pwmVal_servo + 1.6*(lr_speed-48) *servo_max;
-		  		  // left motor offset
-		  		  motor_offset_r = 1;
-		  		  motor_offset_l = 0.05*(lr_speed-48)+1;
-		  	  }
-
-
-		  	  // Move Motor forward
-		  	  if(frontback == 'w'){
-		  		  do
-		  		  	  {
-		  		  		  // H-Bridge Circuit for AINx; 1 turn on, the other turns off
-		  		  		  // MOTOR A
-		  		  		  HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_SET);
-		  		  		  HAL_GPIO_WritePin(GPIOA, AIN1_Pin, GPIO_PIN_RESET);
-
-		  		  		  // MOTOR B
-		  		  		  HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_SET);
-		  		  		  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_RESET);
-
-		  		  		  if(accelerate == 1){
-		  		  			  pwmVal_motor+=motor_increment;	// Accelerating
-		  		  			  if(pwmVal_motor > (fb_speed-48) * 400){
-		  		  				  accelerate = 0;		// Decelerating
-		  		  				  reset_motorVal(); // Remove infinite motor loop
-		  		  			  }
-
-		  		  		  }
-
-		  		  		  else
-		  		  			pwmVal_motor-=motor_increment;
-
-		  				  // Modify comparison value for duty cycle
-		  		  		  // Motor speed = motor_offset from servo turn * pwm_value + encoder to ensure its going straight
-		  		  		  /*
-		  		  		   * Encoder Offset comes from Encoder Task
-		  		  		   * If right turns more than left, value will be positive; motor_r - offset, motor_l + offset
-		  		  		   * If left turns more than right, value will be negative; motor_r -(neg_offset), motor_l + (neg_offset)
-		  		  		   * Used 0.5 as scale factor as values in int, so only offset of >=2 will actually increment the motor value
-		  		  		   * as integers are rounded down. E.g. offset = 1, 0.5-0.05*1 = 0.45 = 0 -> motor has no additional increment
-		  		  		   *  - (0.5-0.05*(lr_speed-48))*encoder_offset ;  - (-0.5+0.05*(lr_speed-48))*encoder_offset
-		  		  		   */
-		  		  		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, motor_offset_r*pwmVal_motor);
-		  		  		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor);
-		  		  		  osDelay(10);
-
-		  		  	  }while(pwmVal_motor >0);
-		  	  }
-
-		  	  else if(frontback == 's'){
-		  		  do
-		  		  	  {
-		  		  		  // MOTOR A
-		  		  		  HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_RESET);
-		  		  		  HAL_GPIO_WritePin(GPIOA, AIN1_Pin, GPIO_PIN_SET);
-
-		  		  		  // MOTOR B
-		  		  		  HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_RESET);
-		  		  		  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_SET);
-
-		  		  		  if(accelerate == 1){
-		  		  			pwmVal_motor+=motor_increment;
-		  		  			  if(pwmVal_motor > (fb_speed-48) * 400){
-		  		  				accelerate = 0;		// Decelerating
-		  		  				reset_motorVal(); // Remove infinite motor loop
-		  		  			  }
-		  		  		  }
-
-		  		  		  else
-		  		  			pwmVal_motor-=motor_increment;
-
-		  		  		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, motor_offset_r*pwmVal_motor);
-		  				  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor);
-		  		  		  osDelay(10);
-		  		  	  }while(pwmVal_motor>0);
-		  	  }
-		  	  osDelay(100);
-		  	  dequeue(&q);
+	  }
+	  else if(leftright =='d'){
+		  htim1.Instance->CCR4 = pwmVal_servo + 1.6*(lr_speed-48) *servo_max;
+		  // left motor offset
+		  motor_offset_r = 1;
+		  motor_offset_l = 0.05*(lr_speed-48)+1;
 	  }
 
+
+	  // Move Motor forward
+	  if(frontback == 'w'){
+		  do
+		  	  {
+		  		  // H-Bridge Circuit for AINx; 1 turn on, the other turns off
+		  		  // MOTOR A
+		  		  HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_SET);
+		  		  HAL_GPIO_WritePin(GPIOA, AIN1_Pin, GPIO_PIN_RESET);
+
+		  		  // MOTOR B
+		  		  HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_SET);
+		  		  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_RESET);
+
+		  		  if(accelerate == 1){
+		  			  pwmVal_motor+=motor_increment;	// Accelerating
+		  			  if(pwmVal_motor > (fb_speed-48) * 400){
+		  				  accelerate = 0;		// Decelerating
+		  				  reset_motorVal(); // Remove infinite motor loop
+		  			  }
+
+		  		  }
+
+		  		  else
+		  			pwmVal_motor-=motor_increment;
+
+				  // Modify comparison value for duty cycle
+		  		  // Motor speed = motor_offset from servo turn * pwm_value + encoder to ensure its going straight
+		  		  /*
+		  		   * Encoder Offset comes from Encoder Task
+		  		   * If right turns more than left, value will be positive; motor_r - offset, motor_l + offset
+		  		   * If left turns more than right, value will be negative; motor_r -(neg_offset), motor_l + (neg_offset)
+		  		   * Used 0.5 as scale factor as values in int, so only offset of >=2 will actually increment the motor value
+		  		   * as integers are rounded down. E.g. offset = 1, 0.5-0.05*1 = 0.45 = 0 -> motor has no additional increment
+		  		   *  - (0.5-0.05*(lr_speed-48))*encoder_offset ;  - (-0.5+0.05*(lr_speed-48))*encoder_offset
+		  		   */
+		  		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, motor_offset_r*pwmVal_motor);
+		  		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor);
+		  		  osDelay(10);
+
+		  	  }while(pwmVal_motor >0);
+	  }
+
+	  else if(frontback == 's'){
+		  do
+		  	  {
+		  		  // MOTOR A
+		  		  HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_RESET);
+		  		  HAL_GPIO_WritePin(GPIOA, AIN1_Pin, GPIO_PIN_SET);
+
+		  		  // MOTOR B
+		  		  HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_RESET);
+		  		  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_SET);
+
+		  		  if(accelerate == 1){
+		  			pwmVal_motor+=motor_increment;
+		  			  if(pwmVal_motor > (fb_speed-48) * 400){
+		  				accelerate = 0;		// Decelerating
+		  				reset_motorVal(); // Remove infinite motor loop
+		  			  }
+		  		  }
+
+		  		  else
+		  			pwmVal_motor-=motor_increment;
+
+		  		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, motor_offset_r*pwmVal_motor);
+				  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor);
+		  		  osDelay(10);
+		  	  }while(pwmVal_motor>0);
+	  }
+	  osDelay(100);
   }
   /* USER CODE END motor */
 }
@@ -1010,10 +995,10 @@ void Error_Handler(void)
  *
  */
 //input stuff into the queue
-void enqueue(Queue *qPtr, uint8_t msg[4]){
+void enqueue(Queue *qPtr, char msg[]){
     QueueNode *newNode;
     newNode = (QueueNode *) malloc(sizeof(QueueNode));
-    for(int i=0; i<4; i++){
+    for(int i=0; i<3; i++){
         newNode->msg[i] = msg[i];
     }
     newNode->next = NULL;

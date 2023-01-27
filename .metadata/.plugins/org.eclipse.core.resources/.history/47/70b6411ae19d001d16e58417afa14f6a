@@ -25,6 +25,8 @@
 /* USER CODE BEGIN Includes */
 #include "oled.h"
 #include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "gyro.h"
 #include "i2c.h"
 /* USER CODE END Includes */
@@ -110,6 +112,14 @@ void gyro_task(void *argument);
 /* USER CODE BEGIN PFP */
 void show(void);
 void resetVal();
+
+//Prototypes of Interface functions for Queue structure
+void enqueue(Queue *qPtr, char msg[]);
+int dequeue(Queue *qPtr);
+void getFront(Queue q);
+int isEmptyQueue(Queue q);
+void deleteQueue(Queue *qPtr);
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -118,13 +128,31 @@ void resetVal();
 uint8_t aRxBuffer[50]; // UART Buffer
 
 uint8_t frontback = 'w';	// Front/back character
-uint8_t fb_speed = '0';	// Front/back speed
+uint8_t fb_speed = '0';		// Front/back speed
 uint8_t leftright = 'a';	// Left/right character
-uint8_t lr_speed = '0';	// Left/right speed
+uint8_t lr_speed = '0';		// Left/right speed
 
-double curAngle = 0; // angle via gyro
+double curAngle = 0; 		// angle via gyro
 
-uint16_t pwmVal_servo = 149; // servo centre
+int encoder_offset = 0; // Adds to motor pwm for straight movement
+
+uint16_t pwmVal_servo = 150; // servo centre
+
+
+//Queue struct
+//to define the nodes for the queue
+typedef struct _listnode{
+    uint8_t msg[4]; //type for every instruction
+    struct _listnode *next;
+} ListNode;
+
+typedef ListNode QueueNode; //define QueueNode as a ListNode structure
+
+typedef struct _queue{
+   int size; //amount of instructions in the queue
+   ListNode *head;
+   ListNode *tail;
+} Queue;
 
 /* USER CODE END 0 */
 
@@ -701,7 +729,7 @@ void StartDefaultTask(void *argument)
 void motor(void *argument)
 {
   /* USER CODE BEGIN motor */
-	uint16_t servo_max = 3;	// max servo pwm turn
+	uint16_t servo_max = 5;	// max servo pwm turn
 	double motor_offset_r = 1;
 	double motor_offset_l = 1;
 
@@ -722,7 +750,7 @@ void motor(void *argument)
 	  // Turn Servo to desired position
 	  // Centre - offset for left turn
 	  if(leftright == 'a'){
-		  htim1.Instance->CCR4 = pwmVal_servo - (lr_speed-48) *servo_max;
+		  htim1.Instance->CCR4 = pwmVal_servo - 1.1*(lr_speed-48) *servo_max;
 		  // right motor offset
 		  // right motor have to spin more due to differential steering
 		  motor_offset_r = 0.05*(lr_speed-48)+1;
@@ -730,7 +758,7 @@ void motor(void *argument)
 
 	  }
 	  else if(leftright =='d'){
-		  htim1.Instance->CCR4 = pwmVal_servo + (lr_speed-48) *servo_max;
+		  htim1.Instance->CCR4 = pwmVal_servo + 1.6*(lr_speed-48) *servo_max;
 		  // left motor offset
 		  motor_offset_r = 1;
 		  motor_offset_l = 0.05*(lr_speed-48)+1;
@@ -761,7 +789,17 @@ void motor(void *argument)
 
 		  		  else
 		  			pwmVal_motor-=motor_increment;
-		  		  // Modify comparison value for duty cycle
+
+				  // Modify comparison value for duty cycle
+		  		  // Motor speed = motor_offset from servo turn * pwm_value + encoder to ensure its going straight
+		  		  /*
+		  		   * Encoder Offset comes from Encoder Task
+		  		   * If right turns more than left, value will be positive; motor_r - offset, motor_l + offset
+		  		   * If left turns more than right, value will be negative; motor_r -(neg_offset), motor_l + (neg_offset)
+		  		   * Used 0.5 as scale factor as values in int, so only offset of >=2 will actually increment the motor value
+		  		   * as integers are rounded down. E.g. offset = 1, 0.5-0.05*1 = 0.45 = 0 -> motor has no additional increment
+		  		   *  - (0.5-0.05*(lr_speed-48))*encoder_offset ;  - (-0.5+0.05*(lr_speed-48))*encoder_offset
+		  		   */
 		  		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, motor_offset_r*pwmVal_motor);
 		  		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor);
 		  		  osDelay(10);
@@ -843,7 +881,6 @@ void encoder_task(void *argument)
 
 	tick = HAL_GetTick();
 
-	int cur_dist = 0;
 	uint8_t msg[20];
 
 	for(;;)
@@ -875,9 +912,9 @@ void encoder_task(void *argument)
 				diffb = cnt2;
 			}
 
-
+			encoder_offset = diffa + diffb;
 			// Display difference
-			sprintf(msg, "Diff : %3d\0", diffa + diffb);
+			sprintf(msg, "Diff : %3d\0", encoder_offset);
 
 			OLED_ShowString(10,40,msg);
 			OLED_Refresh_Gram();
@@ -908,27 +945,31 @@ void gyro_task(void *argument)
 	uint8_t val[2] = { 0, 0 }; // To store ICM gyro values
 	gyroInit();
 	int16_t angular_speed = 0;
-	uint8_t msg[4];
+	uint8_t msg[8];
 
-	int turn_angle = 28;	// gyro turn threshold
-
+	int turn_angle = 75;	// gyro turn threshold
+	osDelay(100);
 	for(;;)
 	{
 		// If instruction requires turning, start gyro
-		readByte(0x37, val);
-		angular_speed = (val[0] << 8) | val[1];	// appending the 2 bytes together
+		if(lr_speed >= '4'){
+			gyroStart();	// Start Gyro Reading
 
-		curAngle +=  ((double)(angular_speed*(100) - 2) / 16400.0)*1.1 ; //1.69
+			// Continue Reading Gyro until hit threshold
+			while(abs((int) curAngle) < turn_angle){
+				readByte(0x37, val);
+				angular_speed = (val[0] << 8) | val[1];	// appending the 2 bytes together
+				curAngle +=  ((double)(angular_speed*(100) - 2) / 16400.0)*1.1 ; //1.69
 
-		sprintf(msg, "gyro  : %3d\0", (int) curAngle);
-		OLED_ShowString(10, 10, msg);
+				sprintf(msg, "gyro : %3d\0", (int)curAngle);
+				OLED_ShowString(10, 10, msg);
+				osDelay(100);
+			}
 
-//		// If gyro made a full 90deg turn
-//		if(abs((int) curAngle) > turn_angle){
-//			htim1.Instance->CCR4 = pwmVal_servo;	// Turn servo to the centre
-//			curAngle = 0;							// Reset Angle value
-//		}
-		osDelay(10);
+			htim1.Instance->CCR4 = pwmVal_servo;	// Turn servo to the centre
+			curAngle = 0;							// Reset Angle value
+		}
+		osDelay(100);
 	}
   /* USER CODE END gyro_task */
 }
@@ -947,6 +988,67 @@ void Error_Handler(void)
   }
   /* USER CODE END Error_Handler_Debug */
 }
+
+/* USER CODE BEGIN QUEUE_FUNCTION */
+/*
+ * Queue Functions
+ *
+ */
+//input stuff into the queue
+void enqueue(Queue *qPtr, uint8_t msg[]){
+    QueueNode *newNode;
+    newNode = (QueueNode *) malloc(sizeof(QueueNode));
+    for(int i=0; i<3; i++){
+        newNode->msg[i] = msg[i];
+    }
+    newNode->next = NULL;
+
+    if(isEmptyQueue(*qPtr))
+        qPtr->head=newNode;
+    else
+        qPtr->tail->next = newNode;
+
+    qPtr->tail = newNode;
+    qPtr->size++;
+}
+
+int dequeue(Queue *qPtr){
+    if(qPtr==NULL || qPtr->head==NULL){ //Queue is empty or NULL pointer
+        return 0;
+    }
+    else{
+       QueueNode *temp = qPtr->head;
+       qPtr->head = qPtr->head->next;
+       if(qPtr->head == NULL) //Queue is emptied
+           qPtr->tail = NULL;
+
+       free(temp);
+       qPtr->size--;
+       return 1;
+    }
+}
+
+//get the front of the queue (not sure if working)
+void getFront(Queue q){
+        frontback = (q.head->msg[0]);
+        fb_speed = (q.head->msg[1]);
+        leftright = (q.head->msg[2]);
+        lr_speed = (q.head->msg[3]);
+}
+
+//check if queue is empty (output 1 if empty, 0 if not empty)
+int isEmptyQueue(Queue q){
+    if(q.size==0) return 1;
+    else return 0;
+}
+
+//delete the whole queue
+void deleteQueue(Queue *qPtr)
+{
+    while(dequeue(qPtr));
+}
+
+/* USER CODE END QUEUE_FUNCTION */
 
 #ifdef  USE_FULL_ASSERT
 /**

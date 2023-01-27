@@ -750,11 +750,14 @@ void motor(void *argument)
   {
 	  while(isEmptyQueue(q) != 1){
 		  uint8_t hello[50];
+		  char temp;
 		  getFront(q);
-		  sprintf(hello, "Dir %c : %d\0", frontback, fb_speed - 48);
+		  temp = (char)fb_speed;
+		  sprintf(hello, "Dir %c : %d\0", frontback, temp - 48);
 			OLED_ShowString(10, 20, hello);
 
-			sprintf(hello, "Turn %c: %d\0", leftright, lr_speed - 48);
+			temp = (char)lr_speed;
+			sprintf(hello, "Turn %c: %d\0", leftright, temp - 48);
 			OLED_ShowString(10, 30, hello);
 
 		  accelerate = 1; // Default always start with acceleration

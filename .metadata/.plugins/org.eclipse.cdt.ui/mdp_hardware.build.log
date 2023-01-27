@@ -1,88 +1,10 @@
-02:50:26 **** Incremental Build of configuration Debug for project mdp_hardware ****
+10:13:01 **** Incremental Build of configuration Debug for project mdp_hardware ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
-../Core/Src/main.c:649:2: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
-  649 |  sprintf(hello, "Dir %c : %d\0", frontback, fb_speed-48);
-      |  ^~~~~~~
-../Core/Src/main.c:649:2: warning: incompatible implicit declaration of built-in function 'sprintf'
-../Core/Src/main.c:30:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
-   29 | #include "i2c.h"
-  +++ |+#include <stdio.h>
-   30 | /* USER CODE END Includes */
-../Core/Src/main.c:649:10: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  649 |  sprintf(hello, "Dir %c : %d\0", frontback, fb_speed-48);
-      |          ^~~~~
-      |          |
-      |          uint8_t * {aka unsigned char *}
-../Core/Src/main.c:649:10: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:649:29: warning: embedded '\0' in format [-Wformat-contains-nul]
-  649 |  sprintf(hello, "Dir %c : %d\0", frontback, fb_speed-48);
-      |                             ^~
-../Core/Src/main.c:652:10: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  652 |  sprintf(hello, "Turn %c: %d\0", leftright, lr_speed-48);
-      |          ^~~~~
-      |          |
-      |          uint8_t * {aka unsigned char *}
-../Core/Src/main.c:652:10: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:652:29: warning: embedded '\0' in format [-Wformat-contains-nul]
-  652 |  sprintf(hello, "Turn %c: %d\0", leftright, lr_speed-48);
-      |                             ^~
-../Core/Src/main.c: In function 'showoled':
-../Core/Src/main.c:827:10: warning: unused variable 'hello' [-Wunused-variable]
-  827 |  uint8_t hello[20] = "test\0";
-      |          ^~~~~
-../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:891:4: warning: incompatible implicit declaration of built-in function 'sprintf'
-  891 |    sprintf(msg, "Diff : %3d\0", encoder_offset);
-      |    ^~~~~~~
-../Core/Src/main.c:891:4: note: include '<stdio.h>' or provide a declaration of 'sprintf'
-../Core/Src/main.c:891:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  891 |    sprintf(msg, "Diff : %3d\0", encoder_offset);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-../Core/Src/main.c:891:12: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:891:28: warning: embedded '\0' in format [-Wformat-contains-nul]
-  891 |    sprintf(msg, "Diff : %3d\0", encoder_offset);
-      |                            ^~
-../Core/Src/main.c: In function 'gyro_task':
-../Core/Src/main.c:933:10: warning: implicit declaration of function 'abs' [-Wimplicit-function-declaration]
-  933 |    while(abs((int) curAngle) < turn_angle){
-      |          ^~~
-../Core/Src/main.c:938:5: warning: incompatible implicit declaration of built-in function 'sprintf'
-  938 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |     ^~~~~~~
-../Core/Src/main.c:938:5: note: include '<stdio.h>' or provide a declaration of 'sprintf'
-../Core/Src/main.c:938:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  938 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-../Core/Src/main.c:938:13: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-../Core/Src/main.c:938:29: warning: embedded '\0' in format [-Wformat-contains-nul]
-  938 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                             ^~
-../Core/Src/main.c:938:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
-  938 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                          ^~~
-../Core/Src/main.c:938:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
-  938 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: mdp_hardware.elf
- 
 arm-none-eabi-size   mdp_hardware.elf 
-arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
-arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
    text	   data	    bss	    dec	    hex	filename
-  42784	    136	  21928	  64848	   fd50	mdp_hardware.elf
+  43200	    136	  21944	  65280	   ff00	mdp_hardware.elf
 Finished building: default.size.stdout
  
-Finished building: mdp_hardware.hex
- 
-Finished building: mdp_hardware.list
- 
 
-02:50:27 Build Finished. 0 errors, 15 warnings. (took 1s.123ms)
+10:13:02 Build Finished. 0 errors, 0 warnings. (took 376ms)
 

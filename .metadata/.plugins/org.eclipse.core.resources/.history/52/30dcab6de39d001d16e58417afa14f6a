@@ -128,7 +128,7 @@ void show(void);
 void resetVal();
 
 //Prototypes of Interface functions for Queue structure
-void enqueue(Queue *qPtr, uint8_t msg[4]);
+void enqueue(Queue *qPtr, uint8_t msg[]);
 int dequeue(Queue *qPtr);
 void getFront(Queue q);
 int isEmptyQueue(Queue q);
@@ -665,6 +665,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 	// Prevent unused argument compiled warning
 
 	UNUSED(huart);
+	uint8_t hello[50];
 
 	enqueue(&q,aRxBuffer);
 //	frontback = (uint8_t)(aRxBuffer[0]);
@@ -674,11 +675,11 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 
 
 	HAL_UART_Receive_IT(&huart3,(uint8_t *) aRxBuffer,4);
-//	sprintf(hello, "Dir %c : %d\0", frontback, fb_speed-48);
-//	OLED_ShowString(10, 20, hello);
-//
-//	sprintf(hello, "Turn %c: %d\0", leftright, lr_speed-48);
-//	OLED_ShowString(10, 30, hello);
+	sprintf(hello, "Dir %c : %d\0", frontback, fb_speed-48);
+	OLED_ShowString(10, 20, hello);
+
+	sprintf(hello, "Turn %c: %d\0", leftright, lr_speed-48);
+	OLED_ShowString(10, 30, hello);
 	HAL_GPIO_TogglePin(LED3_GPIO_Port, LED3_Pin);
 }
 
@@ -744,19 +745,11 @@ void motor(void *argument)
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
 
 
-
   /* Infinite loop */
   for(;;)
   {
-	  while(isEmptyQueue(q) != 1){
-		  uint8_t hello[50];
+	  while(isEmptyQueue != 1){
 		  getFront(q);
-		  sprintf(hello, "Dir %c : %d\0", frontback, fb_speed - 48);
-			OLED_ShowString(10, 20, hello);
-
-			sprintf(hello, "Turn %c: %d\0", leftright, lr_speed - 48);
-			OLED_ShowString(10, 30, hello);
-
 		  accelerate = 1; // Default always start with acceleration
 
 		  	  // Turn Servo to desired position
@@ -1010,10 +1003,10 @@ void Error_Handler(void)
  *
  */
 //input stuff into the queue
-void enqueue(Queue *qPtr, uint8_t msg[4]){
+void enqueue(Queue *qPtr, uint8_t msg[]){
     QueueNode *newNode;
     newNode = (QueueNode *) malloc(sizeof(QueueNode));
-    for(int i=0; i<4; i++){
+    for(int i=0; i<3; i++){
         newNode->msg[i] = msg[i];
     }
     newNode->next = NULL;
@@ -1045,10 +1038,10 @@ int dequeue(Queue *qPtr){
 
 //get the front of the queue (not sure if working)
 void getFront(Queue q){
-        frontback = (uint8_t)(q.head->msg[0]);
-        fb_speed = (uint8_t)(q.head->msg[1]);
-        leftright = (uint8_t)(q.head->msg[2]);
-        lr_speed = (uint8_t)(q.head->msg[3]);
+        frontback = (q.head->msg[0]);
+        fb_speed = (q.head->msg[1]);
+        leftright = (q.head->msg[2]);
+        lr_speed = (q.head->msg[3]);
 }
 
 //check if queue is empty (output 1 if empty, 0 if not empty)
