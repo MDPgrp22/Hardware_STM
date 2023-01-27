@@ -748,7 +748,7 @@ void motor(void *argument)
   /* Infinite loop */
   for(;;)
   {
-	  while(isEmptyQueue(q) != 1){
+	  if(isEmptyQueue(q) != 1){
 		  uint8_t hello[50];
 		  getFront(q);
 		  sprintf(hello, "Dir %c : %d\0", frontback, fb_speed - 48);
@@ -848,6 +848,10 @@ void motor(void *argument)
 		  	  }
 		  	  osDelay(100);
 		  	  dequeue(&q);
+	  }
+	  else{
+		  // Reset Servo values
+		  htim1.Instance->CCR4 = pwmVal_servo;
 	  }
 
   }
