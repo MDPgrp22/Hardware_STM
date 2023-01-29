@@ -17,5 +17,5 @@
 ../Core/Src/main.c:746:6:StartDefaultTask	16	static
 ../Core/Src/main.c:778:6:motor	112	static
 ../Core/Src/main.c:923:6:encoder_task	56	static
-../Core/Src/main.c:993:6:gyro_task	40	static
-../Core/Src/main.c:1060:6:Error_Handler	4	static,ignoring_inline_asm
+../Core/Src/main.c:993:6:gyro_task	48	static
+../Core/Src/main.c:1079:6:Error_Handler	4	static,ignoring_inline_asm

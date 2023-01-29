@@ -999,16 +999,6 @@ void gyro_task(void *argument)
 	int16_t angular_speed = 0;
 	uint8_t msg[8];
 
-	// PID values
-	uint8_t kp = 8;
-	uint8_t ki = 0.8;
-	int16_t eintegral = 0;	// Integral error
-
-	int32_t err;			// To total error for Integral
-
-	// Set servo value to centre
-	uint8_t servo_val = pwmVal_servo;
-
 	int turn_angle = 75;	// gyro turn threshold
 	osDelay(100);
 	for(;;)
@@ -1039,8 +1029,6 @@ void gyro_task(void *argument)
 		// Ensures robot goes straight
 		else if((lr_speed == '0')&&(fb_speed > '0')){
 			gyroStart();
-			eintegral = 0;
-			curAngle = 0;							// Reset Angle value
 
 			do{
 				// Read Gyro
@@ -1053,21 +1041,14 @@ void gyro_task(void *argument)
 				OLED_ShowString(10, 10, msg);
 
 				// PID for error adjustment
-				err = curAngle - 0;		// Proportional error
-				eintegral += err;		// Integral error
 
-				// PID equation
-				servo_val = (uint8_t)(pwmVal_servo + kp*err + ki*eintegral);
-
-				// Set servo value
-				htim1.Instance->CCR4 = servo_val;	// Turn servo to correct error
 
 				osDelay(100);
 			}while(fb_speed > '0');
 
 		}
 
-		osDelay(10);
+		osDelay(100);
 	}
   /* USER CODE END gyro_task */
 }

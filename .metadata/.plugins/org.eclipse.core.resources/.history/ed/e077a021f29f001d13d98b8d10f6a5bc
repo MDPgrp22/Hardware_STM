@@ -1000,7 +1000,7 @@ void gyro_task(void *argument)
 	uint8_t msg[8];
 
 	// PID values
-	uint8_t kp = 8;
+	uint8_t kp = 5;
 	uint8_t ki = 0.8;
 	int16_t eintegral = 0;	// Integral error
 
