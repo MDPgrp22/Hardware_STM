@@ -69,13 +69,6 @@ const osThreadAttr_t MotorTask_attributes = {
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityLow,
 };
-/* Definitions for showOLED */
-osThreadId_t showOLEDHandle;
-const osThreadAttr_t showOLED_attributes = {
-  .name = "showOLED",
-  .stack_size = 128 * 4,
-  .priority = (osPriority_t) osPriorityLow,
-};
 /* Definitions for EncoderTask */
 osThreadId_t EncoderTaskHandle;
 const osThreadAttr_t EncoderTask_attributes = {
@@ -119,7 +112,6 @@ static void MX_USART3_UART_Init(void);
 static void MX_I2C1_Init(void);
 void StartDefaultTask(void *argument);
 void motor(void *argument);
-void showoled(void *argument);
 void encoder_task(void *argument);
 void gyro_task(void *argument);
 
@@ -223,9 +215,6 @@ int main(void)
 
   /* creation of MotorTask */
   MotorTaskHandle = osThreadNew(motor, NULL, &MotorTask_attributes);
-
-  /* creation of showOLED */
-  showOLEDHandle = osThreadNew(showoled, NULL, &showOLED_attributes);
 
   /* creation of EncoderTask */
   EncoderTaskHandle = osThreadNew(encoder_task, NULL, &EncoderTask_attributes);
@@ -690,6 +679,61 @@ void reset_motorVal(){
 	lr_speed = '0';	// Left/right speed
 }
 
+//input stuff into the queue
+void enqueue(Queue *qPtr, uint8_t msg[4]){
+    QueueNode *newNode;
+    newNode = (QueueNode *) malloc(sizeof(QueueNode));
+    for(int i=0; i<4; i++){
+        newNode->msg[i] = msg[i];
+    }
+    newNode->next = NULL;
+
+    if(isEmptyQueue(*qPtr))
+        qPtr->head=newNode;
+    else
+        qPtr->tail->next = newNode;
+
+    qPtr->tail = newNode;
+    qPtr->size++;
+}
+
+int dequeue(Queue *qPtr){
+    if(qPtr==NULL || qPtr->head==NULL){ //Queue is empty or NULL pointer
+        return 0;
+    }
+    else{
+       QueueNode *temp = qPtr->head;
+       qPtr->head = qPtr->head->next;
+       if(qPtr->head == NULL) //Queue is emptied
+           qPtr->tail = NULL;
+
+       free(temp);
+       qPtr->size--;
+       return 1;
+    }
+}
+
+//get the front of the queue (not sure if working)
+void getFront(Queue q){
+        frontback = (uint8_t)(q.head->msg[0]);
+        fb_speed = (uint8_t)(q.head->msg[1]);
+        leftright = (uint8_t)(q.head->msg[2]);
+        lr_speed = (uint8_t)(q.head->msg[3]);
+}
+
+//check if queue is empty (output 1 if empty, 0 if not empty)
+int isEmptyQueue(Queue q){
+    if(q.size==0) return 1;
+    else return 0;
+}
+
+//delete the whole queue
+void deleteQueue(Queue *qPtr)
+{
+    while(dequeue(qPtr));
+}
+
+
 /* USER CODE END 4 */
 
 /* USER CODE BEGIN Header_StartDefaultTask */
@@ -716,7 +760,10 @@ void StartDefaultTask(void *argument)
 //		  }
 //	  }
 //	  HAL_UART_Transmit(&huart3, (uint8_t *)txData, strlen(txData), 10);
-	  osDelay(5000);
+//	  if(curAngle > 0){
+//		  curAngle -= 1;	// Account for gyro drift
+//	  }
+	  osDelay(1000);
   }
   /* USER CODE END 5 */
 }
@@ -731,11 +778,14 @@ void StartDefaultTask(void *argument)
 void motor(void *argument)
 {
   /* USER CODE BEGIN motor */
-	uint16_t servo_max = 5;	// max servo pwm turn
+	uint16_t servo_max = 5;		// Servo_max * (0-9) = servo_value
+
+	// For differential steering
 	double motor_offset_r = 1;
 	double motor_offset_l = 1;
 
-	uint16_t pwmVal_motor = 0;
+	uint16_t pwmVal_motor = 0;	// Current motor pwm value
+	uint16_t motor_min = 400;	// Min value for pwm to complete 2 instruction without stopping
 	uint16_t motor_increment = 10;
 	uint8_t accelerate;
 
@@ -743,21 +793,21 @@ void motor(void *argument)
 	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_2);
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
 
-
-
   /* Infinite loop */
   for(;;)
   {
 	  if(isEmptyQueue(q) != 1){
-		  uint8_t hello[50];
-		  getFront(q);
-		  sprintf(hello, "Dir %c : %d\0", frontback, fb_speed - 48);
-			OLED_ShowString(10, 20, hello);
+			  uint8_t hello[50];	// OLED string buffer
+			  getFront(q);			// Setting values according to queue head
 
-			sprintf(hello, "Turn %c: %d\0", leftright, lr_speed - 48);
-			OLED_ShowString(10, 30, hello);
+			  // OLED Print direction and Turn
+			  sprintf(hello, "Dir %c : %d\0", frontback, fb_speed - 48);
+			  OLED_ShowString(10, 20, hello);
 
-		  accelerate = 1; // Default always start with acceleration
+			  sprintf(hello, "Turn %c: %d\0", leftright, lr_speed - 48);
+			  OLED_ShowString(10, 30, hello);
+
+		  	  accelerate = 1; // Default always start with acceleration
 
 		  	  // Turn Servo to desired position
 		  	  // Centre - offset for left turn
@@ -776,6 +826,7 @@ void motor(void *argument)
 		  		  motor_offset_l = 0.05*(lr_speed-48)+1;
 		  	  }
 
+		  	  pwmVal_motor = motor_min;
 
 		  	  // Move Motor forward
 		  	  if(frontback == 'w'){
@@ -794,7 +845,6 @@ void motor(void *argument)
 		  		  			  pwmVal_motor+=motor_increment;	// Accelerating
 		  		  			  if(pwmVal_motor > (fb_speed-48) * 400){
 		  		  				  accelerate = 0;		// Decelerating
-		  		  				  reset_motorVal(); // Remove infinite motor loop
 		  		  			  }
 
 		  		  		  }
@@ -816,7 +866,7 @@ void motor(void *argument)
 		  		  		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor);
 		  		  		  osDelay(10);
 
-		  		  	  }while(pwmVal_motor >0);
+		  		  	  }while(pwmVal_motor > motor_min);
 		  	  }
 
 		  	  else if(frontback == 's'){
@@ -834,7 +884,6 @@ void motor(void *argument)
 		  		  			pwmVal_motor+=motor_increment;
 		  		  			  if(pwmVal_motor > (fb_speed-48) * 400){
 		  		  				accelerate = 0;		// Decelerating
-		  		  				reset_motorVal(); // Remove infinite motor loop
 		  		  			  }
 		  		  		  }
 
@@ -844,40 +893,24 @@ void motor(void *argument)
 		  		  		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, motor_offset_r*pwmVal_motor);
 		  				  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor);
 		  		  		  osDelay(10);
-		  		  	  }while(pwmVal_motor>0);
+		  		  	  }while(pwmVal_motor> motor_min);
 		  	  }
 		  	  osDelay(100);
 		  	  dequeue(&q);
 	  }
 	  else{
+		  reset_motorVal();	//Reset the values
+
 		  // Reset Servo values
 		  htim1.Instance->CCR4 = pwmVal_servo;
+
+		  // Stop motor
+		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, 0);
+		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, 0);
 	  }
 
   }
   /* USER CODE END motor */
-}
-
-/* USER CODE BEGIN Header_showoled */
-/**
-* @brief Function implementing the showOLED thread.
-* @param argument: Not used
-* @retval None
-*/
-/* USER CODE END Header_showoled */
-void showoled(void *argument)
-{
-  /* USER CODE BEGIN showoled */
-  /* Infinite loop */
-	uint8_t hello[20] = "test\0";
-	for(;;)
-	{
-
-//		OLED_ShowString(10, 10, hello);
-//		OLED_Refresh_Gram();
-//		osDelay(1000);
-	}
-  /* USER CODE END showoled */
 }
 
 /* USER CODE BEGIN Header_encoder_task */
@@ -970,7 +1003,7 @@ void gyro_task(void *argument)
 	osDelay(100);
 	for(;;)
 	{
-		// If instruction requires turning, start gyro
+		// Gyro Function for turning
 		if(lr_speed >= '4'){
 			gyroStart();	// Start Gyro Reading
 
@@ -982,12 +1015,39 @@ void gyro_task(void *argument)
 
 				sprintf(msg, "gyro : %3d\0", (int)curAngle);
 				OLED_ShowString(10, 10, msg);
+
+				if(fb_speed == '0')
+					break;
 				osDelay(100);
 			}
 
+			// Once Threshold reached, turn servo centre
 			htim1.Instance->CCR4 = pwmVal_servo;	// Turn servo to the centre
 			curAngle = 0;							// Reset Angle value
 		}
+
+		// Ensures robot goes straight
+		else if((lr_speed == '0')&&(fb_speed > '0')){
+			gyroStart();
+
+			do{
+				// Read Gyro
+				readByte(0x37, val);
+				angular_speed = (val[0] << 8) | val[1];	// appending the 2 bytes together
+				curAngle +=  ((double)(angular_speed*(100) - 2) / 16400.0)*1.1 ; //1.69
+
+				// Print Gyro
+				sprintf(msg, "gyro : %3d\0", (int)curAngle);
+				OLED_ShowString(10, 10, msg);
+
+				// PID for error adjustment
+
+
+				osDelay(100);
+			}while(fb_speed > '0');
+
+		}
+
 		osDelay(100);
 	}
   /* USER CODE END gyro_task */
@@ -1007,68 +1067,6 @@ void Error_Handler(void)
   }
   /* USER CODE END Error_Handler_Debug */
 }
-
-/* USER CODE BEGIN QUEUE_FUNCTION */
-/*
- * Queue Functions
- *
- */
-//input stuff into the queue
-void enqueue(Queue *qPtr, uint8_t msg[4]){
-    QueueNode *newNode;
-    newNode = (QueueNode *) malloc(sizeof(QueueNode));
-    for(int i=0; i<4; i++){
-        newNode->msg[i] = msg[i];
-    }
-    newNode->next = NULL;
-
-    if(isEmptyQueue(*qPtr))
-        qPtr->head=newNode;
-    else
-        qPtr->tail->next = newNode;
-
-    qPtr->tail = newNode;
-    qPtr->size++;
-}
-
-int dequeue(Queue *qPtr){
-    if(qPtr==NULL || qPtr->head==NULL){ //Queue is empty or NULL pointer
-        return 0;
-    }
-    else{
-       QueueNode *temp = qPtr->head;
-       qPtr->head = qPtr->head->next;
-       if(qPtr->head == NULL) //Queue is emptied
-           qPtr->tail = NULL;
-
-       free(temp);
-       qPtr->size--;
-       return 1;
-    }
-}
-
-//get the front of the queue (not sure if working)
-void getFront(Queue q){
-        frontback = (uint8_t)(q.head->msg[0]);
-        fb_speed = (uint8_t)(q.head->msg[1]);
-        leftright = (uint8_t)(q.head->msg[2]);
-        lr_speed = (uint8_t)(q.head->msg[3]);
-}
-
-//check if queue is empty (output 1 if empty, 0 if not empty)
-int isEmptyQueue(Queue q){
-    if(q.size==0) return 1;
-    else return 0;
-}
-
-//delete the whole queue
-void deleteQueue(Queue *qPtr)
-{
-    while(dequeue(qPtr));
-}
-
-
-/* USER CODE END QUEUE_FUNCTION */
 
 #ifdef  USE_FULL_ASSERT
 /**
