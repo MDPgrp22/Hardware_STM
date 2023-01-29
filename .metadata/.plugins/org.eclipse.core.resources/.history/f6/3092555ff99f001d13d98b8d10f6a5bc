@@ -1065,7 +1065,7 @@ void gyro_task(void *argument)
 				htim1.Instance->CCR4 = servo_val;	// Turn servo to correct error
 
 				osDelay(100);
-			}while((lr_speed == '0')&&(fb_speed > '0'));
+			}while(fb_speed > '0');
 
 		}
 

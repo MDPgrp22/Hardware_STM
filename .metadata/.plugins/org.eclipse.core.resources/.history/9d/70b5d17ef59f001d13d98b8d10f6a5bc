@@ -844,8 +844,7 @@ void motor(void *argument)
 		  		  		  if(accelerate == 1){
 		  		  			  pwmVal_motor+=motor_increment;	// Accelerating
 		  		  			  if(pwmVal_motor > (fb_speed-48) * 400){
-		  		  				  accelerate = 0;		// Decelerate
-		  		  				  osDelay(200);
+		  		  				  accelerate = 0;		// Decelerating
 		  		  			  }
 
 		  		  		  }
@@ -884,8 +883,7 @@ void motor(void *argument)
 		  		  		  if(accelerate == 1){
 		  		  			pwmVal_motor+=motor_increment;
 		  		  			  if(pwmVal_motor > (fb_speed-48) * 400){
-		  		  				accelerate = 0;		// Decelerate
-		  		  				osDelay(200);
+		  		  				accelerate = 0;		// Decelerating
 		  		  			  }
 		  		  		  }
 
@@ -1011,7 +1009,7 @@ void gyro_task(void *argument)
 	// Set servo value to centre
 	uint8_t servo_val = pwmVal_servo;
 
-	int turn_angle = 75;	// gyro turn threshold for 90deg
+	int turn_angle = 75;	// gyro turn threshold
 	osDelay(100);
 	for(;;)
 	{
@@ -1065,7 +1063,7 @@ void gyro_task(void *argument)
 				htim1.Instance->CCR4 = servo_val;	// Turn servo to correct error
 
 				osDelay(100);
-			}while((lr_speed == '0')&&(fb_speed > '0'));
+			}while(fb_speed > '0');
 
 		}
 

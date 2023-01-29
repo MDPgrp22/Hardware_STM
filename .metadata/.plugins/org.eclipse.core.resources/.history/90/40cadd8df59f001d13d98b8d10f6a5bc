@@ -845,7 +845,7 @@ void motor(void *argument)
 		  		  			  pwmVal_motor+=motor_increment;	// Accelerating
 		  		  			  if(pwmVal_motor > (fb_speed-48) * 400){
 		  		  				  accelerate = 0;		// Decelerate
-		  		  				  osDelay(200);
+		  		  				  osDelay(100);
 		  		  			  }
 
 		  		  		  }
@@ -884,8 +884,7 @@ void motor(void *argument)
 		  		  		  if(accelerate == 1){
 		  		  			pwmVal_motor+=motor_increment;
 		  		  			  if(pwmVal_motor > (fb_speed-48) * 400){
-		  		  				accelerate = 0;		// Decelerate
-		  		  				osDelay(200);
+		  		  				accelerate = 0;		// Decelerating
 		  		  			  }
 		  		  		  }
 
@@ -1065,7 +1064,7 @@ void gyro_task(void *argument)
 				htim1.Instance->CCR4 = servo_val;	// Turn servo to correct error
 
 				osDelay(100);
-			}while((lr_speed == '0')&&(fb_speed > '0'));
+			}while(fb_speed > '0');
 
 		}
 
