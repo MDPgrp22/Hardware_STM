@@ -856,12 +856,9 @@ void motor(void *argument)
 		  		  			  if(pwmVal_motor > motor_reference){
 		  		  				  accelerate = 0;				// Decelerate Flag
 
-		  		  				if(fb_speed == 'u')
-		  		  					osDelay(10);
-								else if((fb_speed-48)*230-20 > 0)	// Prevent infinite forward move through negative value
-									osDelay((fb_speed-48)*230-20);// Constant speed for time
+		  		  				if((fb_speed-48)*230-20 > 0)	// Prevent infinite forward move through negative value
+								  osDelay((fb_speed-48)*230-20);// Constant speed for time
 		  		  			  }
-
 
 		  		  		  }
 
@@ -901,10 +898,8 @@ void motor(void *argument)
 							if(pwmVal_motor > motor_reference){
 							  accelerate = 0;				// Decelerate flag
 
-							  if(fb_speed == 'u')
-								  osDelay(10);
-							  else if((fb_speed-48)*250-20 > 0)	// Prevent infinite forward move through negative value
-								  osDelay((fb_speed-48)*250-20);// Constant speed for time
+							if((fb_speed-48)*230-20 > 0)	// Prevent infinite forward move through negative value
+								  osDelay((fb_speed-48)*230-20);
 							}
 		  		  		  }
 
@@ -1031,6 +1026,7 @@ void gyro_task(void *argument)
 
 	// Set servo value to centre
 	uint8_t servo_val = pwmVal_servo;
+	uint8_t current_turn = 'a';
 
 	int turn_angle = 75;	// gyro turn threshold for 90deg
 	osDelay(100);
@@ -1039,6 +1035,8 @@ void gyro_task(void *argument)
 		// Gyro Function for turning
 		if(lr_speed >= '4'){
 			gyroStart();	// Start Gyro Reading
+
+			current_turn = leftright;
 
 			// Continue Reading Gyro until hit threshold
 			while(abs((int) curAngle) < turn_angle){
@@ -1053,7 +1051,8 @@ void gyro_task(void *argument)
 				sprintf(msg, "gyro : %3d\0", (int)curAngle);
 				OLED_ShowString(10, 10, msg);
 
-				if(fb_speed == '0')
+				// If it stops or turn direction changes
+				if((fb_speed == '0')||(leftright != current_turn))
 					break;
 				osDelay(100);
 			}

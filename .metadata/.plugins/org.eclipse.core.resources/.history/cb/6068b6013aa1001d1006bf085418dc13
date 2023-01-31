@@ -858,7 +858,7 @@ void motor(void *argument)
 
 		  		  				if(fb_speed == 'u')
 		  		  					osDelay(10);
-								else if((fb_speed-48)*230-20 > 0)	// Prevent infinite forward move through negative value
+								else if((fb_speed-48)> "0")	// Prevent infinite forward move through negative value
 									osDelay((fb_speed-48)*230-20);// Constant speed for time
 		  		  			  }
 
@@ -903,8 +903,8 @@ void motor(void *argument)
 
 							  if(fb_speed == 'u')
 								  osDelay(10);
-							  else if((fb_speed-48)*250-20 > 0)	// Prevent infinite forward move through negative value
-								  osDelay((fb_speed-48)*250-20);// Constant speed for time
+							  else if((fb_speed-48)> "0")	// Prevent infinite forward move through negative value
+								  osDelay((fb_speed-48)*230-20);// Constant speed for time
 							}
 		  		  		  }
 

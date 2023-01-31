@@ -856,12 +856,9 @@ void motor(void *argument)
 		  		  			  if(pwmVal_motor > motor_reference){
 		  		  				  accelerate = 0;				// Decelerate Flag
 
-		  		  				if(fb_speed == 'u')
-		  		  					osDelay(10);
-								else if((fb_speed-48)*230-20 > 0)	// Prevent infinite forward move through negative value
-									osDelay((fb_speed-48)*230-20);// Constant speed for time
+		  		  				if((fb_speed-48)*230-20 > 0)	// Prevent infinite forward move through negative value
+								  osDelay((fb_speed-48)*230-20);// Constant speed for time
 		  		  			  }
-
 
 		  		  		  }
 
@@ -901,10 +898,8 @@ void motor(void *argument)
 							if(pwmVal_motor > motor_reference){
 							  accelerate = 0;				// Decelerate flag
 
-							  if(fb_speed == 'u')
-								  osDelay(10);
-							  else if((fb_speed-48)*250-20 > 0)	// Prevent infinite forward move through negative value
-								  osDelay((fb_speed-48)*250-20);// Constant speed for time
+							if((fb_speed-48)*230-20 > 0)	// Prevent infinite forward move through negative value
+								  osDelay((fb_speed-48)*230-20);
 							}
 		  		  		  }
 
@@ -917,6 +912,8 @@ void motor(void *argument)
 		  		  	  }while(pwmVal_motor> motor_min);
 		  	  }
 		  	  osDelay(10);
+
+		  	  curAngle = 0;
 		  	  dequeue(&q);
 	  }
 	  else{
@@ -1064,8 +1061,8 @@ void gyro_task(void *argument)
 			osDelay(100);
 
 			// Stop motor
-			__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, 0);
-			__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, 0);
+//			__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, 0);
+//			__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, 0);
 
 		}
 
