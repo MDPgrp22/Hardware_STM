@@ -866,8 +866,8 @@ void motor(void *argument)
 
 		  		  				if(fb_speed == 'u')
 		  		  					osDelay(10);
-								else if((fb_speed-48)*230-20 > 0)	// Prevent infinite forward move through negative value
-									osDelay((fb_speed-48)*230-20);// Constant speed for time
+								else if((fb_speed-48)*240-30 > 0)	// Prevent infinite forward move through negative value
+									osDelay((fb_speed-48)*240-30);// Constant speed for time
 		  		  			  }
 
 
@@ -952,7 +952,6 @@ void motor(void *argument)
 		  reset_motorVal();	//Reset the values
 		  encoder_offset = 0;
 		  encoder_error = 0;
-		  curAngle = 0;
 
 		  // Reset Servo values
 		  htim1.Instance->CCR4 = pwmVal_servo;
@@ -1097,11 +1096,7 @@ void gyro_task(void *argument)
 			__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, 0);
 			__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, 0);
 
-			// turn error if too much
-			if(abs((int) curAngle) > turn_angle){
-				curAngle = (curAngle > 0) ? curAngle - turn_angle : curAngle + turn_angle ;
-			}
-
+			curAngle = curAngle - turn_angle;
 
 		}
 
@@ -1109,6 +1104,7 @@ void gyro_task(void *argument)
 		else if((lr_speed == '0')&&(fb_speed > '0')){
 			gyroStart();
 			eintegral = 0;
+			curAngle = 0;							// Reset Angle value
 
 			do{
 				// Read Gyro
@@ -1134,8 +1130,6 @@ void gyro_task(void *argument)
 
 				osDelay(100);
 			}while((lr_speed == '0')&&(fb_speed > '0'));
-
-			curAngle = 0;							// Reset Angle value
 
 		}
 
