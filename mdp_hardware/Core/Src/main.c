@@ -792,6 +792,7 @@ void motor(void *argument)
 	uint8_t accelerate;
 
 	uint16_t motor_reference;	// Reference pwm value for motor
+	uint32_t target_dist;	// Distance to travel
 
 	// PID Values
 	int current_encoder_error = 0;
@@ -809,12 +810,17 @@ void motor(void *argument)
   for(;;)
   {
 	  if(isEmptyQueue(q) != 1){
-			  uint8_t hello[50];	// OLED string buffer
-			  getFront(q);			// Setting values according to queue head
+		  	  uint8_t hello[20];
 
+			  getFront(q);			// Setting values according to queue head
 			  encoder_dist = 0;		// Reset Encoder distance measurement
 
 		  	  accelerate = 1; 		// Default always start with acceleration
+		  	  target_dist = (int) ((fb_speed - 48)*129 - 40);
+
+		  	  // Display Target distance
+		  	  sprintf(hello, "Target : %3d\0", target_dist);
+		  	  OLED_ShowString(10, 30, hello);
 
 		  	  if(lr_speed == '0'){
 		  		motor_reference = 2400;
@@ -857,20 +863,24 @@ void motor(void *argument)
 
 		  		  		  if(accelerate == 1){
 		  		  			  pwmVal_motor+=motor_increment;	// Accelerating
-		  		  			  if(pwmVal_motor > motor_reference){
-		  		  				  accelerate = 0;				// Decelerate Flag
 
-		  		  				if(fb_speed == 'u')
-		  		  					osDelay(10);
-								else if((fb_speed-48)*230-20 > 0)	// Prevent infinite forward move through negative value
-									osDelay((fb_speed-48)*230-20);// Constant speed for time
-		  		  			  }
+							  if(pwmVal_motor > motor_reference){
+								  accelerate = 0;
+								  while(encoder_dist < (int)target_dist*0.95){
+									  osDelay(1);
+								  }
+							  }
 
+//		  		  				  else if(fb_speed == 'u')				// Moves 4cm
+//		  		  					  osDelay(10);
 
 		  		  		  }
 
-		  		  		  else
-		  		  			pwmVal_motor-=5*motor_increment;
+		  		  		  else {		// Decelerate
+		  		  			  if(pwmVal_motor > motor_min)
+							  	  pwmVal_motor-=5*motor_increment;
+		  		  		  }
+
 
 		  				  // Modify comparison value for duty cycle
 		  		  		  // Motor speed = motor_offset from servo turn * pwm_value + encoder to ensure its going straight
@@ -889,7 +899,7 @@ void motor(void *argument)
 		  		  		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor + encoder_offset);
 		  		  		  osDelay(10);
 
-		  		  	  }while(pwmVal_motor > motor_min);
+		  		  	  }while(encoder_dist < target_dist);
 		  	  }
 
 		  	  else if(frontback == 's'){
@@ -934,6 +944,7 @@ void motor(void *argument)
 
 		  		  	  }while(pwmVal_motor> motor_min);
 		  	  }
+
 		  	  else if(frontback == 'k'){
 		  		encoder_offset = 0;
 		  		encoder_error = 0;
@@ -943,11 +954,14 @@ void motor(void *argument)
 		  	  }
 		  	  osDelay(10);
 		  	  dequeue(&q);
+
+
 	  }
 	  else{
 		  reset_motorVal();	//Reset the values
 		  encoder_offset = 0;
 		  encoder_error = 0;
+		  encoder_dist = 0;
 		  curAngle = 0;
 
 		  // Reset Servo values
@@ -1053,10 +1067,8 @@ void gyro_task(void *argument)
 	int16_t angular_speed = 0;
 	int16_t angle = 0;
 
-	uint8_t msg[8];
-
 	// PID values
-	uint8_t kp = 8;
+	uint8_t kp = 5;
 	uint8_t ki = 0.8;
 	int16_t eintegral = 0;	// Integral error
 
@@ -1069,6 +1081,8 @@ void gyro_task(void *argument)
 	osDelay(100);
 	for(;;)
 	{
+		uint8_t msg[8];
+
 		// Gyro Function for turning
 		if(lr_speed >= '4'){
 			gyroStart();	// Start Gyro Reading
@@ -1096,13 +1110,12 @@ void gyro_task(void *argument)
 			__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, 0);
 			__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, 0);
 
+			curAngle = 0;
+
 			// turn error if too much
-			if(abs((int) curAngle) > turn_angle){
-				curAngle = (curAngle > 0) ? curAngle - turn_angle : curAngle + turn_angle ;
-				// Display Turn Error
-				sprintf(msg, "Turn Err : %3d\0", curAngle);
-				OLED_ShowString(10, 30, msg);
-			}
+//			if(abs((int) curAngle) > turn_angle){
+//				curAngle = (curAngle > 0) ? curAngle - turn_angle : curAngle + turn_angle ;
+//			}
 
 
 		}
@@ -1116,7 +1129,7 @@ void gyro_task(void *argument)
 				// Read Gyro
 				readByte(0x37, val);
 				angular_speed = (val[0] << 8) | val[1];	// appending the 2 bytes together
-				angle = ((double)(angular_speed*(100) - 2) / 16400.0)*1.1 ; //1.69
+				angle = ((double)(angular_speed*(100) - 2) / 16400.0)*1.5 ; //1.69
 
 				curAngle += angle;
 
@@ -1134,7 +1147,7 @@ void gyro_task(void *argument)
 				// Set servo value
 				htim1.Instance->CCR4 = servo_val;	// Turn servo to correct error
 
-				osDelay(100);
+				osDelay(40);
 			}while((lr_speed == '0')&&(fb_speed > '0'));
 
 			curAngle = 0;							// Reset Angle value
