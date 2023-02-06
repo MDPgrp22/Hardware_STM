@@ -142,6 +142,7 @@ double curAngle = 0; 		// angle via gyro
 
 int encoder_offset = 0; // Adds to motor pwm for straight movement
 int encoder_error = 0;	// Current error value for encoder
+uint32_t encoder_dist = 0;	// Used for distance estimation
 
 uint16_t pwmVal_servo = 150; // servo centre
 
@@ -811,14 +812,9 @@ void motor(void *argument)
 			  uint8_t hello[50];	// OLED string buffer
 			  getFront(q);			// Setting values according to queue head
 
-			  // OLED Print direction and Turn
-			  sprintf(hello, "Dir %c : %d\0", frontback, fb_speed - 48);
-			  OLED_ShowString(10, 20, hello);
+			  encoder_dist = 0;		// Reset Encoder distance measurement
 
-			  sprintf(hello, "Turn %c: %d\0", leftright, lr_speed - 48);
-			  OLED_ShowString(10, 30, hello);
-
-		  	  accelerate = 1; // Default always start with acceleration
+		  	  accelerate = 1; 		// Default always start with acceleration
 
 		  	  if(lr_speed == '0'){
 		  		motor_reference = 2400;
@@ -1018,10 +1014,15 @@ void encoder_task(void *argument)
 			}
 
 			encoder_error = diffa + diffb;
+			encoder_dist += (abs(diffa) + abs(diffb));
+
 			// Display difference
 			sprintf(msg, "Diff : %3d\0", encoder_error);
-
 			OLED_ShowString(10,40,msg);
+
+			sprintf(msg, "Dist : %3d\0", encoder_dist);
+			OLED_ShowString(10,20,msg);
+
 			OLED_Refresh_Gram();
 			// Reset base tick
 			__HAL_TIM_SET_COUNTER(&htim2, 0);
@@ -1090,8 +1091,6 @@ void gyro_task(void *argument)
 
 			// Once Threshold reached, turn servo centre
 			htim1.Instance->CCR4 = pwmVal_servo;	// Turn servo to the centre
-			curAngle = 0;							// Reset Angle value
-			osDelay(100);
 
 			// Stop motor
 			__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, 0);
@@ -1100,6 +1099,9 @@ void gyro_task(void *argument)
 			// turn error if too much
 			if(abs((int) curAngle) > turn_angle){
 				curAngle = (curAngle > 0) ? curAngle - turn_angle : curAngle + turn_angle ;
+				// Display Turn Error
+				sprintf(msg, "Turn Err : %3d\0", curAngle);
+				OLED_ShowString(10, 30, msg);
 			}
 
 
