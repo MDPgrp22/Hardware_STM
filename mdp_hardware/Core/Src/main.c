@@ -819,7 +819,7 @@ void motor(void *argument)
 		  	  target_dist = (int) ((fb_speed - 48)*129 - 40);
 
 		  	  // Display Target distance
-		  	  sprintf(hello, "Target : %3d\0", target_dist);
+		  	  sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
 		  	  OLED_ShowString(10, 30, hello);
 
 		  	  if(lr_speed == '0'){
@@ -895,8 +895,8 @@ void motor(void *argument)
 							  encoder_offset = kp*current_encoder_error+ ki*eintegral;
 		  		  		  }
 
-		  		  		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, motor_offset_r*pwmVal_motor + encoder_offset);
-		  		  		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor + encoder_offset);
+		  		  		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, motor_offset_r*pwmVal_motor);
+		  		  		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor);
 		  		  		  osDelay(10);
 
 		  		  	  }while(encoder_dist < target_dist);
@@ -913,22 +913,31 @@ void motor(void *argument)
 		  		  		  HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_RESET);
 		  		  		  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_SET);
 
-		  		  		  if(accelerate == 1){
-		  		  			pwmVal_motor+=motor_increment;	// Accelerating
-							if(pwmVal_motor > motor_reference){
-							  accelerate = 0;				// Decelerate flag
+		  		  		if(accelerate == 1){
+							  pwmVal_motor+=motor_increment;	// Accelerating
 
-							  if(fb_speed == 'u')
-								  osDelay(10);
-							  else if((fb_speed-48)*250-20 > 0)	// Prevent infinite forward move through negative value
-								  osDelay((fb_speed-48)*250-20);// Constant speed for time
-							}
-		  		  		  }
+							  if(pwmVal_motor > motor_reference){
+								  accelerate = 0;
+								  while(encoder_dist < (int)target_dist*0.95){
+									  osDelay(1);
+								  }
+							  }
 
-		  		  		  else
-		  		  			pwmVal_motor-=5*motor_increment;
+//		  		  				  else if(fb_speed == 'u')				// Moves 4cm
+//		  		  					  osDelay(10);
 
-		  		  		  // PID for straight movement
+						  }
+
+						  else {		// Decelerate
+							  if(pwmVal_motor > motor_min)
+								  pwmVal_motor-=5*motor_increment;
+						  }
+
+
+						  // Modify comparison value for duty cycle
+						  // Motor speed = motor_offset from servo turn * pwm_value + encoder to ensure its going straight
+
+						  // PID for straight movement
 						  if(lr_speed == '0'){
 							  // PID for encoder offset
 							  current_encoder_error = encoder_error - 0;
@@ -942,14 +951,20 @@ void motor(void *argument)
 						  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor + encoder_offset);
 						  osDelay(10);
 
-		  		  	  }while(pwmVal_motor> motor_min);
+					  }while(encoder_dist < target_dist);
 		  	  }
 
 		  	  else if(frontback == 'k'){
 		  		encoder_offset = 0;
 		  		encoder_error = 0;
+				curAngle = 0;
+
 		  		__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, 0);
 		  		__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, 0);
+
+		  		gyroStart();	// Start Gyro Calibration
+
+		  		osDelay(100);
 		  		osDelay((fb_speed-48)*50);
 		  	  }
 		  	  osDelay(10);
@@ -962,7 +977,6 @@ void motor(void *argument)
 		  encoder_offset = 0;
 		  encoder_error = 0;
 		  encoder_dist = 0;
-		  curAngle = 0;
 
 		  // Reset Servo values
 		  htim1.Instance->CCR4 = pwmVal_servo;
@@ -1077,15 +1091,20 @@ void gyro_task(void *argument)
 	// Set servo value to centre
 	uint8_t servo_val = pwmVal_servo;
 
-	int turn_angle = 75;	// gyro turn threshold for 90deg
+	int turn_angle = 105;	// gyro turn threshold for 90deg
 	osDelay(100);
 	for(;;)
 	{
 		uint8_t msg[8];
+		curAngle = 0;
 
 		// Gyro Function for turning
-		if(lr_speed >= '4'){
-			gyroStart();	// Start Gyro Reading
+		if(lr_speed > '0'){
+
+			if(leftright == 'a')
+				turn_angle = 120;
+			else
+				turn_angle = 120;
 
 			// Continue Reading Gyro until hit threshold
 			while(abs((int) curAngle) < turn_angle){
@@ -1100,17 +1119,17 @@ void gyro_task(void *argument)
 
 				if(fb_speed == '0')
 					break;
-				osDelay(100);
+				osDelay(50);
 			}
 
 			// Once Threshold reached, turn servo centre
 			htim1.Instance->CCR4 = pwmVal_servo;	// Turn servo to the centre
 
-			// Stop motor
-			__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, 0);
-			__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, 0);
-
 			curAngle = 0;
+//			// Stop motor
+//			__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, 0);
+//			__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, 0);
+
 
 			// turn error if too much
 //			if(abs((int) curAngle) > turn_angle){
@@ -1122,7 +1141,7 @@ void gyro_task(void *argument)
 
 		// Ensures robot goes straight
 		else if((lr_speed == '0')&&(fb_speed > '0')){
-			gyroStart();
+//			gyroStart();
 			eintegral = 0;
 
 			do{
@@ -1131,7 +1150,9 @@ void gyro_task(void *argument)
 				angular_speed = (val[0] << 8) | val[1];	// appending the 2 bytes together
 				angle = ((double)(angular_speed*(100) - 2) / 16400.0)*1.5 ; //1.69
 
-				curAngle += angle;
+				// Prevent gyro drift by ignoring small angle change
+				if(abs(angle) > 2)
+					curAngle += angle;
 
 				// Print Gyro
 				sprintf(msg, "gyro : %3d\0", (int)curAngle);

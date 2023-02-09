@@ -5093,15 +5093,15 @@ LOAD c:/st/stm32cubeide_1.7.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.exte
                 0x000000000800174c       0x12 ./Core/Src/main.o
                 0x000000000800174c                StartDefaultTask
  *fill*         0x000000000800175e        0x2 
- .text.motor    0x0000000008001760      0x5e8 ./Core/Src/main.o
+ .text.motor    0x0000000008001760      0x5d8 ./Core/Src/main.o
                 0x0000000008001760                motor
  .text.encoder_task
-                0x0000000008001d48      0x12c ./Core/Src/main.o
-                0x0000000008001d48                encoder_task
- *fill*         0x0000000008001e74        0x4 
+                0x0000000008001d38      0x12c ./Core/Src/main.o
+                0x0000000008001d38                encoder_task
+ *fill*         0x0000000008001e64        0x4 
  .text.gyro_task
-                0x0000000008001e78      0x2a8 ./Core/Src/main.o
-                0x0000000008001e78                gyro_task
+                0x0000000008001e68      0x2b8 ./Core/Src/main.o
+                0x0000000008001e68                gyro_task
  .text.Error_Handler
                 0x0000000008002120        0xa ./Core/Src/main.o
                 0x0000000008002120                Error_Handler
@@ -6435,33 +6435,33 @@ LOAD c:/st/stm32cubeide_1.7.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.exte
  .debug_macro   0x000000000000483a      0x2db ./PeripheralDriver/Src/oled.o
  .debug_macro   0x0000000000004b15       0x70 ./PeripheralDriver/Src/oled.o
 
-.debug_line     0x0000000000000000    0x1dc97
- .debug_line    0x0000000000000000     0x147d ./Core/Src/main.o
- .debug_line    0x000000000000147d      0x9a1 ./Core/Src/stm32f4xx_hal_msp.o
- .debug_line    0x0000000000001e1e      0xa07 ./Core/Src/stm32f4xx_it.o
- .debug_line    0x0000000000002825      0x4ef ./Core/Src/sysmem.o
- .debug_line    0x0000000000002d14      0x856 ./Core/Src/system_stm32f4xx.o
- .debug_line    0x000000000000356a       0x88 ./Core/Startup/startup_stm32f407vetx.o
- .debug_line    0x00000000000035f2      0xaf5 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o
- .debug_line    0x00000000000040e7      0xda4 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.o
- .debug_line    0x0000000000004e8b     0x1059 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o
- .debug_line    0x0000000000005ee4      0xc69 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.o
- .debug_line    0x0000000000006b4d     0x3aaa ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_i2c.o
- .debug_line    0x000000000000a5f7      0xa01 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_pwr.o
- .debug_line    0x000000000000aff8      0xe6f ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o
- .debug_line    0x000000000000be67     0x37e9 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o
- .debug_line    0x000000000000f650     0x1af2 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
- .debug_line    0x0000000000011142     0x2b9a ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_uart.o
- .debug_line    0x0000000000013cdc     0x2557 ./Middlewares/FreeRTOS/cmsis_os2.o
- .debug_line    0x0000000000016233      0x9d7 ./Middlewares/FreeRTOS/heap_4.o
- .debug_line    0x0000000000016c0a      0x7ad ./Middlewares/FreeRTOS/list.o
- .debug_line    0x00000000000173b7      0x81a ./Middlewares/FreeRTOS/port.o
- .debug_line    0x0000000000017bd1     0x1777 ./Middlewares/FreeRTOS/queue.o
- .debug_line    0x0000000000019348     0x1e2c ./Middlewares/FreeRTOS/tasks.o
- .debug_line    0x000000000001b174      0xe0d ./Middlewares/FreeRTOS/timers.o
- .debug_line    0x000000000001bf81      0x8c9 ./PeripheralDriver/Src/gyro.o
- .debug_line    0x000000000001c84a      0x7f0 ./PeripheralDriver/Src/i2c.o
- .debug_line    0x000000000001d03a      0xc5d ./PeripheralDriver/Src/oled.o
+.debug_line     0x0000000000000000    0x1dc38
+ .debug_line    0x0000000000000000     0x141e ./Core/Src/main.o
+ .debug_line    0x000000000000141e      0x9a1 ./Core/Src/stm32f4xx_hal_msp.o
+ .debug_line    0x0000000000001dbf      0xa07 ./Core/Src/stm32f4xx_it.o
+ .debug_line    0x00000000000027c6      0x4ef ./Core/Src/sysmem.o
+ .debug_line    0x0000000000002cb5      0x856 ./Core/Src/system_stm32f4xx.o
+ .debug_line    0x000000000000350b       0x88 ./Core/Startup/startup_stm32f407vetx.o
+ .debug_line    0x0000000000003593      0xaf5 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o
+ .debug_line    0x0000000000004088      0xda4 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.o
+ .debug_line    0x0000000000004e2c     0x1059 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o
+ .debug_line    0x0000000000005e85      0xc69 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.o
+ .debug_line    0x0000000000006aee     0x3aaa ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_i2c.o
+ .debug_line    0x000000000000a598      0xa01 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_pwr.o
+ .debug_line    0x000000000000af99      0xe6f ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o
+ .debug_line    0x000000000000be08     0x37e9 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o
+ .debug_line    0x000000000000f5f1     0x1af2 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
+ .debug_line    0x00000000000110e3     0x2b9a ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_uart.o
+ .debug_line    0x0000000000013c7d     0x2557 ./Middlewares/FreeRTOS/cmsis_os2.o
+ .debug_line    0x00000000000161d4      0x9d7 ./Middlewares/FreeRTOS/heap_4.o
+ .debug_line    0x0000000000016bab      0x7ad ./Middlewares/FreeRTOS/list.o
+ .debug_line    0x0000000000017358      0x81a ./Middlewares/FreeRTOS/port.o
+ .debug_line    0x0000000000017b72     0x1777 ./Middlewares/FreeRTOS/queue.o
+ .debug_line    0x00000000000192e9     0x1e2c ./Middlewares/FreeRTOS/tasks.o
+ .debug_line    0x000000000001b115      0xe0d ./Middlewares/FreeRTOS/timers.o
+ .debug_line    0x000000000001bf22      0x8c9 ./PeripheralDriver/Src/gyro.o
+ .debug_line    0x000000000001c7eb      0x7f0 ./PeripheralDriver/Src/i2c.o
+ .debug_line    0x000000000001cfdb      0xc5d ./PeripheralDriver/Src/oled.o
 
 .debug_str      0x0000000000000000    0xd8de3
  .debug_str     0x0000000000000000    0xcf0d7 ./Core/Src/main.o
