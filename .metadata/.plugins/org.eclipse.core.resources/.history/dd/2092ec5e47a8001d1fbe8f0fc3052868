@@ -982,7 +982,7 @@ void motor(void *argument)
 				  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal_motor);
 				  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal_motor);
 
-				  osDelay((fb_speed - 48)*40);
+				  osDelay((fb_speed - 48)*50);
 		  	  }
 
 		  	// Move forwards (Slow)
@@ -1001,7 +1001,7 @@ void motor(void *argument)
 		  		__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal_motor);
 		  		__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal_motor);
 
-		  		osDelay((fb_speed - 48)*40);
+		  		osDelay((fb_speed - 48)*50);
 		  }
 
 		  	  osDelay(10);

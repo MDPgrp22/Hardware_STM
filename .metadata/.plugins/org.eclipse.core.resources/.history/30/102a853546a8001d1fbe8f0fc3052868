@@ -966,8 +966,8 @@ void motor(void *argument)
 		  		  osDelay((fb_speed-48)*50);	// Additional delay if required
 		  	  }
 
-		  	  // Move backwards (Slow)
-		  	  else if(frontback == 'y'){
+		  	  // Move forwards (Slow)
+		  	  else if(frontback == 'u'){
 		  		  // Slow down reference
 		  		  pwmVal_motor = 1600;
 
@@ -982,11 +982,11 @@ void motor(void *argument)
 				  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal_motor);
 				  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal_motor);
 
-				  osDelay((fb_speed - 48)*40);
+				  osDelay((fb_speed - 48)*10);
 		  	  }
 
 		  	// Move forwards (Slow)
-		  	else if(frontback == 'u'){
+		  	else if(frontback == 'y'){
 		  		// Slow down reference
 		  		pwmVal_motor = 1600;
 
@@ -1001,7 +1001,7 @@ void motor(void *argument)
 		  		__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal_motor);
 		  		__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal_motor);
 
-		  		osDelay((fb_speed - 48)*40);
+		  		osDelay((fb_speed - 48)*10);
 		  }
 
 		  	  osDelay(10);

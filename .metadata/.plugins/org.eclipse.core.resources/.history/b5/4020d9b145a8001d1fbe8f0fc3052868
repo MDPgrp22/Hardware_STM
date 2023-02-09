@@ -966,64 +966,43 @@ void motor(void *argument)
 		  		  osDelay((fb_speed-48)*50);	// Additional delay if required
 		  	  }
 
-		  	  // Move backwards (Slow)
-		  	  else if(frontback == 'y'){
+		  	  // Move
+		  	  else if(frontback == 'u'){
 		  		  // Slow down reference
 		  		  pwmVal_motor = 1600;
 
 		  		  // MOTOR A
-		  		  HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_RESET);
-		  		  HAL_GPIO_WritePin(GPIOA, AIN1_Pin, GPIO_PIN_SET);
+				  HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_SET);
+				  HAL_GPIO_WritePin(GPIOA, AIN1_Pin, GPIO_PIN_RESET);
 
 				  // MOTOR B
-				  HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_RESET);
-				  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_SET);
+				  HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_SET);
+				  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_RESET);
 
 				  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal_motor);
 				  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal_motor);
 
-				  osDelay((fb_speed - 48)*40);
+				  osDelay((fb_speed - 48)*10);
+
 		  	  }
-
-		  	// Move forwards (Slow)
-		  	else if(frontback == 'u'){
-		  		// Slow down reference
-		  		pwmVal_motor = 1600;
-
-		  		// MOTOR A
-		  		HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_SET);
-		  		HAL_GPIO_WritePin(GPIOA, AIN1_Pin, GPIO_PIN_RESET);
-
-		  		// MOTOR B
-		  		HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_SET);
-		  		HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_RESET);
-
-		  		__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal_motor);
-		  		__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal_motor);
-
-		  		osDelay((fb_speed - 48)*40);
-		  }
 
 		  	  osDelay(10);
 		  	  dequeue(&q);
 
 
-	  }	// ENDIF Queue not empty
-
-	  // Queue empty
+	  }
 	  else{
 		  reset_motorVal();	//Reset the values
 		  encoder_offset = 0;
 		  encoder_error = 0;
 		  encoder_dist = 0;
-		  curAngle = 0;
-		  pwmVal_motor = 0;
 
-		  htim1.Instance->CCR4 = pwmVal_servo;	// Reset Servo values
+		  // Reset Servo values
+		  htim1.Instance->CCR4 = pwmVal_servo;
 
 		  // Stop motor
-		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal_motor);
-		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal_motor);
+		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, 0);
+		  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, 0);
 	  }
 
   }
