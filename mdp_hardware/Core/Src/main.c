@@ -1166,22 +1166,10 @@ void gyro_task(void *argument)
 			htim1.Instance->CCR4 = pwmVal_servo;	// Turn servo to the centre
 
 			curAngle = 0;
-//			// Stop motor
-//			__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, 0);
-//			__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, 0);
-
-
-			// turn error if too much
-//			if(abs((int) curAngle) > turn_angle){
-//				curAngle = (curAngle > 0) ? curAngle - turn_angle : curAngle + turn_angle ;
-//			}
-
-
 		}
 
 		// Ensures robot goes straight
 		else if((lr_speed == '0')&&(fb_speed > '0')){
-//			gyroStart();
 			eintegral = 0;
 
 			do{

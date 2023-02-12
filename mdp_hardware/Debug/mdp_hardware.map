@@ -6435,33 +6435,33 @@ LOAD c:/st/stm32cubeide_1.7.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.exte
  .debug_macro   0x000000000000483a      0x2db ./PeripheralDriver/Src/oled.o
  .debug_macro   0x0000000000004b15       0x70 ./PeripheralDriver/Src/oled.o
 
-.debug_line     0x0000000000000000    0x1dc74
- .debug_line    0x0000000000000000     0x145a ./Core/Src/main.o
- .debug_line    0x000000000000145a      0x9a1 ./Core/Src/stm32f4xx_hal_msp.o
- .debug_line    0x0000000000001dfb      0xa07 ./Core/Src/stm32f4xx_it.o
- .debug_line    0x0000000000002802      0x4ef ./Core/Src/sysmem.o
- .debug_line    0x0000000000002cf1      0x856 ./Core/Src/system_stm32f4xx.o
- .debug_line    0x0000000000003547       0x88 ./Core/Startup/startup_stm32f407vetx.o
- .debug_line    0x00000000000035cf      0xaf5 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o
- .debug_line    0x00000000000040c4      0xda4 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.o
- .debug_line    0x0000000000004e68     0x1059 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o
- .debug_line    0x0000000000005ec1      0xc69 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.o
- .debug_line    0x0000000000006b2a     0x3aaa ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_i2c.o
- .debug_line    0x000000000000a5d4      0xa01 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_pwr.o
- .debug_line    0x000000000000afd5      0xe6f ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o
- .debug_line    0x000000000000be44     0x37e9 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o
- .debug_line    0x000000000000f62d     0x1af2 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
- .debug_line    0x000000000001111f     0x2b9a ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_uart.o
- .debug_line    0x0000000000013cb9     0x2557 ./Middlewares/FreeRTOS/cmsis_os2.o
- .debug_line    0x0000000000016210      0x9d7 ./Middlewares/FreeRTOS/heap_4.o
- .debug_line    0x0000000000016be7      0x7ad ./Middlewares/FreeRTOS/list.o
- .debug_line    0x0000000000017394      0x81a ./Middlewares/FreeRTOS/port.o
- .debug_line    0x0000000000017bae     0x1777 ./Middlewares/FreeRTOS/queue.o
- .debug_line    0x0000000000019325     0x1e2c ./Middlewares/FreeRTOS/tasks.o
- .debug_line    0x000000000001b151      0xe0d ./Middlewares/FreeRTOS/timers.o
- .debug_line    0x000000000001bf5e      0x8c9 ./PeripheralDriver/Src/gyro.o
- .debug_line    0x000000000001c827      0x7f0 ./PeripheralDriver/Src/i2c.o
- .debug_line    0x000000000001d017      0xc5d ./PeripheralDriver/Src/oled.o
+.debug_line     0x0000000000000000    0x1dc72
+ .debug_line    0x0000000000000000     0x1458 ./Core/Src/main.o
+ .debug_line    0x0000000000001458      0x9a1 ./Core/Src/stm32f4xx_hal_msp.o
+ .debug_line    0x0000000000001df9      0xa07 ./Core/Src/stm32f4xx_it.o
+ .debug_line    0x0000000000002800      0x4ef ./Core/Src/sysmem.o
+ .debug_line    0x0000000000002cef      0x856 ./Core/Src/system_stm32f4xx.o
+ .debug_line    0x0000000000003545       0x88 ./Core/Startup/startup_stm32f407vetx.o
+ .debug_line    0x00000000000035cd      0xaf5 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o
+ .debug_line    0x00000000000040c2      0xda4 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.o
+ .debug_line    0x0000000000004e66     0x1059 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o
+ .debug_line    0x0000000000005ebf      0xc69 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.o
+ .debug_line    0x0000000000006b28     0x3aaa ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_i2c.o
+ .debug_line    0x000000000000a5d2      0xa01 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_pwr.o
+ .debug_line    0x000000000000afd3      0xe6f ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o
+ .debug_line    0x000000000000be42     0x37e9 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o
+ .debug_line    0x000000000000f62b     0x1af2 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
+ .debug_line    0x000000000001111d     0x2b9a ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_uart.o
+ .debug_line    0x0000000000013cb7     0x2557 ./Middlewares/FreeRTOS/cmsis_os2.o
+ .debug_line    0x000000000001620e      0x9d7 ./Middlewares/FreeRTOS/heap_4.o
+ .debug_line    0x0000000000016be5      0x7ad ./Middlewares/FreeRTOS/list.o
+ .debug_line    0x0000000000017392      0x81a ./Middlewares/FreeRTOS/port.o
+ .debug_line    0x0000000000017bac     0x1777 ./Middlewares/FreeRTOS/queue.o
+ .debug_line    0x0000000000019323     0x1e2c ./Middlewares/FreeRTOS/tasks.o
+ .debug_line    0x000000000001b14f      0xe0d ./Middlewares/FreeRTOS/timers.o
+ .debug_line    0x000000000001bf5c      0x8c9 ./PeripheralDriver/Src/gyro.o
+ .debug_line    0x000000000001c825      0x7f0 ./PeripheralDriver/Src/i2c.o
+ .debug_line    0x000000000001d015      0xc5d ./PeripheralDriver/Src/oled.o
 
 .debug_str      0x0000000000000000    0xd8de3
  .debug_str     0x0000000000000000    0xcf0d7 ./Core/Src/main.o

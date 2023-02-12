@@ -1,4 +1,4 @@
-15:00:14 **** Incremental Build of configuration Debug for project mdp_hardware ****
+00:55:20 **** Incremental Build of configuration Debug for project mdp_hardware ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'motor':
@@ -58,8 +58,8 @@ c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externalt
 ../Core/Src/main.c:1157:29: warning: embedded '\0' in format [-Wformat-contains-nul]
  1157 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |                             ^~
-../Core/Src/main.c:1198:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1198 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1186:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+ 1186 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |             ^~~
       |             |
       |             uint8_t * {aka unsigned char *}
@@ -67,14 +67,14 @@ In file included from ../Core/Src/main.c:28:
 c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
   244 | int sprintf (char *__restrict, const char *__restrict, ...)
       |              ^
-../Core/Src/main.c:1198:29: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1198 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1186:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+ 1186 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |                             ^~
-../Core/Src/main.c:1198:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
- 1198 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1186:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
+ 1186 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |                          ^~~
-../Core/Src/main.c:1198:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
- 1198 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1186:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
+ 1186 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ../Core/Src/main.c:1157:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
  1157 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
@@ -97,5 +97,5 @@ Finished building: mdp_hardware.hex
 Finished building: mdp_hardware.list
  
 
-15:00:15 Build Finished. 0 errors, 13 warnings. (took 1s.129ms)
+00:55:22 Build Finished. 0 errors, 13 warnings. (took 1s.607ms)
 
