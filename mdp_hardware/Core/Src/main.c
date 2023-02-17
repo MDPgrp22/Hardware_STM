@@ -817,6 +817,8 @@ void motor(void *argument)
 
 		  	  accelerate = 1; 		// Default always start with acceleration
 		  	  target_dist = (int) ((fb_speed - 48)*129 - 40);
+		  	  if(target_dist <= 0)
+		  		  target_dist = 0;
 
 		  	  // Display direction of movement
 		  	  sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
@@ -835,7 +837,7 @@ void motor(void *argument)
 		  		  htim1.Instance->CCR4 = pwmVal_servo - 1.1*(lr_speed-48) *servo_max;
 		  		  // right motor offset
 		  		  // right motor have to spin more due to differential steering
-		  		  motor_offset_r = 0.05*(lr_speed-48)+1;
+		  		  motor_offset_r = 0.03*(lr_speed-48)+1;
 		  		  motor_offset_l = 1;
 
 		  	  }
@@ -1142,9 +1144,9 @@ void gyro_task(void *argument)
 		if(lr_speed > '0'){
 
 			if(leftright == 'a')
-				turn_angle = 120;
+				turn_angle = 115;
 			else
-				turn_angle = 120;
+				turn_angle = 125;
 
 			// Continue Reading Gyro until hit threshold
 			while(abs((int) curAngle) < turn_angle){
