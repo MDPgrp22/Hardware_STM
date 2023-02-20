@@ -1,3 +1,4 @@
+// Original main.c 19/02/23
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
@@ -869,7 +870,7 @@ void motor(void *argument)
 							  if(pwmVal_motor > motor_reference){
 								  accelerate = 0;
 								  while(encoder_dist < (int)target_dist*0.95){
-									  osDelay(1);
+									  osDelay(10);
 								  }
 							  }
 
@@ -919,7 +920,7 @@ void motor(void *argument)
 							  if(pwmVal_motor > motor_reference){
 								  accelerate = 0;
 								  while(encoder_dist < (int)target_dist*0.95){
-									  osDelay(1);
+									  osDelay(10);
 								  }
 							  }
 
@@ -1144,7 +1145,7 @@ void gyro_task(void *argument)
 		if(lr_speed > '0'){
 
 			if(leftright == 'a')
-				turn_angle = 115;
+				turn_angle = 125;
 			else
 				turn_angle = 125;
 
@@ -1181,7 +1182,7 @@ void gyro_task(void *argument)
 				angle = ((double)(angular_speed*(100) - 2) / 16400.0)*1.5 ; //1.69
 
 				// Prevent gyro drift by ignoring small angle change
-				if(abs(angle) > 2)
+				if(abs(angle) > 1)
 					curAngle += angle;
 
 				// Print Gyro

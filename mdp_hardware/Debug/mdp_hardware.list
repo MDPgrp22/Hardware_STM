@@ -3055,8 +3055,8 @@ void motor(void *argument)
  80019d0:	f887 303d 	strb.w	r3, [r7, #61]	; 0x3d
 								  while(encoder_dist < (int)target_dist*0.95){
  80019d4:	e002      	b.n	80019dc <motor+0x27c>
-									  osDelay(1);
- 80019d6:	2001      	movs	r0, #1
+									  osDelay(10);
+ 80019d6:	200a      	movs	r0, #10
  80019d8:	f004 ff56 	bl	8006888 <osDelay>
 								  while(encoder_dist < (int)target_dist*0.95){
  80019dc:	4b1a      	ldr	r3, [pc, #104]	; (8001a48 <motor+0x2e8>)
@@ -3252,8 +3252,8 @@ void motor(void *argument)
  8001b5c:	f887 303d 	strb.w	r3, [r7, #61]	; 0x3d
 								  while(encoder_dist < (int)target_dist*0.95){
  8001b60:	e002      	b.n	8001b68 <motor+0x408>
-									  osDelay(1);
- 8001b62:	2001      	movs	r0, #1
+									  osDelay(10);
+ 8001b62:	200a      	movs	r0, #10
  8001b64:	f004 fe90 	bl	8006888 <osDelay>
 								  while(encoder_dist < (int)target_dist*0.95){
  8001b68:	4b69      	ldr	r3, [pc, #420]	; (8001d10 <motor+0x5b0>)
@@ -3885,8 +3885,8 @@ void gyro_task(void *argument)
  8001f7c:	781b      	ldrb	r3, [r3, #0]
  8001f7e:	2b61      	cmp	r3, #97	; 0x61
  8001f80:	d102      	bne.n	8001f88 <gyro_task+0x58>
-				turn_angle = 115;
- 8001f82:	2373      	movs	r3, #115	; 0x73
+				turn_angle = 125;
+ 8001f82:	237d      	movs	r3, #125	; 0x7d
  8001f84:	623b      	str	r3, [r7, #32]
  8001f86:	e059      	b.n	800203c <gyro_task+0x10c>
 			else
@@ -4063,13 +4063,13 @@ void gyro_task(void *argument)
  80020e4:	83bb      	strh	r3, [r7, #28]
 
 				// Prevent gyro drift by ignoring small angle change
-				if(abs(angle) > 2)
+				if(abs(angle) > 1)
  80020e6:	f9b7 301c 	ldrsh.w	r3, [r7, #28]
  80020ea:	2b00      	cmp	r3, #0
  80020ec:	bfb8      	it	lt
  80020ee:	425b      	neglt	r3, r3
  80020f0:	b29b      	uxth	r3, r3
- 80020f2:	2b02      	cmp	r3, #2
+ 80020f2:	2b01      	cmp	r3, #1
  80020f4:	d90e      	bls.n	8002114 <gyro_task+0x1e4>
 					curAngle += angle;
  80020f6:	f9b7 301c 	ldrsh.w	r3, [r7, #28]

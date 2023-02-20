@@ -1,9 +1,35 @@
-14:52:04 **** Build of configuration Debug for project mdp_hardware ****
+01:18:04 **** Incremental Build of configuration Debug for project mdp_hardware ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'PID_correct':
+../Core/Src/main.c:770:10: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  770 |  sprintf(msg, "gyro : %3d\0", (int)curAngle);
+      |          ^~~
+      |          |
+      |          uint8_t * {aka unsigned char *}
+In file included from ../Core/Src/main.c:28:
+c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  244 | int sprintf (char *__restrict, const char *__restrict, ...)
+      |              ^
+../Core/Src/main.c:770:26: warning: embedded '\0' in format [-Wformat-contains-nul]
+  770 |  sprintf(msg, "gyro : %3d\0", (int)curAngle);
+      |                          ^~
+../Core/Src/main.c: In function 'read_Gyro':
+../Core/Src/main.c:795:10: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  795 |  sprintf(msg, "gyro : %3d\0", (int)curAngle);
+      |          ^~~
+      |          |
+      |          uint8_t * {aka unsigned char *}
+In file included from ../Core/Src/main.c:28:
+c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  244 | int sprintf (char *__restrict, const char *__restrict, ...)
+      |              ^
+../Core/Src/main.c:795:26: warning: embedded '\0' in format [-Wformat-contains-nul]
+  795 |  sprintf(msg, "gyro : %3d\0", (int)curAngle);
+      |                          ^~
 ../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:822:16: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  822 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
+../Core/Src/main.c:999:16: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  999 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
       |                ^~~~~
       |                |
       |                uint8_t * {aka unsigned char *}
@@ -11,12 +37,33 @@ In file included from ../Core/Src/main.c:28:
 c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
   244 | int sprintf (char *__restrict, const char *__restrict, ...)
       |              ^
-../Core/Src/main.c:822:36: warning: embedded '\0' in format [-Wformat-contains-nul]
-  822 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
+../Core/Src/main.c:999:36: warning: embedded '\0' in format [-Wformat-contains-nul]
+  999 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
       |                                    ^~
+../Core/Src/main.c:976:6: warning: unused variable 'eintegral' [-Wunused-variable]
+  976 |  int eintegral = 0; // Integral error
+      |      ^~~~~~~~~
+../Core/Src/main.c:975:10: warning: unused variable 'ki' [-Wunused-variable]
+  975 |  uint8_t ki = 1.3;
+      |          ^~
+../Core/Src/main.c:974:10: warning: unused variable 'kp' [-Wunused-variable]
+  974 |  uint8_t kp = 50;
+      |          ^~
+../Core/Src/main.c:973:6: warning: unused variable 'current_encoder_error' [-Wunused-variable]
+  973 |  int current_encoder_error = 0;
+      |      ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:967:10: warning: variable 'accelerate' set but not used [-Wunused-but-set-variable]
+  967 |  uint8_t accelerate;
+      |          ^~~~~~~~~~
+../Core/Src/main.c:962:9: warning: variable 'motor_offset_l' set but not used [-Wunused-but-set-variable]
+  962 |  double motor_offset_l = 1;
+      |         ^~~~~~~~~~~~~~
+../Core/Src/main.c:961:9: warning: variable 'motor_offset_r' set but not used [-Wunused-but-set-variable]
+  961 |  double motor_offset_r = 1;
+      |         ^~~~~~~~~~~~~~
 ../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:1088:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1088 |    sprintf(msg, "Diff : %3d\0", encoder_error);
+../Core/Src/main.c:1180:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+ 1180 |    sprintf(msg, "Diff : %3d\0", encoder_error);
       |            ^~~
       |            |
       |            uint8_t * {aka unsigned char *}
@@ -24,63 +71,321 @@ In file included from ../Core/Src/main.c:28:
 c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
   244 | int sprintf (char *__restrict, const char *__restrict, ...)
       |              ^
-../Core/Src/main.c:1088:28: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1088 |    sprintf(msg, "Diff : %3d\0", encoder_error);
+../Core/Src/main.c:1180:28: warning: embedded '\0' in format [-Wformat-contains-nul]
+ 1180 |    sprintf(msg, "Diff : %3d\0", encoder_error);
       |                            ^~
+../Core/Src/main.c:1183:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+ 1183 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+In file included from ../Core/Src/main.c:28:
+c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  244 | int sprintf (char *__restrict, const char *__restrict, ...)
+      |              ^
+../Core/Src/main.c:1183:27: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+ 1183 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
+      |                         ~~^     ~~~~~~~~~~~~
+      |                           |     |
+      |                           int   uint32_t {aka long unsigned int}
+      |                         %3ld
+../Core/Src/main.c:1183:28: warning: embedded '\0' in format [-Wformat-contains-nul]
+ 1183 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
+      |                            ^~
+../Core/Src/main.c: In function 'gyro_task':
+../Core/Src/main.c:1226:6: warning: unused variable 'turn_angle' [-Wunused-variable]
+ 1226 |  int turn_angle = 105; // gyro turn threshold for 90deg
+      |      ^~~~~~~~~~
+../Core/Src/main.c:1224:10: warning: unused variable 'servo_val' [-Wunused-variable]
+ 1224 |  uint8_t servo_val = pwmVal_servo;
+      |          ^~~~~~~~~
+../Core/Src/main.c:1221:10: warning: unused variable 'err' [-Wunused-variable]
+ 1221 |  int32_t err;   // To total error for Integral
+      |          ^~~
+../Core/Src/main.c:1219:10: warning: unused variable 'eintegral' [-Wunused-variable]
+ 1219 |  int16_t eintegral = 0; // Integral error
+      |          ^~~~~~~~~
+../Core/Src/main.c:1218:10: warning: unused variable 'ki' [-Wunused-variable]
+ 1218 |  uint8_t ki = 0.8;
+      |          ^~
+../Core/Src/main.c:1217:10: warning: unused variable 'kp' [-Wunused-variable]
+ 1217 |  uint8_t kp = 5;
+      |          ^~
+../Core/Src/main.c:1214:10: warning: unused variable 'angle' [-Wunused-variable]
+ 1214 |  int16_t angle = 0;
+      |          ^~~~~
+../Core/Src/main.c:1213:10: warning: unused variable 'angular_speed' [-Wunused-variable]
+ 1213 |  int16_t angular_speed = 0;
+      |          ^~~~~~~~~~~~~
+../Core/Src/main.c:1211:10: warning: unused variable 'val' [-Wunused-variable]
+ 1211 |  uint8_t val[2] = { 0, 0 }; // To store ICM gyro values
+      |          ^~~
+../Core/Src/main.c: In function 'PID_correct':
+../Core/Src/main.c:770:23: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
+  770 |  sprintf(msg, "gyro : %3d\0", (int)curAngle);
+      |                       ^~~
+../Core/Src/main.c:770:2: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
+  770 |  sprintf(msg, "gyro : %3d\0", (int)curAngle);
+      |  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'read_Gyro':
+../Core/Src/main.c:795:23: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
+  795 |  sprintf(msg, "gyro : %3d\0", (int)curAngle);
+      |                       ^~~
+../Core/Src/main.c:795:2: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
+  795 |  sprintf(msg, "gyro : %3d\0", (int)curAngle);
+      |  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: mdp_hardware.elf
+ 
+arm-none-eabi-size   mdp_hardware.elf 
+arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
+arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
+   text	   data	    bss	    dec	    hex	filename
+  44488	    136	  21944	  66568	  10408	mdp_hardware.elf
+Finished building: default.size.stdout
+ 
+Finished building: mdp_hardware.hex
+ 
+Finished building: mdp_hardware.list
+ 
+01:18:09 **** Incremental Build of configuration Debug for project mdp_hardware ****
+make -j16 all 
+arm-none-eabi-size   mdp_hardware.elf 
+   text	   data	    bss	    dec	    hex	filename
+  44488	    136	  21944	  66568	  10408	mdp_hardware.elf
+Finished building: default.size.stdout
+ 
+15:35:12 **** Incremental Build of configuration Debug for project mdp_hardware ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'PID_correct':
+../Core/Src/main.c:770:10: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  770 |  sprintf(msg, "gyro : %3d\0", (int)curAngle);
+      |          ^~~
+      |          |
+      |          uint8_t * {aka unsigned char *}
+In file included from ../Core/Src/main.c:28:
+c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  244 | int sprintf (char *__restrict, const char *__restrict, ...)
+      |              ^
+../Core/Src/main.c:770:26: warning: embedded '\0' in format [-Wformat-contains-nul]
+  770 |  sprintf(msg, "gyro : %3d\0", (int)curAngle);
+      |                          ^~
+../Core/Src/main.c: In function 'read_Gyro':
+../Core/Src/main.c:795:10: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  795 |  sprintf(msg, "gyro : %3d\0", (int)curAngle);
+      |          ^~~
+      |          |
+      |          uint8_t * {aka unsigned char *}
+In file included from ../Core/Src/main.c:28:
+c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  244 | int sprintf (char *__restrict, const char *__restrict, ...)
+      |              ^
+../Core/Src/main.c:795:26: warning: embedded '\0' in format [-Wformat-contains-nul]
+  795 |  sprintf(msg, "gyro : %3d\0", (int)curAngle);
+      |                          ^~
+../Core/Src/main.c: In function 'motor':
+../Core/Src/main.c:1002:16: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+ 1002 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
+      |                ^~~~~
+      |                |
+      |                uint8_t * {aka unsigned char *}
+In file included from ../Core/Src/main.c:28:
+c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  244 | int sprintf (char *__restrict, const char *__restrict, ...)
+      |              ^
+../Core/Src/main.c:1002:36: warning: embedded '\0' in format [-Wformat-contains-nul]
+ 1002 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
+      |                                    ^~
+../Core/Src/main.c:979:6: warning: unused variable 'eintegral' [-Wunused-variable]
+  979 |  int eintegral = 0; // Integral error
+      |      ^~~~~~~~~
+../Core/Src/main.c:978:10: warning: unused variable 'ki' [-Wunused-variable]
+  978 |  uint8_t ki = 1.3;
+      |          ^~
+../Core/Src/main.c:977:10: warning: unused variable 'kp' [-Wunused-variable]
+  977 |  uint8_t kp = 50;
+      |          ^~
+../Core/Src/main.c:976:6: warning: unused variable 'current_encoder_error' [-Wunused-variable]
+  976 |  int current_encoder_error = 0;
+      |      ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:970:10: warning: variable 'accelerate' set but not used [-Wunused-but-set-variable]
+  970 |  uint8_t accelerate;
+      |          ^~~~~~~~~~
+../Core/Src/main.c:965:9: warning: variable 'motor_offset_l' set but not used [-Wunused-but-set-variable]
+  965 |  double motor_offset_l = 1;
+      |         ^~~~~~~~~~~~~~
+../Core/Src/main.c:964:9: warning: variable 'motor_offset_r' set but not used [-Wunused-but-set-variable]
+  964 |  double motor_offset_r = 1;
+      |         ^~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'encoder_task':
+../Core/Src/main.c:1183:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+ 1183 |    sprintf(msg, "Diff : %3d\0", encoder_error);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+In file included from ../Core/Src/main.c:28:
+c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  244 | int sprintf (char *__restrict, const char *__restrict, ...)
+      |              ^
+../Core/Src/main.c:1183:28: warning: embedded '\0' in format [-Wformat-contains-nul]
+ 1183 |    sprintf(msg, "Diff : %3d\0", encoder_error);
+      |                            ^~
+../Core/Src/main.c:1186:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+ 1186 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+In file included from ../Core/Src/main.c:28:
+c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  244 | int sprintf (char *__restrict, const char *__restrict, ...)
+      |              ^
+../Core/Src/main.c:1186:27: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+ 1186 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
+      |                         ~~^     ~~~~~~~~~~~~
+      |                           |     |
+      |                           int   uint32_t {aka long unsigned int}
+      |                         %3ld
+../Core/Src/main.c:1186:28: warning: embedded '\0' in format [-Wformat-contains-nul]
+ 1186 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
+      |                            ^~
+../Core/Src/main.c: In function 'gyro_task':
+../Core/Src/main.c:1229:6: warning: unused variable 'turn_angle' [-Wunused-variable]
+ 1229 |  int turn_angle = 105; // gyro turn threshold for 90deg
+      |      ^~~~~~~~~~
+../Core/Src/main.c:1227:10: warning: unused variable 'servo_val' [-Wunused-variable]
+ 1227 |  uint8_t servo_val = pwmVal_servo;
+      |          ^~~~~~~~~
+../Core/Src/main.c:1224:10: warning: unused variable 'err' [-Wunused-variable]
+ 1224 |  int32_t err;   // To total error for Integral
+      |          ^~~
+../Core/Src/main.c:1222:10: warning: unused variable 'eintegral' [-Wunused-variable]
+ 1222 |  int16_t eintegral = 0; // Integral error
+      |          ^~~~~~~~~
+../Core/Src/main.c:1221:10: warning: unused variable 'ki' [-Wunused-variable]
+ 1221 |  uint8_t ki = 0.8;
+      |          ^~
+../Core/Src/main.c:1220:10: warning: unused variable 'kp' [-Wunused-variable]
+ 1220 |  uint8_t kp = 5;
+      |          ^~
+../Core/Src/main.c:1217:10: warning: unused variable 'angle' [-Wunused-variable]
+ 1217 |  int16_t angle = 0;
+      |          ^~~~~
+../Core/Src/main.c:1216:10: warning: unused variable 'angular_speed' [-Wunused-variable]
+ 1216 |  int16_t angular_speed = 0;
+      |          ^~~~~~~~~~~~~
+../Core/Src/main.c:1214:10: warning: unused variable 'val' [-Wunused-variable]
+ 1214 |  uint8_t val[2] = { 0, 0 }; // To store ICM gyro values
+      |          ^~~
+../Core/Src/main.c: In function 'PID_correct':
+../Core/Src/main.c:770:23: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
+  770 |  sprintf(msg, "gyro : %3d\0", (int)curAngle);
+      |                       ^~~
+../Core/Src/main.c:770:2: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
+  770 |  sprintf(msg, "gyro : %3d\0", (int)curAngle);
+      |  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'read_Gyro':
+../Core/Src/main.c:795:23: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
+  795 |  sprintf(msg, "gyro : %3d\0", (int)curAngle);
+      |                       ^~~
+../Core/Src/main.c:795:2: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
+  795 |  sprintf(msg, "gyro : %3d\0", (int)curAngle);
+      |  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: mdp_hardware.elf
+ 
+arm-none-eabi-size   mdp_hardware.elf 
+arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
+arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
+Finished building: default.size.stdout
+ 
+Finished building: mdp_hardware.hex
+ 
+Finished building: mdp_hardware.list
+ 
+15:39:22 **** Incremental Build of configuration Debug for project mdp_hardware ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'motor':
+../Core/Src/main.c:825:16: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  825 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
+      |                ^~~~~
+      |                |
+      |                uint8_t * {aka unsigned char *}
+In file included from ../Core/Src/main.c:29:
+c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  244 | int sprintf (char *__restrict, const char *__restrict, ...)
+      |              ^
+../Core/Src/main.c:825:36: warning: embedded '\0' in format [-Wformat-contains-nul]
+  825 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
+      |                                    ^~
+../Core/Src/main.c: In function 'encoder_task':
 ../Core/Src/main.c:1091:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1091 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
+ 1091 |    sprintf(msg, "Diff : %3d\0", encoder_error);
       |            ^~~
       |            |
       |            uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
+In file included from ../Core/Src/main.c:29:
 c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
   244 | int sprintf (char *__restrict, const char *__restrict, ...)
       |              ^
-../Core/Src/main.c:1091:27: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
- 1091 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
+../Core/Src/main.c:1091:28: warning: embedded '\0' in format [-Wformat-contains-nul]
+ 1091 |    sprintf(msg, "Diff : %3d\0", encoder_error);
+      |                            ^~
+../Core/Src/main.c:1094:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+ 1094 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+In file included from ../Core/Src/main.c:29:
+c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  244 | int sprintf (char *__restrict, const char *__restrict, ...)
+      |              ^
+../Core/Src/main.c:1094:27: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+ 1094 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
       |                         ~~^     ~~~~~~~~~~~~
       |                           |     |
       |                           int   uint32_t {aka long unsigned int}
       |                         %3ld
-../Core/Src/main.c:1091:28: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1091 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
+../Core/Src/main.c:1094:28: warning: embedded '\0' in format [-Wformat-contains-nul]
+ 1094 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
       |                            ^~
 ../Core/Src/main.c: In function 'gyro_task':
-../Core/Src/main.c:1157:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1157 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1160:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+ 1160 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |             ^~~
       |             |
       |             uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
+In file included from ../Core/Src/main.c:29:
 c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
   244 | int sprintf (char *__restrict, const char *__restrict, ...)
       |              ^
-../Core/Src/main.c:1157:29: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1157 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1160:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+ 1160 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |                             ^~
-../Core/Src/main.c:1198:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1198 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1189:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+ 1189 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |             ^~~
       |             |
       |             uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
+In file included from ../Core/Src/main.c:29:
 c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
   244 | int sprintf (char *__restrict, const char *__restrict, ...)
       |              ^
-../Core/Src/main.c:1198:29: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1198 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1189:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+ 1189 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |                             ^~
-../Core/Src/main.c:1198:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
- 1198 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1189:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
+ 1189 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |                          ^~~
-../Core/Src/main.c:1198:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
- 1198 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1189:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
+ 1189 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../Core/Src/main.c:1157:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
- 1157 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1160:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
+ 1160 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |                          ^~~
-../Core/Src/main.c:1157:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
- 1157 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1160:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
+ 1160 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: mdp_hardware.elf
@@ -89,103 +394,96 @@ arm-none-eabi-size   mdp_hardware.elf
 arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
 arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
    text	   data	    bss	    dec	    hex	filename
-  44440	    136	  21944	  66520	  103d8	mdp_hardware.elf
+  44456	    136	  21944	  66536	  103e8	mdp_hardware.elf
 Finished building: default.size.stdout
  
 Finished building: mdp_hardware.hex
  
 Finished building: mdp_hardware.list
  
-14:52:26 **** Incremental Build of configuration Debug for project mdp_hardware ****
-make -j16 all 
-arm-none-eabi-size   mdp_hardware.elf 
-   text	   data	    bss	    dec	    hex	filename
-  44440	    136	  21944	  66520	  103d8	mdp_hardware.elf
-Finished building: default.size.stdout
- 
-14:54:02 **** Incremental Build of configuration Debug for project mdp_hardware ****
+15:40:36 **** Incremental Build of configuration Debug for project mdp_hardware ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:822:16: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  822 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
+../Core/Src/main.c:825:16: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  825 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
       |                ^~~~~
       |                |
       |                uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
+In file included from ../Core/Src/main.c:29:
 c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
   244 | int sprintf (char *__restrict, const char *__restrict, ...)
       |              ^
-../Core/Src/main.c:822:36: warning: embedded '\0' in format [-Wformat-contains-nul]
-  822 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
+../Core/Src/main.c:825:36: warning: embedded '\0' in format [-Wformat-contains-nul]
+  825 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
       |                                    ^~
 ../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:1088:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1088 |    sprintf(msg, "Diff : %3d\0", encoder_error);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1088:28: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1088 |    sprintf(msg, "Diff : %3d\0", encoder_error);
-      |                            ^~
 ../Core/Src/main.c:1091:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1091 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
+ 1091 |    sprintf(msg, "Diff : %3d\0", encoder_error);
       |            ^~~
       |            |
       |            uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
+In file included from ../Core/Src/main.c:29:
 c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
   244 | int sprintf (char *__restrict, const char *__restrict, ...)
       |              ^
-../Core/Src/main.c:1091:27: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
- 1091 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
+../Core/Src/main.c:1091:28: warning: embedded '\0' in format [-Wformat-contains-nul]
+ 1091 |    sprintf(msg, "Diff : %3d\0", encoder_error);
+      |                            ^~
+../Core/Src/main.c:1094:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+ 1094 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+In file included from ../Core/Src/main.c:29:
+c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  244 | int sprintf (char *__restrict, const char *__restrict, ...)
+      |              ^
+../Core/Src/main.c:1094:27: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+ 1094 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
       |                         ~~^     ~~~~~~~~~~~~
       |                           |     |
       |                           int   uint32_t {aka long unsigned int}
       |                         %3ld
-../Core/Src/main.c:1091:28: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1091 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
+../Core/Src/main.c:1094:28: warning: embedded '\0' in format [-Wformat-contains-nul]
+ 1094 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
       |                            ^~
 ../Core/Src/main.c: In function 'gyro_task':
-../Core/Src/main.c:1157:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1157 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1160:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+ 1160 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |             ^~~
       |             |
       |             uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
+In file included from ../Core/Src/main.c:29:
 c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
   244 | int sprintf (char *__restrict, const char *__restrict, ...)
       |              ^
-../Core/Src/main.c:1157:29: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1157 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1160:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+ 1160 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |                             ^~
-../Core/Src/main.c:1198:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1198 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1189:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+ 1189 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |             ^~~
       |             |
       |             uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
+In file included from ../Core/Src/main.c:29:
 c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
   244 | int sprintf (char *__restrict, const char *__restrict, ...)
       |              ^
-../Core/Src/main.c:1198:29: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1198 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1189:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+ 1189 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |                             ^~
-../Core/Src/main.c:1198:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
- 1198 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1189:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
+ 1189 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |                          ^~~
-../Core/Src/main.c:1198:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
- 1198 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1189:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
+ 1189 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../Core/Src/main.c:1157:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
- 1157 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1160:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
+ 1160 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |                          ^~~
-../Core/Src/main.c:1157:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
- 1157 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1160:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
+ 1160 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: mdp_hardware.elf
@@ -194,96 +492,96 @@ arm-none-eabi-size   mdp_hardware.elf
 arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
 arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
    text	   data	    bss	    dec	    hex	filename
-  44440	    136	  21944	  66520	  103d8	mdp_hardware.elf
+  44456	    136	  21944	  66536	  103e8	mdp_hardware.elf
 Finished building: default.size.stdout
  
 Finished building: mdp_hardware.hex
  
 Finished building: mdp_hardware.list
  
-14:56:24 **** Incremental Build of configuration Debug for project mdp_hardware ****
+15:44:22 **** Incremental Build of configuration Debug for project mdp_hardware ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:822:16: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  822 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
+../Core/Src/main.c:825:16: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  825 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
       |                ^~~~~
       |                |
       |                uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
+In file included from ../Core/Src/main.c:29:
 c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
   244 | int sprintf (char *__restrict, const char *__restrict, ...)
       |              ^
-../Core/Src/main.c:822:36: warning: embedded '\0' in format [-Wformat-contains-nul]
-  822 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
+../Core/Src/main.c:825:36: warning: embedded '\0' in format [-Wformat-contains-nul]
+  825 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
       |                                    ^~
 ../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:1088:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1088 |    sprintf(msg, "Diff : %3d\0", encoder_error);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1088:28: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1088 |    sprintf(msg, "Diff : %3d\0", encoder_error);
-      |                            ^~
 ../Core/Src/main.c:1091:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1091 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
+ 1091 |    sprintf(msg, "Diff : %3d\0", encoder_error);
       |            ^~~
       |            |
       |            uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
+In file included from ../Core/Src/main.c:29:
 c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
   244 | int sprintf (char *__restrict, const char *__restrict, ...)
       |              ^
-../Core/Src/main.c:1091:27: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
- 1091 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
+../Core/Src/main.c:1091:28: warning: embedded '\0' in format [-Wformat-contains-nul]
+ 1091 |    sprintf(msg, "Diff : %3d\0", encoder_error);
+      |                            ^~
+../Core/Src/main.c:1094:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+ 1094 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
+      |            ^~~
+      |            |
+      |            uint8_t * {aka unsigned char *}
+In file included from ../Core/Src/main.c:29:
+c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  244 | int sprintf (char *__restrict, const char *__restrict, ...)
+      |              ^
+../Core/Src/main.c:1094:27: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+ 1094 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
       |                         ~~^     ~~~~~~~~~~~~
       |                           |     |
       |                           int   uint32_t {aka long unsigned int}
       |                         %3ld
-../Core/Src/main.c:1091:28: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1091 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
+../Core/Src/main.c:1094:28: warning: embedded '\0' in format [-Wformat-contains-nul]
+ 1094 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
       |                            ^~
 ../Core/Src/main.c: In function 'gyro_task':
-../Core/Src/main.c:1157:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1157 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1160:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+ 1160 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |             ^~~
       |             |
       |             uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
+In file included from ../Core/Src/main.c:29:
 c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
   244 | int sprintf (char *__restrict, const char *__restrict, ...)
       |              ^
-../Core/Src/main.c:1157:29: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1157 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1160:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+ 1160 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |                             ^~
-../Core/Src/main.c:1198:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1198 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1189:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+ 1189 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |             ^~~
       |             |
       |             uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
+In file included from ../Core/Src/main.c:29:
 c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
   244 | int sprintf (char *__restrict, const char *__restrict, ...)
       |              ^
-../Core/Src/main.c:1198:29: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1198 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1189:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+ 1189 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |                             ^~
-../Core/Src/main.c:1198:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
- 1198 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1189:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
+ 1189 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |                          ^~~
-../Core/Src/main.c:1198:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
- 1198 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1189:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
+ 1189 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../Core/Src/main.c:1157:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
- 1157 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1160:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
+ 1160 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |                          ^~~
-../Core/Src/main.c:1157:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
- 1157 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1160:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
+ 1160 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: mdp_hardware.elf
@@ -292,299 +590,103 @@ arm-none-eabi-size   mdp_hardware.elf
 arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
 arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
    text	   data	    bss	    dec	    hex	filename
-  44440	    136	  21944	  66520	  103d8	mdp_hardware.elf
+  44456	    136	  21944	  66536	  103e8	mdp_hardware.elf
 Finished building: default.size.stdout
  
 Finished building: mdp_hardware.hex
  
 Finished building: mdp_hardware.list
  
-15:00:14 **** Incremental Build of configuration Debug for project mdp_hardware ****
+15:44:44 **** Incremental Build of configuration Debug for project mdp_hardware ****
+make -j16 all 
+arm-none-eabi-size   mdp_hardware.elf 
+   text	   data	    bss	    dec	    hex	filename
+  44456	    136	  21944	  66536	  103e8	mdp_hardware.elf
+Finished building: default.size.stdout
+ 
+20:10:12 **** Incremental Build of configuration Debug for project mdp_hardware ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:822:16: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  822 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
+../Core/Src/main.c:825:16: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  825 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
       |                ^~~~~
       |                |
       |                uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
+In file included from ../Core/Src/main.c:29:
 c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
   244 | int sprintf (char *__restrict, const char *__restrict, ...)
       |              ^
-../Core/Src/main.c:822:36: warning: embedded '\0' in format [-Wformat-contains-nul]
-  822 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
+../Core/Src/main.c:825:36: warning: embedded '\0' in format [-Wformat-contains-nul]
+  825 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
       |                                    ^~
 ../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:1088:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1088 |    sprintf(msg, "Diff : %3d\0", encoder_error);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1088:28: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1088 |    sprintf(msg, "Diff : %3d\0", encoder_error);
-      |                            ^~
 ../Core/Src/main.c:1091:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1091 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
+ 1091 |    sprintf(msg, "Diff : %3d\0", encoder_error);
       |            ^~~
       |            |
       |            uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
+In file included from ../Core/Src/main.c:29:
 c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
   244 | int sprintf (char *__restrict, const char *__restrict, ...)
       |              ^
-../Core/Src/main.c:1091:27: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
- 1091 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
-      |                         ~~^     ~~~~~~~~~~~~
-      |                           |     |
-      |                           int   uint32_t {aka long unsigned int}
-      |                         %3ld
 ../Core/Src/main.c:1091:28: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1091 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
+ 1091 |    sprintf(msg, "Diff : %3d\0", encoder_error);
       |                            ^~
-../Core/Src/main.c: In function 'gyro_task':
-../Core/Src/main.c:1157:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1157 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1157:29: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1157 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                             ^~
-../Core/Src/main.c:1198:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1198 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1198:29: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1198 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                             ^~
-../Core/Src/main.c:1198:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
- 1198 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                          ^~~
-../Core/Src/main.c:1198:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
- 1198 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../Core/Src/main.c:1157:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
- 1157 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                          ^~~
-../Core/Src/main.c:1157:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
- 1157 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: mdp_hardware.elf
- 
-arm-none-eabi-size   mdp_hardware.elf 
-arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
-arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
-   text	   data	    bss	    dec	    hex	filename
-  44440	    136	  21944	  66520	  103d8	mdp_hardware.elf
-Finished building: default.size.stdout
- 
-Finished building: mdp_hardware.hex
- 
-Finished building: mdp_hardware.list
- 
-00:55:20 **** Incremental Build of configuration Debug for project mdp_hardware ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:822:16: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  822 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
-      |                ^~~~~
-      |                |
-      |                uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:822:36: warning: embedded '\0' in format [-Wformat-contains-nul]
-  822 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
-      |                                    ^~
-../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:1088:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1088 |    sprintf(msg, "Diff : %3d\0", encoder_error);
+../Core/Src/main.c:1094:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+ 1094 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
       |            ^~~
       |            |
       |            uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
+In file included from ../Core/Src/main.c:29:
 c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
   244 | int sprintf (char *__restrict, const char *__restrict, ...)
       |              ^
-../Core/Src/main.c:1088:28: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1088 |    sprintf(msg, "Diff : %3d\0", encoder_error);
-      |                            ^~
-../Core/Src/main.c:1091:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1091 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1091:27: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
- 1091 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
+../Core/Src/main.c:1094:27: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+ 1094 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
       |                         ~~^     ~~~~~~~~~~~~
       |                           |     |
       |                           int   uint32_t {aka long unsigned int}
       |                         %3ld
-../Core/Src/main.c:1091:28: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1091 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
+../Core/Src/main.c:1094:28: warning: embedded '\0' in format [-Wformat-contains-nul]
+ 1094 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
       |                            ^~
 ../Core/Src/main.c: In function 'gyro_task':
-../Core/Src/main.c:1157:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1157 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1160:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+ 1160 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |             ^~~
       |             |
       |             uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
+In file included from ../Core/Src/main.c:29:
 c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
   244 | int sprintf (char *__restrict, const char *__restrict, ...)
       |              ^
-../Core/Src/main.c:1157:29: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1157 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1160:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+ 1160 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |                             ^~
-../Core/Src/main.c:1186:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1186 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1189:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+ 1189 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |             ^~~
       |             |
       |             uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
+In file included from ../Core/Src/main.c:29:
 c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
   244 | int sprintf (char *__restrict, const char *__restrict, ...)
       |              ^
-../Core/Src/main.c:1186:29: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1186 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1189:29: warning: embedded '\0' in format [-Wformat-contains-nul]
+ 1189 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |                             ^~
-../Core/Src/main.c:1186:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
- 1186 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1189:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
+ 1189 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |                          ^~~
-../Core/Src/main.c:1186:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
- 1186 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1189:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
+ 1189 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../Core/Src/main.c:1157:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
- 1157 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1160:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
+ 1160 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |                          ^~~
-../Core/Src/main.c:1157:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
- 1157 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: mdp_hardware.elf
- 
-arm-none-eabi-size   mdp_hardware.elf 
-arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
-arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
-   text	   data	    bss	    dec	    hex	filename
-  44440	    136	  21944	  66520	  103d8	mdp_hardware.elf
-Finished building: default.size.stdout
- 
-Finished building: mdp_hardware.hex
- 
-Finished building: mdp_hardware.list
- 
-12:36:12 **** Build of configuration Debug for project mdp_hardware ****
-make -j16 all 
-arm-none-eabi-size   mdp_hardware.elf 
-   text	   data	    bss	    dec	    hex	filename
-  44440	    136	  21944	  66520	  103d8	mdp_hardware.elf
-Finished building: default.size.stdout
- 
-19:34:11 **** Build of configuration Debug for project mdp_hardware ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:824:16: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  824 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
-      |                ^~~~~
-      |                |
-      |                uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:824:36: warning: embedded '\0' in format [-Wformat-contains-nul]
-  824 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
-      |                                    ^~
-../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:1090:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1090 |    sprintf(msg, "Diff : %3d\0", encoder_error);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1090:28: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1090 |    sprintf(msg, "Diff : %3d\0", encoder_error);
-      |                            ^~
-../Core/Src/main.c:1093:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1093 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1093:27: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
- 1093 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
-      |                         ~~^     ~~~~~~~~~~~~
-      |                           |     |
-      |                           int   uint32_t {aka long unsigned int}
-      |                         %3ld
-../Core/Src/main.c:1093:28: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1093 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
-      |                            ^~
-../Core/Src/main.c: In function 'gyro_task':
-../Core/Src/main.c:1159:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1159:29: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                             ^~
-../Core/Src/main.c:1188:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1188:29: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                             ^~
-../Core/Src/main.c:1188:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                          ^~~
-../Core/Src/main.c:1188:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../Core/Src/main.c:1159:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                          ^~~
-../Core/Src/main.c:1159:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
+../Core/Src/main.c:1160:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
+ 1160 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
       |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: mdp_hardware.elf
@@ -600,696 +702,10 @@ Finished building: mdp_hardware.hex
  
 Finished building: mdp_hardware.list
  
-19:48:19 **** Incremental Build of configuration Debug for project mdp_hardware ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:824:16: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  824 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
-      |                ^~~~~
-      |                |
-      |                uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:824:36: warning: embedded '\0' in format [-Wformat-contains-nul]
-  824 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
-      |                                    ^~
-../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:1090:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1090 |    sprintf(msg, "Diff : %3d\0", encoder_error);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1090:28: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1090 |    sprintf(msg, "Diff : %3d\0", encoder_error);
-      |                            ^~
-../Core/Src/main.c:1093:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1093 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1093:27: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
- 1093 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
-      |                         ~~^     ~~~~~~~~~~~~
-      |                           |     |
-      |                           int   uint32_t {aka long unsigned int}
-      |                         %3ld
-../Core/Src/main.c:1093:28: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1093 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
-      |                            ^~
-../Core/Src/main.c: In function 'gyro_task':
-../Core/Src/main.c:1159:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1159:29: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                             ^~
-../Core/Src/main.c:1188:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1188:29: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                             ^~
-../Core/Src/main.c:1188:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                          ^~~
-../Core/Src/main.c:1188:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../Core/Src/main.c:1159:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                          ^~~
-../Core/Src/main.c:1159:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: mdp_hardware.elf
- 
-arm-none-eabi-size   mdp_hardware.elf 
-arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
-arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
-   text	   data	    bss	    dec	    hex	filename
-  44456	    136	  21944	  66536	  103e8	mdp_hardware.elf
-Finished building: default.size.stdout
- 
-Finished building: mdp_hardware.hex
- 
-Finished building: mdp_hardware.list
- 
-19:51:21 **** Incremental Build of configuration Debug for project mdp_hardware ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:824:16: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  824 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
-      |                ^~~~~
-      |                |
-      |                uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:824:36: warning: embedded '\0' in format [-Wformat-contains-nul]
-  824 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
-      |                                    ^~
-../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:1090:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1090 |    sprintf(msg, "Diff : %3d\0", encoder_error);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1090:28: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1090 |    sprintf(msg, "Diff : %3d\0", encoder_error);
-      |                            ^~
-../Core/Src/main.c:1093:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1093 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1093:27: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
- 1093 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
-      |                         ~~^     ~~~~~~~~~~~~
-      |                           |     |
-      |                           int   uint32_t {aka long unsigned int}
-      |                         %3ld
-../Core/Src/main.c:1093:28: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1093 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
-      |                            ^~
-../Core/Src/main.c: In function 'gyro_task':
-../Core/Src/main.c:1159:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1159:29: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                             ^~
-../Core/Src/main.c:1188:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1188:29: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                             ^~
-../Core/Src/main.c:1188:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                          ^~~
-../Core/Src/main.c:1188:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../Core/Src/main.c:1159:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                          ^~~
-../Core/Src/main.c:1159:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: mdp_hardware.elf
- 
-arm-none-eabi-size   mdp_hardware.elf 
-arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
-arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
-   text	   data	    bss	    dec	    hex	filename
-  44456	    136	  21944	  66536	  103e8	mdp_hardware.elf
-Finished building: default.size.stdout
- 
-Finished building: mdp_hardware.hex
- 
-Finished building: mdp_hardware.list
- 
-19:59:50 **** Incremental Build of configuration Debug for project mdp_hardware ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:824:16: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  824 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
-      |                ^~~~~
-      |                |
-      |                uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:824:36: warning: embedded '\0' in format [-Wformat-contains-nul]
-  824 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
-      |                                    ^~
-../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:1090:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1090 |    sprintf(msg, "Diff : %3d\0", encoder_error);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1090:28: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1090 |    sprintf(msg, "Diff : %3d\0", encoder_error);
-      |                            ^~
-../Core/Src/main.c:1093:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1093 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1093:27: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
- 1093 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
-      |                         ~~^     ~~~~~~~~~~~~
-      |                           |     |
-      |                           int   uint32_t {aka long unsigned int}
-      |                         %3ld
-../Core/Src/main.c:1093:28: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1093 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
-      |                            ^~
-../Core/Src/main.c: In function 'gyro_task':
-../Core/Src/main.c:1159:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1159:29: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                             ^~
-../Core/Src/main.c:1188:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1188:29: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                             ^~
-../Core/Src/main.c:1188:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                          ^~~
-../Core/Src/main.c:1188:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../Core/Src/main.c:1159:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                          ^~~
-../Core/Src/main.c:1159:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: mdp_hardware.elf
- 
-arm-none-eabi-size   mdp_hardware.elf 
-arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
-arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
-   text	   data	    bss	    dec	    hex	filename
-  44456	    136	  21944	  66536	  103e8	mdp_hardware.elf
-Finished building: default.size.stdout
- 
-Finished building: mdp_hardware.hex
- 
-Finished building: mdp_hardware.list
- 
-20:01:37 **** Incremental Build of configuration Debug for project mdp_hardware ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:824:16: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  824 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
-      |                ^~~~~
-      |                |
-      |                uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:824:36: warning: embedded '\0' in format [-Wformat-contains-nul]
-  824 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
-      |                                    ^~
-../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:1090:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1090 |    sprintf(msg, "Diff : %3d\0", encoder_error);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1090:28: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1090 |    sprintf(msg, "Diff : %3d\0", encoder_error);
-      |                            ^~
-../Core/Src/main.c:1093:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1093 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1093:27: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
- 1093 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
-      |                         ~~^     ~~~~~~~~~~~~
-      |                           |     |
-      |                           int   uint32_t {aka long unsigned int}
-      |                         %3ld
-../Core/Src/main.c:1093:28: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1093 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
-      |                            ^~
-../Core/Src/main.c: In function 'gyro_task':
-../Core/Src/main.c:1159:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1159:29: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                             ^~
-../Core/Src/main.c:1188:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1188:29: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                             ^~
-../Core/Src/main.c:1188:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                          ^~~
-../Core/Src/main.c:1188:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../Core/Src/main.c:1159:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                          ^~~
-../Core/Src/main.c:1159:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: mdp_hardware.elf
- 
-arm-none-eabi-size   mdp_hardware.elf 
-arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
-arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
-   text	   data	    bss	    dec	    hex	filename
-  44456	    136	  21944	  66536	  103e8	mdp_hardware.elf
-Finished building: default.size.stdout
- 
-Finished building: mdp_hardware.hex
- 
-Finished building: mdp_hardware.list
- 
-20:45:06 **** Incremental Build of configuration Debug for project mdp_hardware ****
+20:15:10 **** Incremental Build of configuration Debug for project mdp_hardware ****
 make -j16 all 
 arm-none-eabi-size   mdp_hardware.elf 
    text	   data	    bss	    dec	    hex	filename
   44456	    136	  21944	  66536	  103e8	mdp_hardware.elf
 Finished building: default.size.stdout
- 
-09:26:24 **** Incremental Build of configuration Debug for project mdp_hardware ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:824:16: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  824 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
-      |                ^~~~~
-      |                |
-      |                uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:824:36: warning: embedded '\0' in format [-Wformat-contains-nul]
-  824 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
-      |                                    ^~
-../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:1090:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1090 |    sprintf(msg, "Diff : %3d\0", encoder_error);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1090:28: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1090 |    sprintf(msg, "Diff : %3d\0", encoder_error);
-      |                            ^~
-../Core/Src/main.c:1093:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1093 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1093:27: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
- 1093 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
-      |                         ~~^     ~~~~~~~~~~~~
-      |                           |     |
-      |                           int   uint32_t {aka long unsigned int}
-      |                         %3ld
-../Core/Src/main.c:1093:28: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1093 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
-      |                            ^~
-../Core/Src/main.c: In function 'gyro_task':
-../Core/Src/main.c:1159:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1159:29: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                             ^~
-../Core/Src/main.c:1188:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1188:29: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                             ^~
-../Core/Src/main.c:1188:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                          ^~~
-../Core/Src/main.c:1188:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../Core/Src/main.c:1159:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                          ^~~
-../Core/Src/main.c:1159:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: mdp_hardware.elf
- 
-arm-none-eabi-size   mdp_hardware.elf 
-arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
-arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
-   text	   data	    bss	    dec	    hex	filename
-  44456	    136	  21944	  66536	  103e8	mdp_hardware.elf
-Finished building: default.size.stdout
- 
-Finished building: mdp_hardware.hex
- 
-Finished building: mdp_hardware.list
- 
-09:30:46 **** Incremental Build of configuration Debug for project mdp_hardware ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:824:16: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  824 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
-      |                ^~~~~
-      |                |
-      |                uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:824:36: warning: embedded '\0' in format [-Wformat-contains-nul]
-  824 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
-      |                                    ^~
-../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:1090:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1090 |    sprintf(msg, "Diff : %3d\0", encoder_error);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1090:28: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1090 |    sprintf(msg, "Diff : %3d\0", encoder_error);
-      |                            ^~
-../Core/Src/main.c:1093:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1093 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1093:27: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
- 1093 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
-      |                         ~~^     ~~~~~~~~~~~~
-      |                           |     |
-      |                           int   uint32_t {aka long unsigned int}
-      |                         %3ld
-../Core/Src/main.c:1093:28: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1093 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
-      |                            ^~
-../Core/Src/main.c: In function 'gyro_task':
-../Core/Src/main.c:1159:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1159:29: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                             ^~
-../Core/Src/main.c:1188:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1188:29: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                             ^~
-../Core/Src/main.c:1188:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                          ^~~
-../Core/Src/main.c:1188:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../Core/Src/main.c:1159:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                          ^~~
-../Core/Src/main.c:1159:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: mdp_hardware.elf
- 
-arm-none-eabi-size   mdp_hardware.elf 
-arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
-arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
-   text	   data	    bss	    dec	    hex	filename
-  44456	    136	  21944	  66536	  103e8	mdp_hardware.elf
-Finished building: default.size.stdout
- 
-Finished building: mdp_hardware.hex
- 
-Finished building: mdp_hardware.list
- 
-09:34:24 **** Incremental Build of configuration Debug for project mdp_hardware ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I"C:/Users/kenne/STM32CubeIDE/MDP/mdp_hardware/PeripheralDriver/Inc" -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -IC:/Users/kenne/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'motor':
-../Core/Src/main.c:824:16: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  824 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
-      |                ^~~~~
-      |                |
-      |                uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:824:36: warning: embedded '\0' in format [-Wformat-contains-nul]
-  824 |        sprintf(hello, "Dir %c : %3d\0", frontback, (fb_speed-48));
-      |                                    ^~
-../Core/Src/main.c: In function 'encoder_task':
-../Core/Src/main.c:1090:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1090 |    sprintf(msg, "Diff : %3d\0", encoder_error);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1090:28: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1090 |    sprintf(msg, "Diff : %3d\0", encoder_error);
-      |                            ^~
-../Core/Src/main.c:1093:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1093 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
-      |            ^~~
-      |            |
-      |            uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1093:27: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
- 1093 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
-      |                         ~~^     ~~~~~~~~~~~~
-      |                           |     |
-      |                           int   uint32_t {aka long unsigned int}
-      |                         %3ld
-../Core/Src/main.c:1093:28: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1093 |    sprintf(msg, "Dist : %3d\0", encoder_dist);
-      |                            ^~
-../Core/Src/main.c: In function 'gyro_task':
-../Core/Src/main.c:1159:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1159:29: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                             ^~
-../Core/Src/main.c:1188:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-In file included from ../Core/Src/main.c:28:
-c:\st\stm32cubeide_1.7.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954\tools\arm-none-eabi\include\stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  244 | int sprintf (char *__restrict, const char *__restrict, ...)
-      |              ^
-../Core/Src/main.c:1188:29: warning: embedded '\0' in format [-Wformat-contains-nul]
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                             ^~
-../Core/Src/main.c:1188:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                          ^~~
-../Core/Src/main.c:1188:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
- 1188 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../Core/Src/main.c:1159:26: warning: '%3d' directive writing between 3 and 11 bytes into a region of size 1 [-Wformat-overflow=]
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |                          ^~~
-../Core/Src/main.c:1159:5: note: 'sprintf' output between 11 and 19 bytes into a destination of size 8
- 1159 |     sprintf(msg, "gyro : %3d\0", (int)curAngle);
-      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-arm-none-eabi-gcc -o "mdp_hardware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kenne\STM32CubeIDE\MDP\mdp_hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mdp_hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: mdp_hardware.elf
- 
-arm-none-eabi-size   mdp_hardware.elf 
-arm-none-eabi-objdump -h -S  mdp_hardware.elf  > "mdp_hardware.list"
-arm-none-eabi-objcopy  -O ihex  mdp_hardware.elf  "mdp_hardware.hex"
-   text	   data	    bss	    dec	    hex	filename
-  44456	    136	  21944	  66536	  103e8	mdp_hardware.elf
-Finished building: default.size.stdout
- 
-Finished building: mdp_hardware.hex
- 
-Finished building: mdp_hardware.list
  
