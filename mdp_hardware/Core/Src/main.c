@@ -1,4 +1,3 @@
-// Changed main.c 25/02/23
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
@@ -149,7 +148,8 @@ uint16_t pwmVal_servo = 150; // servo centre
 
 Queue q;
 
-int turn_angle = 120;	// gyro turn threshold for 90deg
+int turn_angle_l = 120;	// gyro turn threshold for 90deg
+int turn_angle_r = 120;
 /* USER CODE END 0 */
 
 /**
@@ -618,6 +618,7 @@ static void MX_GPIO_Init(void)
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOE_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
@@ -644,6 +645,15 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
+  /*Configure GPIO pin : User_Button_Pin */
+  GPIO_InitStruct.Pin = User_Button_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(User_Button_GPIO_Port, &GPIO_InitStruct);
+
+  HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
+
 }
 
 /* USER CODE BEGIN 4 */
@@ -659,19 +669,29 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 	UNUSED(huart);
 
 	enqueue(&q,aRxBuffer);
-//	frontback = (uint8_t)(aRxBuffer[0]);
-//	fb_speed = (uint8_t)(aRxBuffer[1]);
-//	leftright = (uint8_t)(aRxBuffer[2]);
-//	lr_speed = (uint8_t)(aRxBuffer[3]);
 
 
 	HAL_UART_Receive_IT(&huart3,(uint8_t *) aRxBuffer,4);
-//	sprintf(hello, "Dir %c : %d\0", frontback, fb_speed-48);
-//	OLED_ShowString(10, 20, hello);
-//
-//	sprintf(hello, "Turn %c: %d\0", leftright, lr_speed-48);
-//	OLED_ShowString(10, 30, hello);
 	HAL_GPIO_TogglePin(LED3_GPIO_Port, LED3_Pin);
+}
+
+void EXTI9_5_IRQHandler(void)
+{
+  HAL_GPIO_EXTI_IRQHandler(User_Button_Pin);
+}
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+  if (GPIO_Pin == User_Button_Pin)
+  {
+    // Handle button press event
+    // This could involve toggling an LED or executing some other code
+	  if(curAngle > 0)
+		  turn_angle_l = curAngle;
+	  else
+		  turn_angle_r = abs(curAngle);
+	  HAL_GPIO_TogglePin(LED3_GPIO_Port, LED3_Pin);
+  }
 }
 
 void reset_motorVal(){
@@ -808,7 +828,7 @@ void motor(void *argument)
 	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_2);
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
 
-
+	int turn_angle;
 
   /* Infinite loop */
   for(;;)
@@ -844,12 +864,26 @@ void motor(void *argument)
 		  		  motor_offset_r = 0.03*(lr_speed-48)+1;
 		  		  motor_offset_l = 1;
 
+		  		  // Front Gyro threshold
+		  		  if(frontback == 'w')
+		  			  turn_angle = turn_angle_l;
+		  		  // Back Gyro threshold
+		  		  else
+		  			  turn_angle = turn_angle_r;
+
 		  	  }
 		  	  else if(leftright =='d'){
 		  		  htim1.Instance->CCR4 = pwmVal_servo + 1.73*(lr_speed-48) *servo_max;
 		  		  // left motor offset
 		  		  motor_offset_r = 1;
 		  		  motor_offset_l = 0.03*(lr_speed-48)+1;
+
+		  		// Front Gyro Threshold
+		  		if(frontback == 'w')
+		  			turn_angle = turn_angle_r;
+		  		// Back Gyro threshold
+		  		else
+		  			turn_angle = turn_angle_l;
 		  	  }
 
 		  	  pwmVal_motor = motor_min;
@@ -1209,7 +1243,7 @@ void gyro_task(void *argument)
 	int16_t angle = 0;
 
 	curAngle = 0;
-
+	uint32_t tick = HAL_GetTick();
 	osDelay(100);
 	for(;;)
 	{
