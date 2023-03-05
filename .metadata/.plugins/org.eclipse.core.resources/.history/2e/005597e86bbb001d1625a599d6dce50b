@@ -838,7 +838,7 @@ void motor(void *argument)
 
 			  getFront(q);			// Setting values according to queue head
 			  encoder_dist = 0;		// Reset Encoder distance measurement
-			  eintegral = 0;		// Integral error
+			  eintegral = 0;	// Integral error
 
 		  	  accelerate = 1; 		// Default always start with acceleration
 		  	  target_dist = (int) ((fb_speed - 48)*145 - 40);
@@ -943,14 +943,11 @@ void motor(void *argument)
 
 						// Turning
 						else{
-							pwmVal_motor = (int) ((fb_speed - 48)*400);
+							pwmVal_motor = motor_reference;
 
-							// Move motor
 							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, motor_offset_r*pwmVal_motor);
 							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor);
-
-							// Move til angle threshold
-							while(abs(curAngle) <= turn_angle)
+							while(abs(curAngle) < turn_angle)
 								osDelay(10);
 
 							// Once Threshold reached, turn servo centre
@@ -993,7 +990,6 @@ void motor(void *argument)
 							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor);
 
 							if(accelerate == 1){
-
 							  pwmVal_motor+=motor_increment;	// Accelerating
 
 							  if(pwmVal_motor >= motor_reference){	// Constant speed
@@ -1028,14 +1024,12 @@ void motor(void *argument)
 
 						// Turning
 						else{
-							pwmVal_motor = (int) ((fb_speed - 48)*400);
+							pwmVal_motor = motor_reference;
 
-							// Move motor
 							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, motor_offset_r*pwmVal_motor);
 							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor);
 
-							// Move til angle threshold
-							while(abs(curAngle) <= turn_angle-8) // Tends to over steer a lot
+							while(abs(curAngle) < turn_angle-8) // Tends to over steer a lot
 								osDelay(10);
 
 							// Once Threshold reached, turn servo centre

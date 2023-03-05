@@ -838,7 +838,6 @@ void motor(void *argument)
 
 			  getFront(q);			// Setting values according to queue head
 			  encoder_dist = 0;		// Reset Encoder distance measurement
-			  eintegral = 0;		// Integral error
 
 		  	  accelerate = 1; 		// Default always start with acceleration
 		  	  target_dist = (int) ((fb_speed - 48)*145 - 40);
@@ -943,14 +942,11 @@ void motor(void *argument)
 
 						// Turning
 						else{
-							pwmVal_motor = (int) ((fb_speed - 48)*400);
+							pwmVal_motor = motor_reference;
 
-							// Move motor
 							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, motor_offset_r*pwmVal_motor);
 							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor);
-
-							// Move til angle threshold
-							while(abs(curAngle) <= turn_angle)
+							while(abs(curAngle) < turn_angle)
 								osDelay(10);
 
 							// Once Threshold reached, turn servo centre
@@ -993,7 +989,6 @@ void motor(void *argument)
 							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor);
 
 							if(accelerate == 1){
-
 							  pwmVal_motor+=motor_increment;	// Accelerating
 
 							  if(pwmVal_motor >= motor_reference){	// Constant speed
@@ -1028,14 +1023,12 @@ void motor(void *argument)
 
 						// Turning
 						else{
-							pwmVal_motor = (int) ((fb_speed - 48)*400);
+							pwmVal_motor = motor_reference;
 
-							// Move motor
 							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, motor_offset_r*pwmVal_motor);
 							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor);
 
-							// Move til angle threshold
-							while(abs(curAngle) <= turn_angle-8) // Tends to over steer a lot
+							while(abs(curAngle) < turn_angle-8) // Tends to over steer a lot
 								osDelay(10);
 
 							// Once Threshold reached, turn servo centre
@@ -1078,8 +1071,6 @@ void motor(void *argument)
 
 		  	  // Move backwards (Slow)
 		  	  else if(frontback == 'y'){
-		  		  // E.g. 8cm back movement, target_dist = 80
-		  		  target_dist = (int) ((fb_speed - 48)*10);
 		  		  // Slow down reference
 		  		  pwmVal_motor = motor_min;
 
@@ -1091,35 +1082,25 @@ void motor(void *argument)
 				  HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_RESET);
 				  HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_SET);
 
+				  // PID for error adjustment
+				  err = curAngle - 0;		// Proportional error
+				  eintegral += err;		// Integral error
+
+				  // PID equation (opposite correction)
+				  servo_val = (uint8_t)(pwmVal_servo - 0.8*(kp*err + ki*eintegral));
+
+				  // Set servo value
+				  htim1.Instance->CCR4 = servo_val;	// Turn servo to correct error
+
 				  // Move Motor
 				  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal_motor);
 				  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal_motor);
 
-				  while(encoder_dist < (int)target_dist*0.95){
-					  // PID for error adjustment
-					  err = curAngle - 0;		// Proportional error
-					  eintegral += err;		// Integral error
-
-					  // PID equation (opposite correction)
-					  servo_val = (uint8_t)(pwmVal_servo - 0.8*(kp*err + ki*eintegral));
-
-					  // Set servo value
-					  htim1.Instance->CCR4 = servo_val;	// Turn servo to correct error
-
-					  osDelay(1);
-				  }
-
-				  // Stop motor
-				  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, 0);
-				  __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, 0);
-
-			}
+				  osDelay((fb_speed - 48)*40);
+		  	  }
 
 		  	// Move forwards (Slow)
 		  	else if(frontback == 'u'){
-		  		// E.g. 8cm back movement, target_dist = 80
-		  		target_dist = (int) ((fb_speed - 48)*10);
-
 		  		// Slow down reference
 		  		pwmVal_motor = 1600;
 
@@ -1131,32 +1112,25 @@ void motor(void *argument)
 		  		HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_SET);
 		  		HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_RESET);
 
+		  		// PID for error adjustment
+		  		err = curAngle - 0;		// Proportional error
+		  		eintegral += err;		// Integral error
+
+		  		// PID equation
+		  		servo_val = (uint8_t)(pwmVal_servo + 0.8*(kp*err + ki*eintegral));
+
+		  		// Set servo value
+		  		htim1.Instance->CCR4 = servo_val;	// Turn servo to correct error
+
 		  		// Move motor
-				__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal_motor);
-				__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal_motor);
+		  		__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, pwmVal_motor);
+		  		__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, pwmVal_motor);
 
-		  		while(encoder_dist < (int)target_dist*0.95){
-					  // PID for error adjustment
-					  err = curAngle - 0;		// Proportional error
-					  eintegral += err;		// Integral error
-
-					  // PID equation (opposite correction)
-					  servo_val = (uint8_t)(pwmVal_servo - 0.8*(kp*err + ki*eintegral));
-
-					  // Set servo value
-					  htim1.Instance->CCR4 = servo_val;	// Turn servo to correct error
-
-					  osDelay(1);
-		  		}
-
-		  		// Stop motor
-				__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, 0);
-				__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, 0);
-
+		  		osDelay((fb_speed - 48)*40);
 		  }
 
-		  osDelay(10);
-		  dequeue(&q);
+		  	  osDelay(10);
+		  	  dequeue(&q);
 
 
 	  }	// ENDIF Queue not empty

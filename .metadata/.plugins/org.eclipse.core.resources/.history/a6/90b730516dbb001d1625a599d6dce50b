@@ -943,13 +943,10 @@ void motor(void *argument)
 
 						// Turning
 						else{
-							pwmVal_motor = (int) ((fb_speed - 48)*400);
+							pwmVal_motor = motor_reference;
 
-							// Move motor
 							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, motor_offset_r*pwmVal_motor);
 							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor);
-
-							// Move til angle threshold
 							while(abs(curAngle) <= turn_angle)
 								osDelay(10);
 
@@ -1028,13 +1025,11 @@ void motor(void *argument)
 
 						// Turning
 						else{
-							pwmVal_motor = (int) ((fb_speed - 48)*400);
+							pwmVal_motor = motor_reference;
 
-							// Move motor
 							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, motor_offset_r*pwmVal_motor);
 							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor);
 
-							// Move til angle threshold
 							while(abs(curAngle) <= turn_angle-8) // Tends to over steer a lot
 								osDelay(10);
 
