@@ -821,8 +821,12 @@ void motor(void *argument)
 	int16_t eintegral = 0;	// Integral error
 
 	int32_t err;			// To total error for Integral
+
 	// Set servo value to centre
 	uint8_t servo_val = pwmVal_servo;
+
+	// Adds to servo middle value to find the goddamn pictures
+	uint8_t search_dir = 0;
 
 	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_1);
 	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_2);
@@ -836,12 +840,17 @@ void motor(void *argument)
 	  if(isEmptyQueue(q) != 1){
 		  	  uint8_t hello[20];
 
+		  	  // PID Values
+		  	  kp = 5;
+		  	  ki = 0.8;
+		  	  eintegral = 0;	// Integral error
+
 			  getFront(q);			// Setting values according to queue head
 			  encoder_dist = 0;		// Reset Encoder distance measurement
 			  eintegral = 0;		// Integral error
 
 		  	  accelerate = 1; 		// Default always start with acceleration
-		  	  target_dist = (int) ((fb_speed - 48)*145 - 40);
+		  	  target_dist = (int) ((fb_speed - 48)*142 - 50);
 		  	  if(target_dist <= 0)
 		  		  target_dist = 0;
 
@@ -850,7 +859,7 @@ void motor(void *argument)
 		  	  OLED_ShowString(10, 30, hello);
 
 		  	  if(lr_speed == '0'){
-		  		motor_reference = 3000;
+		  		motor_reference = 2800;
 		  	  }
 
 		  	  else
@@ -950,7 +959,7 @@ void motor(void *argument)
 							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor);
 
 							// Move til angle threshold
-							while(abs(curAngle) <= turn_angle)
+							while(abs(curAngle) < turn_angle)
 								osDelay(10);
 
 							// Once Threshold reached, turn servo centre
@@ -1028,6 +1037,7 @@ void motor(void *argument)
 
 						// Turning
 						else{
+
 							pwmVal_motor = (int) ((fb_speed - 48)*400);
 
 							// Move motor
@@ -1035,7 +1045,7 @@ void motor(void *argument)
 							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor);
 
 							// Move til angle threshold
-							while(abs(curAngle) <= turn_angle-8) // Tends to over steer a lot
+							while(abs(curAngle) < turn_angle) // Tends to over steer a lot
 								osDelay(10);
 
 							// Once Threshold reached, turn servo centre
@@ -1078,6 +1088,10 @@ void motor(void *argument)
 
 		  	  // Move backwards (Slow)
 		  	  else if(frontback == 'y'){
+//		  		  // PID Values
+//		  		  kp = 3;
+//		  		  ki = 0.8;
+
 		  		  // E.g. 8cm back movement, target_dist = 80
 		  		  target_dist = (int) ((fb_speed - 48)*10);
 		  		  // Slow down reference
@@ -1121,7 +1135,7 @@ void motor(void *argument)
 		  		target_dist = (int) ((fb_speed - 48)*10);
 
 		  		// Slow down reference
-		  		pwmVal_motor = 1600;
+		  		pwmVal_motor = motor_min;
 
 		  		// MOTOR A
 		  		HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_SET);
@@ -1155,6 +1169,136 @@ void motor(void *argument)
 
 		  }
 
+		  // No Image found (Emergency Fail Safe)
+		  	else if(frontback == 'n'){
+		  		encoder_dist = 0;
+
+		  		int8_t angle_to_turn;
+
+		  		// Initialise motor
+		  		// MOTOR A
+				HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_SET);
+				HAL_GPIO_WritePin(GPIOA, AIN1_Pin, GPIO_PIN_RESET);
+
+				// MOTOR B
+				HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_SET);
+				HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_RESET);
+
+				// Clockwise search
+				if(search_dir == 0){
+					// Turn the fucking wheel
+					htim1.Instance->CCR4 = pwmVal_servo + 40;	// similar to u5a0
+
+					// Move motor
+					__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, 800);
+					__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, 2600);
+
+					angle_to_turn = curAngle - (int)(turn_angle/2);
+
+					// Move til angle threshold
+					while(curAngle > angle_to_turn) // Turn 45 degree
+						osDelay(10);
+
+					// Stop motor
+					__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, 0);
+					__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, 0);
+
+					osDelay(500);
+
+					htim1.Instance->CCR4 = pwmVal_servo;
+
+					// Let it go back same amount
+					target_dist = 0.9*encoder_dist;
+					encoder_dist = 0;
+
+					// Reverse Motor
+					// MOTOR A
+					HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_RESET);
+					HAL_GPIO_WritePin(GPIOA, AIN1_Pin, GPIO_PIN_SET);
+
+					// MOTOR B
+					HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_RESET);
+					HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_SET);
+
+					osDelay(10);
+
+					// Move motor
+					__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, 2000);
+					__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, 2000);
+
+					while(encoder_dist < target_dist){
+						osDelay(10);
+					}
+
+					// Stop motor
+					__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, 0);
+					__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, 0);
+
+					search_dir = !search_dir;
+//					// Turned
+//					if(abs(curAngle) > abs(turn_angle)){
+
+
+
+
+
+				}
+
+				else{
+					// Turn the fucking wheel
+					htim1.Instance->CCR4 = pwmVal_servo - 30;	// similar to u5a0
+
+					// Move motor
+					__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, 2600);
+					__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, 800);
+
+					angle_to_turn = curAngle + (int)(turn_angle/2);
+
+					// Move til angle threshold
+					while(curAngle < angle_to_turn) // Turn 45 degree
+						osDelay(10);
+
+					// Stop motor
+					__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, 0);
+					__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, 0);
+
+					osDelay(500);
+
+					htim1.Instance->CCR4 = pwmVal_servo;
+
+					// Let it go back same amount
+					target_dist = 0.9*encoder_dist;
+					encoder_dist = 0;
+
+					// Reverse Motor
+					// MOTOR A
+					HAL_GPIO_WritePin(GPIOA, AIN2_Pin, GPIO_PIN_RESET);
+					HAL_GPIO_WritePin(GPIOA, AIN1_Pin, GPIO_PIN_SET);
+
+					// MOTOR B
+					HAL_GPIO_WritePin(GPIOA, BIN2_Pin, GPIO_PIN_RESET);
+					HAL_GPIO_WritePin(GPIOA, BIN1_Pin, GPIO_PIN_SET);
+
+					osDelay(10);
+
+					// Move motor
+					__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, 2000);
+					__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, 2000);
+
+					while(encoder_dist < target_dist){
+						osDelay(10);
+					}
+
+					// Stop motor
+					__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, 0);
+					__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, 0);
+
+					if(curAngle >= turn_angle/2)
+						search_dir = !search_dir;
+				}
+
+		  	}
+
 		  osDelay(10);
 		  dequeue(&q);
 
@@ -1186,8 +1330,8 @@ void motor(void *argument)
 /* USER CODE END Header_encoder_task */
 void encoder_task(void *argument)
 {
-  /* USER CODE BEGIN encoder_task */
-  /* Infinite loop */
+	/* USER CODE BEGIN encoder_task */
+	/* Infinite loop */
 	HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL);
 	HAL_TIM_Encoder_Start(&htim3,TIM_CHANNEL_ALL);
 
@@ -1239,6 +1383,7 @@ void encoder_task(void *argument)
 			OLED_ShowString(10,20,msg);
 
 			OLED_Refresh_Gram();
+
 			// Reset base tick
 			__HAL_TIM_SET_COUNTER(&htim2, 0);
 			__HAL_TIM_SET_COUNTER(&htim3, 0);
