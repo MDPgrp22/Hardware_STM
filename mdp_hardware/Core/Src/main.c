@@ -833,11 +833,13 @@ void motor(void *argument)
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
 
 	int turn_angle;
+	int stuck;
 
   /* Infinite loop */
   for(;;)
   {
 	  if(isEmptyQueue(q) != 1){
+		  	  stuck = 0;
 		  	  uint8_t hello[20];
 
 		  	  // PID Values
@@ -959,8 +961,15 @@ void motor(void *argument)
 							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor);
 
 							// Move til angle threshold
-							while(abs(curAngle) < turn_angle)
+							while(abs(curAngle) < turn_angle){
 								osDelay(10);
+								stuck++;
+								if(stuck > 1000){
+									curAngle = curAngle > 0? curAngle-turn_angle : curAngle+turn_angle;
+									break;
+								}
+							}
+
 
 							// Once Threshold reached, turn servo centre
 							htim1.Instance->CCR4 = pwmVal_servo;	// Turn servo to the centre
@@ -1045,8 +1054,14 @@ void motor(void *argument)
 							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor);
 
 							// Move til angle threshold
-							while(abs(curAngle) < turn_angle) // Tends to over steer a lot
+							while(abs(curAngle) < turn_angle){ // Tends to over steer a lot
 								osDelay(10);
+								stuck++;
+								if(stuck > 1000){
+									curAngle = curAngle > 0? curAngle-turn_angle : curAngle+turn_angle;
+									break;
+								}
+							}
 
 							// Once Threshold reached, turn servo centre
 							htim1.Instance->CCR4 = pwmVal_servo;	// Turn servo to the centre
@@ -1375,9 +1390,9 @@ void encoder_task(void *argument)
 			encoder_error = diffa + diffb;
 			encoder_dist += (abs(diffa) + abs(diffb));
 
-			// Display difference
-			sprintf(msg, "Diff : %3d\0", encoder_error);
-			OLED_ShowString(10,40,msg);
+//			// Display difference
+//			sprintf(msg, "Diff : %3d\0", encoder_error);
+//			OLED_ShowString(10,40,msg);
 
 			sprintf(msg, "Dist : %3d\0", encoder_dist);
 			OLED_ShowString(10,20,msg);

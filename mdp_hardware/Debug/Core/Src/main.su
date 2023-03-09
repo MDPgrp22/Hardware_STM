@@ -17,7 +17,7 @@
 ../Core/Src/main.c:748:5:isEmptyQueue	24	static
 ../Core/Src/main.c:754:6:deleteQueue	16	static
 ../Core/Src/main.c:769:6:StartDefaultTask	16	static
-../Core/Src/main.c:801:6:motor	104	static
-../Core/Src/main.c:1331:6:encoder_task	56	static
-../Core/Src/main.c:1407:6:gyro_task	40	static
-../Core/Src/main.c:1440:6:Error_Handler	4	static,ignoring_inline_asm
+../Core/Src/main.c:801:6:motor	112	static
+../Core/Src/main.c:1346:6:encoder_task	56	static
+../Core/Src/main.c:1422:6:gyro_task	40	static
+../Core/Src/main.c:1455:6:Error_Handler	4	static,ignoring_inline_asm
