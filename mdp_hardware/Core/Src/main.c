@@ -816,11 +816,18 @@ void motor(void *argument)
 	uint32_t target_dist;	// Distance to travel
 
 	// PID Values
-	uint8_t kp = 5;
+	uint8_t kp = 3;
 	uint8_t ki = 0.8;
-	int16_t eintegral = 0;	// Integral error
 
+	uint8_t kp_back = 2;
+
+	// Distance Values
+	uint8_t grad = 160;
+	uint8_t y_intercept = 55;
+
+	int16_t eintegral = 0;	// Integral error
 	int32_t err;			// To total error for Integral
+	int back_angle_threshold;
 
 	// Set servo value to centre
 	uint8_t servo_val = pwmVal_servo;
@@ -842,17 +849,12 @@ void motor(void *argument)
 		  	  stuck = 0;
 		  	  uint8_t hello[20];
 
-		  	  // PID Values
-		  	  kp = 5;
-		  	  ki = 0.8;
-		  	  eintegral = 0;	// Integral error
-
 			  getFront(q);			// Setting values according to queue head
 			  encoder_dist = 0;		// Reset Encoder distance measurement
 			  eintegral = 0;		// Integral error
 
 		  	  accelerate = 1; 		// Default always start with acceleration
-		  	  target_dist = (int) ((fb_speed - 48)*142 - 50);
+		  	  target_dist = (int) ((fb_speed - 48)*grad - y_intercept);
 		  	  if(target_dist <= 0)
 		  		  target_dist = 0;
 
@@ -925,7 +927,7 @@ void motor(void *argument)
 							  if(pwmVal_motor >= motor_reference){	// Constant speed
 								  accelerate = 0;
 								  while(encoder_dist < (int)target_dist*0.95){
-									  // PID for error adjustment
+									// PID for error adjustment
 									err = curAngle - 0;		// Proportional error
 									eintegral += err;		// Integral error
 
@@ -935,6 +937,11 @@ void motor(void *argument)
 									// Set servo value
 									htim1.Instance->CCR4 = servo_val;	// Turn servo to correct error
 
+									stuck++;
+									if(stuck > 600){
+										encoder_dist = target_dist;
+										break;
+									}
 
 									osDelay(10);
 								  }
@@ -952,9 +959,71 @@ void motor(void *argument)
 
 						}// End of Straight movement
 
-						// Turning
-						else{
+						// 45 deg turn
+						else if(lr_speed < '6'){
+							target_dist = (int)(2*grad - y_intercept);
+
+							gyroStart();
+							osDelay(100);
+
+							turn_angle = 0.4*turn_angle;	// Target Angle Threshold
+
+							// Set speed
 							pwmVal_motor = (int) ((fb_speed - 48)*400);
+
+							/************ Stage 1 45 deg turn out *********************/
+							// Move motor
+							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, motor_offset_r*pwmVal_motor);
+							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor);
+
+							// Move til angle threshold
+							while(abs(curAngle) < turn_angle){
+								osDelay(10);
+							}
+
+							// Once Threshold reached, turn servo centre
+							htim1.Instance->CCR4 = pwmVal_servo;	// Turn servo to the centre
+
+							// Stop motor
+							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, 0);
+							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, 0);
+
+							// Let overflow be error to account for
+							curAngle = curAngle > 0? curAngle-turn_angle : curAngle+turn_angle;
+
+							osDelay(500);
+							break;
+//							/************ Stage 2 Move forward and turn back straight *************/
+//							// Move motor
+//							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, motor_offset_r*pwmVal_motor);
+//							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor);
+//
+//							// PID Correct
+//							while(encoder_dist < target_dist){
+//								// PID for error adjustment
+//								err = curAngle - 0;		// Proportional error
+//								eintegral += err;		// Integral error
+//
+//								// PID equation
+//								servo_val = (uint8_t)(pwmVal_servo + kp*err + ki*eintegral);
+//
+//								// Set servo value
+//								htim1.Instance->CCR4 = servo_val;	// Turn servo to correct error
+//							}
+//
+//							// Stop motor
+//							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, 0);
+//							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, 0);
+						}
+
+						// Turning 90 degree
+						else{
+							gyroStart();
+							osDelay(100);
+
+							// Set speed
+							pwmVal_motor = (int) ((fb_speed - 48)*400);
+
 
 							// Move motor
 							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, motor_offset_r*pwmVal_motor);
@@ -981,6 +1050,11 @@ void motor(void *argument)
 
 							// Let overflow be error to account for
 							curAngle = curAngle > 0? curAngle-turn_angle : curAngle+turn_angle;
+
+							kp = 3;
+							ki = 0.8;
+							eintegral = 0;	// Integral error
+
 							osDelay(1000);
 
 							// Break movement loop
@@ -1017,6 +1091,23 @@ void motor(void *argument)
 							  if(pwmVal_motor >= motor_reference){	// Constant speed
 								  accelerate = 0;
 								  while(encoder_dist < (int)target_dist*0.95){
+									  // PID for error adjustment
+									  err = curAngle - 0;		// Proportional error
+									  eintegral += err;		// Integral error
+
+									  // PID equation (opposite correction)
+									  servo_val = (uint8_t)(pwmVal_servo - kp*err - ki*eintegral);
+
+									  // Set servo value
+									  htim1.Instance->CCR4 = servo_val;	// Turn servo to correct error
+
+
+									  stuck++;
+									  if(stuck > 600){
+										  encoder_dist = target_dist;
+										  break;
+									  }
+
 									  osDelay(10);
 								  }
 							  }
@@ -1031,21 +1122,15 @@ void motor(void *argument)
 									break;
 							}
 
-							// PID for error adjustment
-							err = curAngle - 0;		// Proportional error
-							eintegral += err;		// Integral error
-
-							// PID equation (opposite correction)
-							servo_val = (uint8_t)(pwmVal_servo - kp*err - ki*eintegral);
-
-							// Set servo value
-							htim1.Instance->CCR4 = servo_val;	// Turn servo to correct error
-
 
 						}// End of Straight movement
 
 						// Turning
 						else{
+							gyroStart();
+							osDelay(100);
+
+							back_angle_threshold = (int)(0.95*turn_angle);
 
 							pwmVal_motor = (int) ((fb_speed - 48)*400);
 
@@ -1053,12 +1138,14 @@ void motor(void *argument)
 							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, motor_offset_r*pwmVal_motor);
 							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor);
 
+
+
 							// Move til angle threshold
-							while(abs(curAngle) < turn_angle){ // Tends to over steer a lot
+							while(abs(curAngle) < back_angle_threshold){ // Tends to over steer a lot
 								osDelay(10);
 								stuck++;
 								if(stuck > 1000){
-									curAngle = curAngle > 0? curAngle-turn_angle : curAngle+turn_angle;
+									curAngle = curAngle > 0? curAngle-back_angle_threshold : curAngle+back_angle_threshold;
 									break;
 								}
 							}
@@ -1072,7 +1159,12 @@ void motor(void *argument)
 							__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, motor_offset_l*pwmVal_motor);
 
 							// Let overflow be error to account for
-							curAngle = curAngle > 0? curAngle-turn_angle : curAngle+turn_angle;
+							curAngle = curAngle > 0? curAngle-back_angle_threshold : curAngle+back_angle_threshold;
+
+							kp = kp_back;
+							ki = 0.8;
+							eintegral = 0;	// Integral error
+
 							osDelay(1000);
 
 							// Break movement loop
@@ -1103,9 +1195,6 @@ void motor(void *argument)
 
 		  	  // Move backwards (Slow)
 		  	  else if(frontback == 'y'){
-//		  		  // PID Values
-//		  		  kp = 3;
-//		  		  ki = 0.8;
 
 		  		  // E.g. 8cm back movement, target_dist = 80
 		  		  target_dist = (int) ((fb_speed - 48)*10);
@@ -1169,8 +1258,8 @@ void motor(void *argument)
 					  err = curAngle - 0;		// Proportional error
 					  eintegral += err;		// Integral error
 
-					  // PID equation (opposite correction)
-					  servo_val = (uint8_t)(pwmVal_servo - 0.8*(kp*err + ki*eintegral));
+					  // PID equation
+					  servo_val = (uint8_t)(pwmVal_servo + 0.8*(kp*err + ki*eintegral));
 
 					  // Set servo value
 					  htim1.Instance->CCR4 = servo_val;	// Turn servo to correct error
@@ -1183,6 +1272,20 @@ void motor(void *argument)
 				__HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_2, 0);
 
 		  }
+
+		  	else if(frontback == 'l'){
+		  		// Outside
+		  		if(fb_speed == '1'){
+					grad = 142;
+					y_intercept = 50;
+		  		}
+
+		  		else{
+		  			grad = 163;
+		  			y_intercept = 55;
+		  			kp_back = 5;
+		  		}
+		  	}
 
 		  // No Image found (Emergency Fail Safe)
 		  	else if(frontback == 'n'){
