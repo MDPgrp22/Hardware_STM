@@ -84,6 +84,8 @@ void Error_Handler(void);
 #define PWMA_GPIO_Port GPIOC
 #define PWMB_Pin GPIO_PIN_7
 #define PWMB_GPIO_Port GPIOC
+#define TRIG_Pin GPIO_PIN_12
+#define TRIG_GPIO_Port GPIOC
 
 /* USER CODE BEGIN Private defines */
 // Extends the timer variable visibility to the whole program
