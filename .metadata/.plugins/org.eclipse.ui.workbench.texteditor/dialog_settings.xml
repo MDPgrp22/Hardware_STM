@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="tim1"/>
+		<item key="selection" value="tim3"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="tim3"/>
+			<item value="trig"/>
+			<item value="e"/>
+			<item value="echo"/>
 			<item value="TIM1"/>
 			<item value="ki"/>
 			<item value="main"/>
@@ -19,10 +23,6 @@
 			<item value="aRxBuffer"/>
 			<item value="Callback"/>
 			<item value="showoled"/>
-			<item value="1152"/>
-			<item value="defaultTask"/>
-			<item value="160"/>
-			<item value="TIM_CHANNEL_1"/>
 		</list>
 		<list key="replacehistory">
 		</list>

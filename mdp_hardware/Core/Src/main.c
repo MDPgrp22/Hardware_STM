@@ -764,9 +764,13 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin : User_Button_Pin */
   GPIO_InitStruct.Pin = User_Button_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(User_Button_GPIO_Port, &GPIO_InitStruct);
+
+  // Enable EXTI interrupt for the pin
+  HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
 
   /*Configure GPIO pin : TRIG_Pin */
   GPIO_InitStruct.Pin = TRIG_Pin;
@@ -1546,6 +1550,20 @@ void motor(void *argument)
 		  		msg[1] = Distance;
 			 	if(HAL_UART_Transmit(&huart3, (uint8_t *)msg, 2, 0xFFFF)== HAL_OK)
 			 		HAL_GPIO_TogglePin(LED3_GPIO_Port, LED3_Pin);
+		  	}
+
+		  	// Send Message to Rpi to signify completion
+		  	else if (frontback == 'm'){
+		  		osDelay(100);
+
+		  		msg[0] = 'e';
+		  		for(int j =0; j<4;j++){
+		  			HAL_UART_Transmit(&huart3, (uint8_t *)msg, 2, 0xFFFF);
+		  			osDelay(100);
+		  		}
+		  		HAL_GPIO_TogglePin(LED3_GPIO_Port, LED3_Pin);
+
+		  		msg[0] = 'w';
 		  	}
 
 		  osDelay(10);
